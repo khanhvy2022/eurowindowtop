@@ -56,15 +56,14 @@ export default function HeroVideo() {
 
           {/* Tag */}
           <div
-            className="flex items-center gap-2.5 text-[10px] font-bold text-white/55 uppercase tracking-[0.18em]"
+            className="eyebrow text-[#c5a968] text-[11px]"
             style={{
               opacity: isLoaded ? 1 : 0,
               transform: isLoaded ? "translateY(0)" : "translateY(16px)",
               transition: "opacity 0.8s 0.3s ease, transform 0.8s 0.3s ease",
             }}
           >
-            <span className="h-1.5 w-1.5 border border-white/50 rounded-sm inline-block" />
-            Giải pháp toàn diện cho không gian sống hiện đại
+            Design · Precision · Performance
           </div>
 
           {/* Headline */}
@@ -77,7 +76,7 @@ export default function HeroVideo() {
                 "opacity 0.9s 0.35s ease, transform 0.9s 0.35s ease",
             }}
           >
-            Kiến tạo không gian sống đẳng cấp.
+            Nơi kiến trúc gặp công nghệ.
           </h2>
 
           {/* Sub text */}
@@ -89,8 +88,7 @@ export default function HeroVideo() {
               transition: "opacity 0.9s 0.5s ease, transform 0.9s 0.5s ease",
             }}
           >
-            Khám phá hành trình đổi mới sáng tạo của Eurowindow qua những dự án
-            biểu tượng và công nghệ tiên phong.
+            Từ những công trình biểu tượng đến từng chi tiết hệ cửa — khám phá hành trình kiến tạo của Eurowindow.
           </p>
         </div>
       </div>

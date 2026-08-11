@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ArrowRight } from "./icons";
 
 const FLAG_EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -13,6 +14,15 @@ export default function HeroSection() {
     const timer = setTimeout(() => setIsLoaded(true), 120);
     return () => clearTimeout(timer);
   }, []);
+
+  const lineVariants = {
+    hidden: { opacity: 0, y: 28 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.85, ease: FLAG_EASE, delay: 0.5 + i * 0.14 },
+    }),
+  };
 
   const flagVariants = {
     hidden: { scale: 0.05, opacity: 0 },
@@ -65,22 +75,64 @@ export default function HeroSection() {
 
       {/* ── Hero Content (centered, above overlays) ── */}
       <div className="relative z-10 w-full max-w-5xl px-6 text-center pointer-events-none">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+        {/* Eyebrow */}
+        <motion.span
+          initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: FLAG_EASE, delay: 0.45 }}
-          className="font-display font-extrabold text-5xl sm:text-6xl md:text-7xl text-white tracking-tighter leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]"
+          transition={{ duration: 0.7, ease: FLAG_EASE, delay: 0.3 }}
+          className="inline-flex items-center gap-3 eyebrow text-[#c5a968] text-xs mb-6 justify-center"
         >
-          Eurowindow
-        </motion.h1>
+          EUROWINDOW
+        </motion.span>
+
+        {/* H1 — three lines */}
+        <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl xl:text-7xl text-white tracking-tighter leading-[1.08] drop-shadow-[0_4px_24px_rgba(0,0,0,0.85)]">
+          {["Tiên Phong.", "Kiến Tạo.", "Đồng Hành."].map((line, i) => (
+            <motion.span
+              key={line}
+              custom={i}
+              variants={lineVariants}
+              initial="hidden"
+              animate={isLoaded ? "visible" : "hidden"}
+              className="block"
+            >
+              {line}
+            </motion.span>
+          ))}
+        </h1>
+
+        {/* Supporting text */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: FLAG_EASE, delay: 0.6 }}
-          className="mt-5 font-sans font-bold text-sm sm:text-base text-white/85 uppercase tracking-[0.18em] drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
+          transition={{ duration: 0.8, ease: FLAG_EASE, delay: 0.95 }}
+          className="mt-6 mx-auto max-w-xl font-sans font-normal text-sm sm:text-base text-white/80 leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]"
         >
-          Tiên Phong. Kiến Tạo. Đồng Hành.
+          Giải pháp cửa &amp; vách kính kiến tạo những công trình khác biệt.
         </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: FLAG_EASE, delay: 1.1 }}
+          className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <a
+            href="#products"
+            className="inline-flex items-center gap-2.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[11px] uppercase tracking-[0.16em] px-8 py-4 rounded-full transition-all duration-300 group"
+          >
+            KHÁM PHÁ GIẢI PHÁP
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+          <a
+            href="#projects"
+            className="inline-flex items-center gap-2.5 border border-white/35 hover:border-white text-white font-bold text-[11px] uppercase tracking-[0.16em] px-8 py-4 rounded-full transition-all duration-300 group"
+          >
+            XEM CÔNG TRÌNH
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </a>
+        </motion.div>
       </div>
 
       {/* ── Scroll Down Indicator ── */}

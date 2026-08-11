@@ -9,15 +9,20 @@ import { Search, Menu, X, ArrowRight, EurowindowBrandLogo } from "./icons";
 const EASE: Easing = [0.21, 1.11, 0.34, 1];
 
 const menuItems = [
-  { label: "Về Eurowindow", href: "#intro", id: "intro" },
   { label: "Sản phẩm", href: "#products", id: "products" },
-  { label: "Showroom", href: "#showroom", id: "showroom" },
-  { label: "Công trình tiêu biểu", href: "#projects", id: "projects" },
+  { label: "Công trình", href: "#projects", id: "projects" },
+  { label: "Về Eurowindow", href: "#intro", id: "intro" },
   { label: "Architect Hub", href: "#architect-hub", id: "architect-hub" },
-  { label: "Tư vấn & Hỗ trợ", href: "#contact", id: "contact" },
+  { label: "Showroom", href: "#showroom", id: "showroom" },
+];
+
+const secondaryItems = [
   { label: "Tin tức", href: "#news", id: "news" },
   { label: "Liên hệ", href: "#footer", id: "footer" },
+  { label: "Tư vấn & Hỗ trợ", href: "#contact", id: "contact" },
 ];
+
+const observedIds = [...menuItems, ...secondaryItems].map((m) => m.id);
 
 const popularSearches = [
   { title: "Cửa nhôm cao cấp Low-E", category: "Sản phẩm", link: "#products" },
@@ -45,8 +50,8 @@ export default function Header() {
       },
       { threshold: 0.3 }
     );
-    menuItems.forEach((m) => {
-      const el = document.getElementById(m.id);
+    observedIds.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
@@ -55,12 +60,12 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className="fixed top-0 left-0 w-full z-50 bg-black/30 backdrop-blur-md border-b border-white/10 text-white py-3 transition-all duration-400"
+        className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/60 to-transparent text-white transition-all duration-500"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.65, ease: EASE, delay: 0.1 }}
       >
-        <div className="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between gap-3 h-14 sm:h-[64px]">
+        <div className="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between gap-3 h-16 sm:h-20 border-b border-white/10">
           
           {/* Logo — Original Image Asset + Vietnamese Slogan */}
           <motion.div
@@ -112,8 +117,8 @@ export default function Header() {
             })}
           </nav>
 
-          {/* Language + Search — right */}
-          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+          {/* Language + Search + CTA — right */}
+          <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
             <div className="flex items-center gap-1.5 text-[12px] font-bold text-white/70">
               <button
                 onClick={() => setLang("vi")}
@@ -131,7 +136,7 @@ export default function Header() {
             </div>
 
             {/* Interactive Search Box */}
-            <div className="relative">
+            <div className="relative hidden 2xl:block">
               <input
                 type="text"
                 placeholder="Tìm kiếm..."
@@ -143,6 +148,14 @@ export default function Header() {
               />
               <Search className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/60 pointer-events-none" />
             </div>
+
+            <Link
+              href="#contact"
+              className="hidden xl:inline-flex items-center gap-2.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-3 rounded-full transition-all duration-300 group whitespace-nowrap"
+            >
+              NHẬN TƯ VẤN
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
 
           {/* Mobile Controls */}
@@ -182,6 +195,26 @@ export default function Header() {
                   {item.label}
                 </Link>
               ))}
+              <div className="pl-4 pt-1 pb-1">
+                {secondaryItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-2 text-[12.5px] font-medium text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+              <Link
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mx-4 mt-2 flex items-center justify-center gap-2.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-3.5 rounded-full transition-all duration-300"
+              >
+                NHẬN TƯ VẤN
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
               <div className="pt-2 relative">
                 <input
                   type="text"

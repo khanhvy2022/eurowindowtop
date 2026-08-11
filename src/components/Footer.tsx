@@ -25,22 +25,22 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-[#005bb7] text-white relative">
+    <footer id="footer" className="bg-[#0a1f3c] text-white relative">
       {/* Top CTA Consultation Banner */}
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-16 pb-8">
         <div className="relative bg-white/10 backdrop-blur-md rounded-3xl border border-white/20 overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 sm:p-12 lg:p-14 gap-8">
-          <div className="max-w-2xl text-center md:text-left space-y-2">
+          <div className="max-w-2xl text-center md:text-left space-y-3">
             <h3 className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl leading-snug">
-              Nhận tư vấn giải pháp tối ưu cho mọi nhu cầu xây dựng & hoàn thiện.
+              Bắt đầu công trình của bạn.
             </h3>
             <p className="text-blue-100 text-sm font-sans">
-              Đội ngũ chuyên gia của chúng tôi sẵn sàng đồng hành cùng bạn 24/7.
+              Đội ngũ chuyên gia Eurowindow sẵn sàng đồng hành cùng bạn 24/7.
             </p>
           </div>
           <div className="flex-shrink-0">
             <Link
               href="#contact"
-              className="inline-flex items-center gap-3 bg-white text-brand-blue font-bold text-xs sm:text-sm uppercase tracking-widest px-8 py-4 rounded-full shadow-2xl hover:bg-gray-100 transition-all group cursor-pointer"
+              className="inline-flex items-center gap-3 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-xs sm:text-sm uppercase tracking-widest px-8 py-4 rounded-full shadow-2xl transition-all group cursor-pointer"
             >
               NHẬN TƯ VẤN
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -172,7 +172,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Copyright Bar */}
-      <div className="bg-[#004a96] border-t border-white/10 py-6 text-xs text-blue-200">
+      <div className="bg-[#06142a] border-t border-white/10 py-6 text-xs text-blue-200">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             Copyright © 2026 - Eurowindow. All Rights Reserved. Designed by Thuy

@@ -68,12 +68,12 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <h3 className="font-display font-bold text-2xl sm:text-3xl leading-snug">
-                    Đăng ký tư vấn
+                    Bắt đầu công trình của bạn.
                   </h3>
                   <p className="text-xs text-blue-200">
-                    Điền thông tin bên dưới, nhân viên hỗ trợ của chúng tôi sẽ gọi lại cho bạn.
+                    Chia sẻ nhu cầu. Đội ngũ chuyên gia Eurowindow sẽ đề xuất giải pháp phù hợp.
                   </p>
                 </div>
 
@@ -154,7 +154,7 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full py-4 bg-white text-brand-blue hover:bg-gray-100 font-bold text-xs uppercase tracking-widest rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
                 >
-                  GỬI
+                  NHẬN TƯ VẤN
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </form>

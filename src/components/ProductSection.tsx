@@ -139,13 +139,12 @@ export default function ProductSection() {
 
         {/* ── Section header ── */}
         <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 reveal">
-          <div className="space-y-4 max-w-2xl">
-            <div className="section-tag text-[#005bb7]">
-              <span className="h-2 w-2 border border-[#005bb7] rounded-sm inline-block" />
-              SẢN PHẨM
+          <div className="space-y-4 max-w-3xl">
+            <div className="eyebrow text-[#005bb7]">
+              Materials &amp; Systems
             </div>
-            <h2 className="font-display font-normal text-[28px] sm:text-[36px] md:text-[44px] lg:text-[48px] leading-[1.2] text-[#005bb7] tracking-tight">
-              Tiên phong kiến tạo các giải pháp toàn diện, góp phần nâng tầm chất lượng cuộc sống
+            <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.14] text-[#0a1f3c] tracking-tight">
+              Những hệ cửa tạo nên kiến trúc.
             </h2>
           </div>
           <div className="flex-shrink-0">
@@ -166,13 +165,13 @@ export default function ProductSection() {
             {visible.map((cat, idx) => (
               <div key={cat.id + idx} className="space-y-1.5">
                 {/* Horizontal top border */}
-                <div className={`h-0.5 w-full mb-3 ${idx === 0 ? "bg-[#005bb7]" : "bg-gray-200"}`} />
+                <div className={`h-px w-full mb-3 ${idx === 0 ? "bg-[#005bb7]" : "bg-gray-200"}`} />
                 {/* Name */}
                 <h3
                   className={`font-display font-bold tracking-widest uppercase transition-colors ${
                     idx === 0
-                      ? "text-[#005bb7] text-[14px] sm:text-[15px]"
-                      : "text-gray-700 text-[13px] sm:text-[14px] cursor-pointer hover:text-[#005bb7]"
+                      ? "text-[#0a1f3c] text-[15px] sm:text-[17px]"
+                      : "text-gray-400 text-[13px] sm:text-[14px] cursor-pointer hover:text-[#005bb7]"
                   }`}
                   onClick={() => idx > 0 && setActiveIndex((activeIndex + idx) % total)}
                 >
@@ -180,7 +179,7 @@ export default function ProductSection() {
                 </h3>
                 {/* Description — only for active (idx 0) */}
                 {idx === 0 && (
-                  <p className="text-[12px] sm:text-[13px] text-gray-500 font-sans leading-relaxed max-w-[280px]">
+                  <p className="text-[12px] sm:text-[13px] text-ink-muted font-sans leading-relaxed max-w-[280px]">
                     {cat.desc}
                   </p>
                 )}
@@ -193,7 +192,7 @@ export default function ProductSection() {
             {visible.map((cat, idx) => (
               <div
                 key={cat.id + idx + "img"}
-                className={`relative overflow-hidden rounded-xl cursor-pointer group transition-all duration-500 ${
+                className={`relative overflow-hidden cursor-pointer group transition-all duration-500 ${
                   idx === 0 ? "" : "opacity-90 hover:opacity-100"
                 }`}
                 style={{ aspectRatio: "4/3.2" }}
@@ -210,7 +209,7 @@ export default function ProductSection() {
                   style={{ backgroundImage: `url(${cat.image})` }}
                 />
                 {/* Subtle dark overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
 
                 {/* Bottom gradient + CTA for active */}
                 {idx === 0 && (

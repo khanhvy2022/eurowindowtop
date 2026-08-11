@@ -10,6 +10,7 @@ import ContactSection from "@/components/ContactSection";
 import ArchitectHub from "@/components/ArchitectHub";
 import NewsSection from "@/components/NewsSection";
 import ShowroomEcho from "@/components/ShowroomEcho";
+import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 import FloatingControls from "@/components/FloatingControls";
 
@@ -29,6 +30,7 @@ export default function Home() {
       <ArchitectHub />
       <NewsSection />
       <ShowroomEcho />
+      <FinalCta />
       <Footer />
     </main>
   );

@@ -72,15 +72,14 @@ export default function ShowroomEcho() {
         {/* Left: Text */}
         <div ref={textRef} className="max-w-2xl text-white space-y-10 reveal-left">
           <div className="space-y-5">
-            <div className="section-tag text-amber-300">
-              <span className="h-2 w-2 bg-amber-300 rounded-sm inline-block" />
-              TRẢI NGHIỆM SHOWROOM
+            <div className="eyebrow text-[#c5a968]">
+              Showroom Experience
             </div>
-            <h2 className="font-display font-bold text-[32px] sm:text-[42px] md:text-[52px] lg:text-[58px] leading-[1.1] tracking-tight">
-              Khám phá không gian showroom Eurowindow với trải nghiệm thực tế đẳng cấp
+            <h2 className="font-display font-bold text-[32px] sm:text-[42px] md:text-[52px] lg:text-[58px] leading-[1.08] tracking-tight">
+              Chạm. Cảm nhận. Trải nghiệm.
             </h2>
             <p className="text-[14px] sm:text-[15px] text-white/60 font-sans leading-relaxed max-w-lg">
-              Hơn 12 showroom toàn quốc, nơi bạn có thể trực tiếp trải nghiệm, chạm vào và cảm nhận chất lượng của từng sản phẩm cửa và vách kính Eurowindow.
+              12+ showroom trên toàn quốc — nơi bạn trực tiếp chạm vào và cảm nhận chất lượng từng hệ cửa &amp; vách kính Eurowindow.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">

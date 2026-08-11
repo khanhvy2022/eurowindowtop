@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import { FileText, Headphones, GraduationCap, ArrowRight, Layers } from "./icons";
 
 function useReveal() {
@@ -21,7 +22,7 @@ interface Resource {
   id: string;
   name: string;
   desc: string;
-  icon: React.ComponentType<any>;
+  icon: LucideIcon;
 }
 
 export default function ArchitectHub() {
@@ -32,25 +33,25 @@ export default function ArchitectHub() {
   const resources: Resource[] = [
     {
       id: "bim",
-      name: "Thư viện BIM",
-      desc: "Tải file 3D CAD/BIM chất lượng cao của các sản phẩm cửa Eurowindow.",
+      name: "BIM Library",
+      desc: "Tải file 3D CAD/BIM chất lượng cao của các hệ cửa Eurowindow.",
       icon: Layers
     },
     {
       id: "tailieu",
-      name: "Tài liệu kỹ thuật",
+      name: "Technical Documents",
       desc: "Tra cứu thông số, bản vẽ kỹ thuật chi tiết phục vụ thiết kế kiến trúc.",
       icon: FileText
     },
     {
       id: "hotro",
-      name: "Hỗ trợ thiết kế",
+      name: "Design Support",
       desc: "Tư vấn chuyên sâu từ đội ngũ kỹ sư giải pháp kết cấu nhôm kính.",
       icon: Headphones
     },
     {
       id: "cpd",
-      name: "Đào tạo CPD",
+      name: "CPD Training",
       desc: "Tham gia các khóa đào tạo, hội thảo chuyên đề kiến trúc & xây dựng.",
       icon: GraduationCap
     }
@@ -67,15 +68,14 @@ export default function ArchitectHub() {
           {/* Left: Header + Cards */}
           <div ref={leftRef} className="lg:col-span-7 space-y-10 reveal-left">
             <div className="space-y-5">
-              <div className="section-tag text-[#005bb7]">
-                <span className="h-2 w-2 bg-[#005bb7] rounded-sm inline-block" />
-                DÀNH CHO KIẾN TRÚC SƯ
+              <div className="eyebrow text-[#005bb7]">
+                Architect Hub
               </div>
-              <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-gray-900 tracking-tight">
-                Đồng hành cùng kiến trúc sư kiến tạo những công trình xanh
+              <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-[#0a1f3c] tracking-tight">
+                Công cụ dành cho thế hệ kiến trúc sư mới.
               </h2>
-              <p className="text-[14px] sm:text-[15px] text-gray-500 font-sans leading-relaxed max-w-2xl">
-                Eurowindow cung cấp bộ công cụ và tài nguyên chuyên sâu giúp kiến trúc sư dễ dàng tích hợp các giải pháp cửa và vách kính thông minh vào mô hình thiết kế của dự án.
+              <p className="text-[14px] sm:text-[15px] text-ink-muted font-sans leading-relaxed max-w-2xl">
+                Thư viện kiến trúc số — bộ công cụ chuyên sâu giúp tích hợp giải pháp cửa &amp; vách kính vào từng mô hình thiết kế.
               </p>
             </div>
 
@@ -89,17 +89,22 @@ export default function ArchitectHub() {
                     key={res.id}
                     onMouseEnter={() => setHoveredCard(res.id)}
                     onMouseLeave={() => setHoveredCard(null)}
-                    className="bg-white p-7 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-400 flex flex-col justify-between cursor-pointer group hover:-translate-y-1.5"
+                    className="bg-white p-7 rounded-2xl border border-line hover:border-[#005bb7]/30 transition-all duration-400 flex flex-col justify-between cursor-pointer group hover:-translate-y-1"
                     style={{ minHeight: "200px", transitionDelay: `${idx * 60}ms` }}
                   >
                     <div className="space-y-4">
-                      <div className={`h-11 w-11 rounded-xl flex items-center justify-center transition-all duration-300 ${isHovered ? "bg-[#005bb7] text-white" : "bg-blue-50 text-[#005bb7]"}`}>
-                        <Icon className="h-5 w-5" />
+                      <div className="flex items-center justify-between">
+                        <span className="font-display text-[11px] font-extrabold tracking-[0.2em] text-[#c5a968]">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <div className={`h-10 w-10 rounded-lg flex items-center justify-center transition-all duration-300 ${isHovered ? "bg-[#005bb7] text-white" : "bg-[#e8f0fb] text-[#005bb7]"}`}>
+                          <Icon className="h-4.5 w-4.5" />
+                        </div>
                       </div>
-                      <h3 className="font-display font-bold text-[16px] text-gray-900 group-hover:text-[#005bb7] transition-colors">
+                      <h3 className="font-display font-bold text-[16px] text-[#0a1f3c] group-hover:text-[#005bb7] transition-colors uppercase tracking-wide">
                         {res.name}
                       </h3>
-                      <p className="text-[13px] text-gray-500 font-sans leading-relaxed">
+                      <p className="text-[13px] text-ink-muted font-sans leading-relaxed">
                         {res.desc}
                       </p>
                     </div>

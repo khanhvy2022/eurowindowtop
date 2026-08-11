@@ -1,11 +1,20 @@
 ﻿@import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #111827;
-  --brand-blue: #005bb7;
+  /* ── Luxury Editorial Architecture palette ── */
+  --background: #fbf9f5;          /* warm white */
+  --foreground: #101c2b;          /* deep ink */
+  --brand-blue: #005bb7;          /* primary sapphire */
   --brand-blue-hover: #00468c;
   --brand-blue-light: #e8f0fb;
+  --midnight: #0a1f3c;            /* midnight sapphire */
+  --midnight-deep: #06142a;       /* deep navy */
+  --warm-white: #fbf9f5;
+  --champagne: #c5a968;           /* champagne accent */
+  --champagne-soft: #eadfc9;
+  --ink-muted: #5b6776;           /* muted slate */
+  --line: rgba(16, 28, 43, 0.1);  /* thin editorial border */
+  --line-light: rgba(255, 255, 255, 0.12);
   --figma-ease: cubic-bezier(0.34, 1.56, 0.64, 1);
   --figma-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -16,6 +25,12 @@
   --color-brand-blue: var(--brand-blue);
   --color-brand-blue-hover: var(--brand-blue-hover);
   --color-brand-blue-light: var(--brand-blue-light);
+  --color-midnight: var(--midnight);
+  --color-midnight-deep: var(--midnight-deep);
+  --color-warm-white: var(--warm-white);
+  --color-champagne: var(--champagne);
+  --color-champagne-soft: var(--champagne-soft);
+  --color-ink-muted: var(--ink-muted);
   --font-sans: var(--font-inter), sans-serif;
   --font-display: var(--font-wix), sans-serif;
 }
@@ -31,6 +46,37 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-wix), sans-serif;
+}
+
+/* ── Editorial eyebrow label ── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+/* ── Thin editorial rule ── */
+.rule-line {
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+
+/* ── Champagne hairline divider for dark sections ── */
+.rule-champagne {
+  border: 0;
+  border-top: 1px solid rgba(197, 169, 104, 0.35);
 }
 
 /* ═══════════════════════════════════════
@@ -167,6 +213,27 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-track { background: #f1f5f9; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #005bb7; }
+
+/* ── Respect reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ken-burns,
+  .ken-burns-alt,
+  .ken-burns-slow,
+  .float-y,
+  .gradient-breathe {
+    animation: none !important;
+    transform: none !important;
+  }
+}
 
 /* Translucent Vietnam flag overlay — tinted to white silk */
 .flag-silhouette svg {

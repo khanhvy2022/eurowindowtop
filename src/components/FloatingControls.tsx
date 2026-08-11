@@ -29,7 +29,7 @@ export default function FloatingControls() {
       {/* ── Top Scroll Progress Bar ── */}
       <div className="fixed top-0 left-0 right-0 h-[3px] bg-transparent z-[100] pointer-events-none">
         <div
-          className="h-full bg-gradient-to-r from-[#005bb7] via-sky-400 to-[#005bb7] transition-all duration-150 ease-out"
+          className="h-full bg-gradient-to-r from-[#0a1f3c] via-[#005bb7] to-[#c5a968] transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>

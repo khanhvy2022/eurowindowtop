@@ -35,7 +35,7 @@ const allArticles: NewsArticle[] = [
     id: "n1",
     category: "du-an",
     title: 'Eurowindow 14 năm liên tiếp được vinh danh "Thương hiệu Quốc gia"',
-    date: "28/09/2026",
+    date: "08/08/2026",
     type: "video",
     desc: "Eurowindow không ngừng khẳng định vị thế thương hiệu bằng những giải thưởng uy tín, ghi dấu chất lượng vượt trội, đổi mới sáng tạo và phát triển bền vững.",
     image: "/images/figma_1be4_7228_235f85af7217f6d388a0231a83ec7e09.png",
@@ -44,7 +44,7 @@ const allArticles: NewsArticle[] = [
     id: "n2",
     category: "su-kien",
     title: "Hội thảo quốc tế giải pháp mặt dựng kính tiết kiệm năng lượng",
-    date: "15/09/2026",
+    date: "05/08/2026",
     type: "text",
     desc: "Hội thảo quy tụ các chuyên gia hàng đầu thảo luận về công nghệ mặt dựng nhôm kính mới giúp giảm thiểu tiêu thụ năng lượng của tòa nhà cao tầng.",
     image: "/images/figma_b18c_11f0_2ef047e598522176df10594d5037095a.png",
@@ -53,7 +53,7 @@ const allArticles: NewsArticle[] = [
     id: "n3",
     category: "cong-ty",
     title: "Eurowindow trao tặng giải thưởng cống hiến cho cán bộ nhân viên xuất sắc",
-    date: "10/09/2026",
+    date: "30/07/2026",
     type: "text",
     desc: "Lễ vinh danh ghi nhận những đóng góp to lớn của các cá nhân và tập thể tiêu biểu đồng hành cùng sự phát triển bền vững của tập đoàn.",
     image: "/images/figma_02eb_ff31_11e50ba11f994ad1cc4af857168b9879.png",
@@ -62,7 +62,7 @@ const allArticles: NewsArticle[] = [
     id: "n4",
     category: "video",
     title: "Hành trình kiến tạo tương lai xanh - Phóng sự Eurowindow 2026",
-    date: "01/09/2026",
+    date: "25/07/2026",
     type: "video",
     desc: "Xem video toàn cảnh về quy mô sản xuất hiện đại và quy trình kiểm duyệt chất lượng khắt khe tại nhà máy Eurowindow.",
     image: "/images/figma_97cc_2fb9_127c87d3ad918d7645c788e55e8ebbc6.png",
@@ -70,9 +70,9 @@ const allArticles: NewsArticle[] = [
 ];
 
 const secondaryArticles = [
-  { title: "Eurowindow khởi công cung cấp vách kính dự án Lotte Mall Tây Hồ", date: "25/08/2026", image: "/images/figma_b18c_11f0_2ef047e598522176df10594d5037095a.png" },
-  { title: "Bộ sưu tập cửa thông minh thế hệ mới tích hợp khóa nhận diện khuôn mặt", date: "20/08/2026", image: "/images/figma_02eb_ff31_11e50ba11f994ad1cc4af857168b9879.png" },
-  { title: "Thị trường vật liệu xây dựng xanh: Cơ hội bứt phá của Eurowindow", date: "18/08/2026", image: "/images/figma_97cc_2fb9_127c87d3ad918d7645c788e55e8ebbc6.png" },
+  { title: "Eurowindow khởi công cung cấp vách kính dự án Lotte Mall Tây Hồ", date: "20/07/2026", image: "/images/figma_b18c_11f0_2ef047e598522176df10594d5037095a.png" },
+  { title: "Bộ sưu tập cửa thông minh thế hệ mới tích hợp khóa nhận diện khuôn mặt", date: "15/07/2026", image: "/images/figma_02eb_ff31_11e50ba11f994ad1cc4af857168b9879.png" },
+  { title: "Thị trường vật liệu xây dựng xanh: Cơ hội bứt phá của Eurowindow", date: "10/07/2026", image: "/images/figma_97cc_2fb9_127c87d3ad918d7645c788e55e8ebbc6.png" },
 ];
 
 const categories = [
@@ -146,12 +146,11 @@ export default function NewsSection() {
         {/* ── Header ── */}
         <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16 reveal">
           <div className="space-y-4">
-            <div className="section-tag text-[#005bb7]">
-              <span className="h-2 w-2 bg-[#005bb7] rounded-sm inline-block" />
-              TRUYỀN THÔNG
+            <div className="eyebrow text-[#005bb7]">
+              Journal
             </div>
-            <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-gray-900 tracking-tight">
-              Tin tức & Sự kiện
+            <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-[#0a1f3c] tracking-tight">
+              Tin tức &amp; Sự kiện
             </h2>
           </div>
           <a href="#" className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#005bb7] border-b border-[#005bb7]/25 pb-1 hover:border-[#005bb7] transition-all whitespace-nowrap self-end">

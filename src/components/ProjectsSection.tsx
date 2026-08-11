@@ -31,26 +31,27 @@ function useReveal() {
 }
 
 export default function ProjectsSection() {
-  const [activeCategory, setActiveCategory] = useState("office");
+  const [activeCategory, setActiveCategory] = useState("all");
   const [lightboxProject, setLightboxProject] = useState<ProjectItem | null>(null);
   const headerRef = useReveal();
   const contentRef = useReveal();
 
   const categories = [
-    { id: "national", label: "Công trình cấp quốc gia" },
-    { id: "office", label: "Tòa nhà chung cư - Văn phòng" },
-    { id: "civil", label: "Công trình dân dụng" },
-    { id: "all", label: "Tất cả dự án" }
+    { id: "all", label: "ALL" },
+    { id: "national", label: "NATIONAL" },
+    { id: "residential", label: "RESIDENTIAL" },
+    { id: "commercial", label: "COMMERCIAL" },
+    { id: "hospitality", label: "HOSPITALITY" },
   ];
 
   const projects: ProjectItem[] = [
     {
       id: "p-1",
-      category: "office",
+      category: "national",
       title: "CẢNG HÀNG KHÔNG PHÚ BÀI HUẾ",
-      type: "Công trình cấp quốc gia",
+      type: "National Infrastructure",
       investor: "Tổng công ty Cảng hàng không Việt Nam",
-      volume: "~18.500 m²",
+      volume: "18.500 m²",
       year: "2025",
       image: "/images/figma_29b7_754b_dcb3258841887f70bf6e16c62af9ca41.png",
       specs: [
@@ -61,11 +62,11 @@ export default function ProjectsSection() {
     },
     {
       id: "p-2",
-      category: "national",
+      category: "commercial",
       title: "DIAMOND CROWN HẢI PHÒNG",
-      type: "Tòa nhà văn phòng - Chung cư",
+      type: "Commercial",
       investor: "DOJI LAND",
-      volume: "~28.000 m²",
+      volume: "28.000 m²",
       year: "2024",
       image: "/images/figma_5d36_d29a_3a53e0de2f53eadb8296fd34023141e5.png",
       specs: [
@@ -76,11 +77,11 @@ export default function ProjectsSection() {
     },
     {
       id: "p-3",
-      category: "civil",
+      category: "residential",
       title: "VINHOMES SMART CITY",
-      type: "Khu đô thị dân dụng",
+      type: "Residential",
       investor: "Vinhomes JSC",
-      volume: "~45.000 m²",
+      volume: "45.000 m²",
       year: "2024",
       image: "/images/figma_4140_b90c_06d671ce00de7935b522cded3c8da554.png",
       specs: [
@@ -91,11 +92,11 @@ export default function ProjectsSection() {
     },
     {
       id: "p-4",
-      category: "all",
+      category: "commercial",
       title: "LOTTE MALL TÂY HỒ",
-      type: "Trung tâm thương mại",
+      type: "Commercial",
       investor: "Lotte Property & Development",
-      volume: "~32.000 m²",
+      volume: "32.000 m²",
       year: "2023",
       image: "/images/figma_8128_3c7c_74d6dbaa92c1c5cf911a777a203bf190.png",
       specs: [
@@ -103,43 +104,60 @@ export default function ProjectsSection() {
         "Cửa tự động cảm biến mắt thần nhập khẩu Nhật Bản",
         "Hệ thống nhôm sơn phủ PVDF chịu ăn mòn biển"
       ]
+    },
+    {
+      id: "p-5",
+      category: "hospitality",
+      title: "RESORT NGHỈ DƯỠNG VINPEARL",
+      type: "Hospitality",
+      investor: "Vinpearl JSC",
+      volume: "21.000 m²",
+      year: "2023",
+      image: "/images/figma_8ded_3fa0_e51bcd93f06cd40fdd206fa2189f4d60.png",
+      specs: [
+        "Hệ cửa nhôm xếp trượt lấy sáng toàn cảnh biển",
+        "Kính Low-E chống nhiệt, giảm tiêu thụ điều hòa",
+        "Phụ kiện đồng bộ tiêu chuẩn khách sạn quốc tế"
+      ]
     }
   ];
 
-  const activeProject = projects.find(p => p.category === activeCategory) || projects[0];
+  const filteredProjects =
+    activeCategory === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+  const activeProject = filteredProjects[0] || projects[0];
 
   return (
     <section id="projects" className="bg-[#f4f7fc] py-20 lg:py-32 relative overflow-hidden">
       <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16">
         
         {/* Header + Category Filter */}
-        <div ref={headerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12 reveal">
+        <div ref={headerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 reveal">
           {/* Left: Tag + Headline */}
-          <div className="lg:col-span-7 space-y-4">
-            <div className="section-tag text-[#005bb7]">
-              <span className="h-2 w-2 border border-[#005bb7] rounded-sm inline-block" />
-              CÔNG TRÌNH TIÊU BIỂU
+          <div className="lg:col-span-8 space-y-4">
+            <div className="eyebrow text-[#005bb7]">
+              Featured Projects
             </div>
-            <h2 className="font-display font-normal text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.2] text-[#005bb7] tracking-tight">
-              Lan tỏa giá trị bền vững qua từng công trình tiêu biểu
+            <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[52px] leading-[1.12] text-[#0a1f3c] tracking-tight">
+              Công trình kiến tạo dấu ấn.
             </h2>
           </div>
 
-          {/* Right: Category Links */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-2.5 text-sm font-sans pt-3">
+          {/* Right: Category Filter — editorial pills */}
+          <div className="lg:col-span-4 flex flex-wrap items-center lg:justify-end gap-2 font-sans pb-1">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`text-right transition-all duration-300 cursor-pointer py-1.5 px-3 rounded-full ${
+                  className={`px-4 py-2 text-[10.5px] font-bold tracking-[0.14em] uppercase border transition-all duration-300 cursor-pointer ${
                     isActive
-                      ? "text-[#005bb7] font-bold bg-blue-50 border border-[#005bb7]/20 shadow-sm"
-                      : "text-gray-400 hover:text-gray-700 font-medium"
+                      ? "text-white bg-[#0a1f3c] border-[#0a1f3c]"
+                      : "text-ink-muted border-line hover:border-[#005bb7] hover:text-[#005bb7]"
                   }`}
                 >
-                  {isActive && <span className="mr-2 text-[#005bb7]">—</span>}
                   {cat.label}
                 </button>
               );
@@ -148,7 +166,7 @@ export default function ProjectsSection() {
         </div>
 
         {/* Main Showcase Container */}
-        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-xl reveal delay-200">
+        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-line reveal delay-200">
           
           {/* Left: Interactive Project Image (6 cols) */}
           <div
@@ -176,7 +194,7 @@ export default function ProjectsSection() {
             {/* Click to expand hover hint (Figma prototype pattern) */}
             <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
               <span className="text-[11px] font-bold text-white uppercase tracking-widest bg-white/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/30 flex items-center gap-2">
-                🔍 Phóng to xem bản vẽ & thông số
+                Phóng to xem bản vẽ & thông số
               </span>
             </div>
           </div>
@@ -184,7 +202,7 @@ export default function ProjectsSection() {
           {/* Right: Project Specs (6 cols) */}
           <div className="lg:col-span-6 bg-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative">
             <div className="space-y-8">
-              <h3 className="font-display font-bold text-[22px] sm:text-[28px] lg:text-[34px] text-[#005bb7] leading-tight tracking-tight">
+              <h3 className="font-display font-bold text-[24px] sm:text-[30px] lg:text-[36px] text-[#0a1f3c] leading-tight tracking-tight">
                 {activeProject.title}
               </h3>
 

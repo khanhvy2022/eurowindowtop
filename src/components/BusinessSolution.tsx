@@ -46,11 +46,11 @@ export default function BusinessSolution() {
   const bgShift = relScroll * 0.08;
 
   const solutions: SolutionItem[] = [
-    { id: "vach-kinh", title: "VÁCH KÍNH MẶT DỰNG", desc: "Giải pháp đồng bộ nâng tầm không gian sống hiện đại." },
-    { id: "cua-chinh", title: "CỬA ĐI CHÍNH",       desc: "Tối ưu vận hành, thẩm mỹ và hiệu quả cho kinh doanh." },
-    { id: "ban-cong",  title: "CỬA BAN CÔNG",        desc: "Tạo dấu ấn sang trọng với giải pháp cửa cao cấp." },
-    { id: "cua-so",    title: "CỬA SỔ",               desc: "Đáp ứng tiêu chuẩn kỹ thuật cho kiến trúc biểu tượng." },
-    { id: "khac",      title: "CÁC GIẢI PHÁP KHÁC",  desc: "Giải pháp linh hoạt cho mọi quy mô kiến trúc." },
+    { id: "residential", title: "RESIDENTIAL", desc: "Cửa & vách kính cho nhà ở, biệt thự — kiến tạo tổ ấm bền bỉ." },
+    { id: "commercial", title: "COMMERCIAL", desc: "Giải pháp mặt dựng cho trung tâm thương mại, bán lẻ." },
+    { id: "hospitality", title: "HOSPITALITY", desc: "Khách sạn, nghỉ dưỡng — trải nghiệm đẳng cấp từng chi tiết." },
+    { id: "office", title: "OFFICE", desc: "Mặt dựng văn phòng, tiết kiệm năng lượng & thẩm mỹ." },
+    { id: "public", title: "PUBLIC", desc: "Công trình công cộng, hạ tầng quốc gia quy mô lớn." },
   ];
 
   const villaBackground = "/images/figma_7b8b_7492_9f80bd72474c265be9813af7bc879a99.png";
@@ -80,12 +80,11 @@ export default function BusinessSolution() {
       {/* Top content */}
       <div ref={topRef} className="relative z-10 max-w-[1440px] w-full mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 pt-24 lg:pt-32 reveal">
         <div className="space-y-5 max-w-3xl">
-          <div className="section-tag text-white/65">
-            <span className="h-2 w-2 border border-white/55 rounded-sm inline-block" />
-            GIẢI PHÁP DOANH NGHIỆP
+          <div className="eyebrow text-[#c5a968]">
+            Architectural Solutions
           </div>
-          <h2 className="font-display font-normal text-[36px] sm:text-[48px] lg:text-[62px] leading-[1.1] text-white tracking-tight drop-shadow-md">
-            Giải pháp cửa và vách kính đồng bộ cho mọi không gian
+          <h2 className="font-display font-bold text-[36px] sm:text-[48px] lg:text-[62px] leading-[1.08] text-white tracking-tight drop-shadow-md">
+            Giải pháp cho từng loại công trình.
           </h2>
           {/* Active description — animate on change */}
           <p
@@ -106,9 +105,9 @@ export default function BusinessSolution() {
               <div
                 key={item.id}
                 onClick={() => setActiveId(item.id)}
-                className={`relative pl-5 pr-4 py-8 cursor-pointer group transition-all duration-400 border-t-2 ${
+                className={`relative pl-5 pr-4 py-8 cursor-pointer group transition-all duration-400 border-t ${
                   isActive
-                    ? "border-white bg-white/8 backdrop-blur-xs"
+                    ? "border-[#c5a968] bg-white/8 backdrop-blur-xs"
                     : "border-white/15 hover:border-white/40 hover:bg-white/5"
                 }`}
                 style={{ transitionDelay: `${idx * 60}ms` }}

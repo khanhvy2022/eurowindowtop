@@ -101,8 +101,10 @@ function Metric({
 
   const value = useCountUp(target, duration, started);
 
+  // Show the final value until the count-up actually begins — no "0" flash.
+  const display = started ? value : target;
   // Format: 10000 → "10.000"
-  const formatted = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  const formatted = display.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   return (
     <div
@@ -116,7 +118,7 @@ function Metric({
       <div className="font-display font-extrabold text-[52px] sm:text-[64px] lg:text-[72px] text-[#005bb7] leading-none tabular-nums">
         {formatted}{suffix}
       </div>
-      <p className="text-[11px] font-bold text-gray-400 font-sans tracking-[0.1em] uppercase leading-snug max-w-[160px]">
+      <p className="text-[11px] font-bold text-ink-muted font-sans tracking-[0.12em] uppercase leading-snug max-w-[160px]">
         {label}
       </p>
     </div>
@@ -131,25 +133,24 @@ export default function StatsSection() {
   const { ref: rightRef, visible } = useRevealState(0.18);
 
   return (
-    <section id="intro" className="relative bg-white py-20 lg:py-32 overflow-hidden">
+    <section id="intro" className="relative bg-warm-white py-24 lg:py-36 overflow-hidden">
       {/* Top accent */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#005bb7]/20 to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#005bb7]/25 to-transparent" />
 
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-          {/* ── Left: Text ── */}
-          <div ref={leftRef} className="lg:col-span-6 space-y-8 reveal-left">
+          {/* ── Left: Editorial brand statement ── */}
+          <div ref={leftRef} className="lg:col-span-6 space-y-9 reveal-left">
             <div className="space-y-6">
-              <div className="section-tag text-[#005bb7]">
-                <span className="h-2 w-2 border border-[#005bb7] rounded-sm inline-block" />
+              <div className="eyebrow text-[#005bb7]">
                 Eurowindow
               </div>
-              <h2 className="font-display font-normal text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.2] text-[#005bb7] tracking-tight">
-                Đổi mới không ngừng để nâng tầm chất lượng công trình và trải nghiệm không gian sống.
+              <h2 className="font-display font-bold text-[30px] sm:text-[38px] md:text-[46px] lg:text-[54px] leading-[1.12] text-[#0a1f3c] tracking-tight">
+                Kiến tạo giá trị vượt thời gian.
               </h2>
-              <p className="text-[14px] sm:text-[15px] text-gray-500 font-sans leading-relaxed max-w-lg">
-                Tiếp tục khẳng định vị thế tiên phong cung cấp giải pháp tổng thể về vật liệu xây dựng xanh hàng đầu Việt Nam, vươn tầm Quốc tế
+              <p className="text-[14px] sm:text-[15px] text-ink-muted font-sans leading-relaxed max-w-lg">
+                Hơn hai thập kỷ tiên phong kiến tạo những công trình biểu tượng — nơi thiết kế, độ chính xác và hiệu năng cùng gặp nhau trong từng hệ cửa &amp; vách kính.
               </p>
             </div>
             <Link
@@ -168,10 +169,10 @@ export default function StatsSection() {
 
               {/* Row 1 */}
               <div className="pr-8 pb-12">
-                <Metric target={20} suffix="+" label="NĂM KIẾN TẠO KHÔNG GIAN SỐNG" triggered={visible} delay={0} duration={1400} />
+                <Metric target={30} suffix="+" label="NĂM KIẾN TẠO" triggered={visible} delay={0} duration={1400} />
               </div>
               <div className="pl-8 pb-12">
-                <Metric target={10000} suffix="+" label="CÔNG TRÌNH BIỂU TƯỢNG & DỰ ÁN CẤP QUỐC GIA" triggered={visible} delay={150} duration={2000} />
+                <Metric target={5000} suffix="+" label="CÔNG TRÌNH KIẾN TẠO" triggered={visible} delay={150} duration={2000} />
               </div>
 
               {/* Horizontal divider */}
@@ -179,10 +180,10 @@ export default function StatsSection() {
 
               {/* Row 2 */}
               <div className="pr-8 pt-10">
-                <Metric target={9} suffix="" label="GIẢI THƯỞNG TRONG & NGOÀI NƯỚC" triggered={visible} delay={300} duration={1000} />
+                <Metric target={14} suffix="" label="NĂM LIÊN TIẾP THƯƠNG HIỆU QUỐC GIA" triggered={visible} delay={300} duration={1000} />
               </div>
               <div className="pl-8 pt-10">
-                <Metric target={30} suffix="+" label="SHOWROOM TRÊN TOÀN QUỐC" triggered={visible} delay={450} duration={1400} />
+                <Metric target={12} suffix="+" label="SHOWROOM TRÊN TOÀN QUỐC" triggered={visible} delay={450} duration={1400} />
               </div>
             </div>
           </div>

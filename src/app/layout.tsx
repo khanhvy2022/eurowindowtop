@@ -14,7 +14,28 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Eurowindow - Tiên Phong. Kiến Tạo. Đồng Hành.",
-  description: "Trải nghiệm không gian sống hiện đại với giải pháp cửa xanh hàng đầu Việt Nam.",
+  description:
+    "Eurowindow - Giải pháp cửa & vách kính kiến tạo những công trình khác biệt. Cửa nhôm, uPVC, cửa gỗ, cửa thông minh cho kiến trúc Việt.",
+  keywords: [
+    "Eurowindow",
+    "cửa nhôm",
+    "cửa uPVC",
+    "cửa gỗ",
+    "cửa thông minh",
+    "vách kính",
+    "giải pháp cửa",
+    "kiến trúc",
+  ],
+  openGraph: {
+    title: "Eurowindow - Tiên Phong. Kiến Tạo. Đồng Hành.",
+    description:
+      "Giải pháp cửa & vách kính kiến tạo những công trình khác biệt.",
+    type: "website",
+    locale: "vi_VN",
+  },
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({

@@ -115,15 +115,14 @@ export default function Achievements() {
           {/* ── Left: Text + Awards ── */}
           <div ref={leftRef} className="lg:col-span-7 space-y-12 reveal-left">
             <div className="space-y-5">
-              <div className="section-tag text-[#005bb7]">
-                <span className="h-2 w-2 bg-[#005bb7] rounded-sm inline-block" />
-                THÀNH TÍCH NỔI BẬT
+              <div className="eyebrow text-[#005bb7]">
+                Recognition
               </div>
-              <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-gray-900 tracking-tight">
-                Thành tích & giải thưởng cao quý
+              <h2 className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] leading-tight text-[#0a1f3c] tracking-tight">
+                Được ghi nhận bởi những tiêu chuẩn cao nhất.
               </h2>
-              <p className="text-[14px] sm:text-[15px] text-gray-500 font-sans leading-relaxed max-w-2xl">
-                Eurowindow tự hào nhiều năm liền được vinh danh các thành tích và giải thưởng cao quý, do tổ chức uy tín trong và ngoài nước trao tặng.
+              <p className="text-[14px] sm:text-[15px] text-ink-muted font-sans leading-relaxed max-w-2xl">
+                Nhiều năm liền được vinh danh bởi các tổ chức uy tín trong và ngoài nước — bằng chứng cho cam kết chất lượng không ngừng.
               </p>
             </div>
 
@@ -142,7 +141,7 @@ export default function Achievements() {
                       className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
                     />
                   </div>
-                  <p className="text-[12px] font-bold text-gray-600 font-sans leading-relaxed max-w-[130px]">
+                  <p className="text-[12px] font-bold text-ink-muted font-sans leading-relaxed max-w-[130px]">
                     {award.text}
                   </p>
                 </div>
@@ -253,11 +252,11 @@ export default function Achievements() {
               </div>
             </div>
 
-            {/* Floating dark glass badge */}
-            <div className="absolute -left-6 bottom-14 glass-dark rounded-2xl px-5 py-4 shadow-xl hidden lg:flex flex-col gap-0.5 border border-white/10 float-y">
-              <p className="text-[10px] text-white/55 font-bold uppercase tracking-wider">Thương hiệu quốc gia</p>
-              <p className="text-[22px] font-display font-extrabold text-white">14 năm</p>
-              <p className="text-[11px] text-white/45 font-sans">Liên tiếp</p>
+            {/* Floating champagne badge */}
+            <div className="absolute -left-6 bottom-14 bg-[#0a1f3c] rounded-2xl px-6 py-5 shadow-2xl hidden lg:flex flex-col gap-0.5 border border-white/10 float-y">
+              <p className="text-[10px] text-[#c5a968] font-bold uppercase tracking-wider">Thương hiệu quốc gia</p>
+              <p className="text-[30px] font-display font-extrabold text-white leading-none mt-1">14</p>
+              <p className="text-[11px] text-white/50 font-sans mt-1">NĂM LIÊN TIẾP</p>
             </div>
           </div>
 
