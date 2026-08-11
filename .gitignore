@@ -23,6 +23,11 @@
 # misc
 .DS_Store
 *.pem
+.playwright-mcp/
+clone-hero-top.png
+NOTES.md
+docs/
+scripts/
 
 # debug
 npm-debug.log*
