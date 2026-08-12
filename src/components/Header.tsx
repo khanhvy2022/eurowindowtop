@@ -49,12 +49,6 @@ const menuItems: MenuItem[] = [
     id: "projects",
     label: "CÔNG TRÌNH TIÊU BIỂU",
     href: "/cong-trinh",
-    children: [
-      { label: "CÔNG TRÌNH CẤP QUỐC GIA", href: "/cong-trinh" },
-      { label: "DỰ ÁN THƯƠNG MẠI & Y TẾ", href: "/cong-trinh" },
-      { label: "KHU ĐÔ THỊ & DÂN CƯ", href: "/cong-trinh" },
-      { label: "RESORT & NGHỈ DƯỠNG", href: "/cong-trinh" },
-    ],
   },
   {
     id: "architect-hub",
@@ -65,11 +59,6 @@ const menuItems: MenuItem[] = [
     id: "news",
     label: "TIN TỨC",
     href: "/tin-tuc",
-    children: [
-      { label: "TIN TỨC SỰ KIỆN", href: "/tin-tuc" },
-      { label: "TỌA ĐÀM & HỘI THẢO", href: "/tin-tuc" },
-      { label: "TẠO DỰNG TƯƠNG LAI XANH", href: "/tin-tuc" },
-    ],
   },
 ];
 
