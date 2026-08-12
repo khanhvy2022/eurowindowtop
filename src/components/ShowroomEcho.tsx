@@ -40,8 +40,8 @@ export default function ShowroomEcho() {
   const bgParallax = relScroll * 0.06;
   const cardParallax = relScroll * -0.03;
 
-  const showroomImg = "/images/figma_7b8b_7492_9f80bd72474c265be9813af7bc879a99.png";
-  const cardImg = "/images/figma_8128_3c7c_74d6dbaa92c1c5cf911a777a203bf190.png";
+  const showroomImg = "/images/official/showroom_banner_hd.png";
+  const cardImg = "/images/official/project_office_hd.jpg";
 
   return (
     <section
@@ -79,7 +79,7 @@ export default function ShowroomEcho() {
               Chạm. Cảm nhận. Trải nghiệm.
             </h2>
             <p className="text-[14px] sm:text-[15px] text-white/60 font-sans leading-relaxed max-w-lg">
-              12+ showroom trên toàn quốc — nơi bạn trực tiếp chạm vào và cảm nhận chất lượng từng hệ cửa &amp; vách kính Eurowindow.
+              20+ showroom trên toàn quốc — nơi bạn trực tiếp chạm vào và cảm nhận chất lượng từng hệ cửa &amp; vách kính Eurowindow.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
@@ -87,7 +87,7 @@ export default function ShowroomEcho() {
               href="#"
               className="inline-flex items-center gap-3 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[11px] uppercase tracking-[0.14em] px-8 py-4 rounded-full shadow-xl transition-all duration-300 group"
             >
-              HỆ THỐNG SHOWROOM
+              TÌM SHOWROOM
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
@@ -128,7 +128,7 @@ export default function ShowroomEcho() {
           {/* Floating glass badge — float with slight delay */}
           <div className="absolute -bottom-6 -left-8 glass rounded-2xl px-5 py-4 shadow-2xl border border-white/15 float-y float-delay">
             <p className="text-[10px] text-white/55 font-bold uppercase tracking-wider mb-1">Showroom</p>
-            <p className="text-[17px] font-display font-bold text-white">12+ Chi nhánh</p>
+            <p className="text-[17px] font-display font-bold text-white">20+ Chi nhánh</p>
             <p className="text-[11px] text-white/55 font-sans">Trên toàn quốc</p>
           </div>
 

@@ -57,7 +57,7 @@ export default function ArchitectHub() {
     }
   ];
 
-  const engineerImage = "/images/figma_1e8b_9e9b_c422d1d8418e50728bf537b2bfd9c195.png";
+  const engineerImage = "/images/official/architect_hub_hd.jpg";
 
   return (
     <section id="architect-hub" className="py-24 lg:py-32 bg-[#f8fafc] overflow-hidden">

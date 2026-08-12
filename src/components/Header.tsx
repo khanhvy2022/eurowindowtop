@@ -67,20 +67,20 @@ export default function Header() {
       >
         <div className="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between gap-3 h-16 sm:h-20 border-b border-white/10">
           
-          {/* Logo — Original Image Asset + Vietnamese Slogan */}
+          {/* Logo — Custom logo-ew from D:\hinh Q12\Favicon */}
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <Link href="/" className="flex flex-col justify-center" aria-label="Eurowindow trang chủ">
+            <Link href="/" className="flex items-center gap-3" aria-label="Eurowindow trang chủ">
               <Image
-                src="/images/eurowindow-logo-banner.png"
+                src="/images/logo-ew-transparent-hd.png"
                 alt="EUROWINDOW - Tiên Phong. Kiến Tạo. Đồng Hành."
-                width={4428}
-                height={827}
-                className="h-8 sm:h-9 md:h-10 w-auto object-contain opacity-95"
+                width={800}
+                height={200}
+                className="h-9 sm:h-10 md:h-11 w-auto object-contain brightness-0 invert opacity-95"
                 priority
                 draggable={false}
               />

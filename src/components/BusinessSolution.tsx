@@ -53,7 +53,7 @@ export default function BusinessSolution() {
     { id: "public", title: "PUBLIC", desc: "Công trình công cộng, hạ tầng quốc gia quy mô lớn." },
   ];
 
-  const villaBackground = "/images/figma_7b8b_7492_9f80bd72474c265be9813af7bc879a99.png";
+  const villaBackground = "/images/official/project_office_hd.jpg";
   const activeItem = solutions.find((s) => s.id === activeId);
 
   return (

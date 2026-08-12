@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
@@ -22,27 +23,27 @@ interface Award {
   text: string;
 }
 
-/* Slide images — dùng các ảnh Figma có sẵn */
+/* Slide images — dùng các ảnh dự án & công trình tiêu biểu chính thức */
 const slides = [
   {
-    img: "/images/figma_b6ac_65f5_684ee023d6399b6e08ffcb4058727370.png",
-    caption: "Thương hiệu Quốc gia 14 năm liên tiếp",
+    img: "/images/official/project_office_hd.jpg",
+    caption: "Thương hiệu Quốc gia 14 năm liên tiếp — Tòa nhà Eurowindow Office",
   },
   {
-    img: "/images/figma_4140_b90c_06d671ce00de7935b522cded3c8da554.png",
-    caption: "Top công trình biểu tượng Việt Nam",
+    img: "/images/official/project_phubai_hd.jpg",
+    caption: "Công trình biểu tượng quốc gia — Cảng hàng không Phú Bài Huế",
   },
   {
-    img: "/images/figma_625e_2a98_10ede3a9081058280de283a2c53cc8f5.png",
-    caption: "Chứng nhận quốc tế về chất lượng sản phẩm",
+    img: "/images/official/project_bongoaigiao_hd.jpg",
+    caption: "Công trình trụ sở trọng điểm — Trụ sở Bộ Ngoại Giao",
   },
   {
-    img: "/images/figma_8128_3c7c_74d6dbaa92c1c5cf911a777a203bf190.png",
-    caption: "Giải thưởng kiến trúc xuất sắc 2025",
+    img: "/images/official/project_ungbuou_hd.jpg",
+    caption: "Công trình y tế thương mại — Bệnh viện Ung bướu Đà Nẵng",
   },
   {
-    img: "/images/figma_1e8b_9e9b_c422d1d8418e50728bf537b2bfd9c195.png",
-    caption: "Đối tác tin cậy của hàng nghìn kiến trúc sư",
+    img: "/images/official/project_resort_hd.jpg",
+    caption: "Khu nghỉ dưỡng sang trọng — Vinpearl Resort",
   },
 ];
 
@@ -57,33 +58,39 @@ export default function Achievements() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leftRef = useReveal();
   const rightRef = useReveal();
-
   const awards: Award[] = [
-    { id: "vnr500", logo: "/images/figma_ecac_248d_10ad0cfba1962ae9aebc0702ab2c6d05.png", text: "Top 500 doanh nghiệp lớn nhất Việt Nam" },
-    { id: "top5",   logo: "/images/figma_4f6a_75f4_796c597231519f1558467a2214dd6a9e.png", text: "Top 5 công ty vật liệu xây dựng uy tín" },
-    { id: "hvnclc", logo: "/images/figma_9b8b_3ba5_f90668738bd88ca4f4881c55aaf27ad1.png", text: "Hàng Việt Nam chất lượng cao" },
+    { id: "vnvalue", logo: "/images/official/award_vnvalue_hd.png", text: "Thương hiệu Quốc gia Việt Nam (VNValue)" },
+    { id: "hvnclc",  logo: "/images/official/award_hvnclc_hd.png", text: "Hàng Việt Nam Chất Lượng Cao 16 năm liên tiếp" },
+    { id: "huanchuong", logo: "/images/official/award_huanchuong_hd.png", text: "Huân chương Lao động hạng Nhất" },
+    { id: "goldstar", logo: "/images/official/award_goldstar_hd.png", text: "Giải thưởng Sao Vàng Đất Việt" },
+    { id: "ukas", logo: "/images/official/award_ukas_hd.png", text: "Chứng nhận chất lượng quốc tế UKAS & ISO 9001" },
+    { id: "anab", logo: "/images/official/award_anab_hd.webp", text: "Chứng nhận hệ thống chất lượng ANAB (ANSI National Accreditation Board)" },
+    { id: "iaf", logo: "/images/official/award_iaf_hd.webp", text: "Chứng nhận quốc tế IAF (International Accreditation Forum)" },
   ];
+  const [awardPage, setAwardPage] = useState(0);
+  const AWARDS_PER_PAGE = 3;
+  const totalAwardPages = Math.ceil(awards.length / AWARDS_PER_PAGE);
+
+  const visibleAwards = Array.from({ length: AWARDS_PER_PAGE }, (_, i) => {
+    const index = (awardPage * AWARDS_PER_PAGE + i) % awards.length;
+    return awards[index];
+  });
 
   /* ── Go to slide ── */
   const goTo = useCallback((idx: number, dir: "left" | "right" = "right") => {
-    if (isTransitioning) return;
     setDirection(dir);
-    setPrev(current);
     setCurrent(idx);
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setPrev(null);
-      setIsTransitioning(false);
-    }, TRANSITION_MS);
-  }, [current, isTransitioning]);
+  }, []);
 
   const next = useCallback(() => {
-    goTo((current + 1) % slides.length, "right");
-  }, [current, goTo]);
+    setDirection("right");
+    setCurrent((prevIdx) => (prevIdx + 1) % slides.length);
+  }, []);
 
   const prevSlide = useCallback(() => {
-    goTo((current - 1 + slides.length) % slides.length, "left");
-  }, [current, goTo]);
+    setDirection("left");
+    setCurrent((prevIdx) => (prevIdx - 1 + slides.length) % slides.length);
+  }, []);
 
   /* ── Autoplay ── */
   const resetTimer = useCallback(() => {
@@ -95,10 +102,6 @@ export default function Achievements() {
     resetTimer();
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [current, resetTimer]);
-
-  /* ── Slide style helpers ── */
-  const enterFrom = direction === "right" ? "translateX(100%)" : "translateX(-100%)";
-  const exitTo    = direction === "right" ? "translateX(-100%)" : "translateX(100%)";
 
   return (
     <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
@@ -126,26 +129,64 @@ export default function Achievements() {
               </p>
             </div>
 
-            {/* Award Badges */}
-            <div className="grid grid-cols-3 gap-6 items-start">
-              {awards.map((award, idx) => (
-                <div
-                  key={award.id}
-                  className="flex flex-col items-center text-center space-y-4 group cursor-pointer"
-                  style={{ transitionDelay: `${idx * 100}ms` }}
-                >
-                  <div className="h-28 w-28 flex items-center justify-center bg-gray-50 rounded-2xl p-4 shadow-sm border border-gray-100 group-hover:shadow-md group-hover:border-[#005bb7]/20 transition-all duration-300">
-                    <img
-                      src={award.logo}
-                      alt={award.text}
-                      className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <p className="text-[12px] font-bold text-ink-muted font-sans leading-relaxed max-w-[130px]">
-                    {award.text}
-                  </p>
+            {/* Award Cards Slider — 3 items per slide, dark background, hover brightens & glows */}
+            <div className="space-y-4 w-full">
+              {/* Header + Award Slider Controls (loop: true) */}
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-bold text-[#c5a968] uppercase tracking-widest font-sans">
+                  Hệ thống chứng nhận & giải thưởng
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <button
+                    onClick={() => setAwardPage((p) => (p - 1 + totalAwardPages) % totalAwardPages)}
+                    aria-label="Previous awards"
+                    className="h-8 w-8 rounded-lg border border-[#0a1f3c] bg-[#0a1f3c] text-white hover:bg-[#c5a968] hover:border-[#c5a968] hover:text-[#0a1f3c] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                  >
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => setAwardPage((p) => (p + 1) % totalAwardPages)}
+                    aria-label="Next awards"
+                    className="h-8 w-8 rounded-lg border border-[#0a1f3c] bg-[#0a1f3c] text-white hover:bg-[#c5a968] hover:border-[#c5a968] hover:text-[#0a1f3c] flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                  >
+                    <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
                 </div>
-              ))}
+              </div>
+
+              {/* 3 Award Cards (Dark background, bright glow on hover) */}
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 items-stretch w-full min-h-[195px]">
+                {visibleAwards.map((award, idx) => (
+                  <motion.div
+                    key={award.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: idx * 0.08 }}
+                    className="group relative flex flex-col items-center justify-between text-center p-4 rounded-2xl bg-[#06142a] border border-white/10 hover:bg-[#12315b] hover:border-[#c5a968] hover:shadow-[0_0_25px_rgba(197,169,104,0.35)] transition-all duration-400 cursor-pointer select-none"
+                  >
+                    {/* Top ambient highlight gradient */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-white/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                    {/* Logo Box container */}
+                    <div className="w-full max-w-[96px] sm:max-w-[110px] aspect-square flex items-center justify-center bg-white/95 rounded-xl p-3 shadow-md border border-white/20 group-hover:bg-white group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.7)] transition-all duration-300">
+                      <img
+                        src={award.logo}
+                        alt={award.text}
+                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+
+                    {/* Award Label */}
+                    <p className="text-[11px] sm:text-[12px] font-bold text-white/80 group-hover:text-white font-sans leading-snug mt-3 transition-colors duration-300">
+                      {award.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
             {/* Dot + arrows controls */}
@@ -196,55 +237,40 @@ export default function Achievements() {
           <div ref={rightRef} className="lg:col-span-5 relative reveal-right delay-300">
             {/* Carousel frame */}
             <div
-              className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100"
+              className="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100 bg-[#0a1f3c]"
               style={{ aspectRatio: "3/4", maxHeight: "620px" }}
             >
-              {/* Exiting slide */}
-              {prev !== null && (
-                <div
-                  key={`exit-${prev}`}
+              <AnimatePresence mode="popLayout" initial={false} custom={direction}>
+                <motion.div
+                  key={current}
+                  custom={direction}
+                  initial={{ opacity: 0, x: direction === "right" ? "100%" : "-100%" }}
+                  animate={{ opacity: 1, x: "0%" }}
+                  exit={{ opacity: 0, x: direction === "right" ? "-100%" : "100%" }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: `url(${slides[prev].img})`,
-                    transform: isTransitioning ? exitTo : "translateX(0)",
-                    transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`,
-                    zIndex: 1,
-                  }}
+                  style={{ backgroundImage: `url(${slides[current].img})` }}
                 />
-              )}
-
-              {/* Entering slide */}
-              <div
-                key={`enter-${current}`}
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${slides[current].img})`,
-                  transform: isTransitioning ? "translateX(0)" : enterFrom,
-                  transition: isTransitioning
-                    ? `transform ${TRANSITION_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`
-                    : "none",
-                  zIndex: 2,
-                }}
-              />
+              </AnimatePresence>
 
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none z-10" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none z-10" />
 
               {/* Caption */}
-              <div className="absolute bottom-6 left-6 right-6 z-10">
+              <div className="absolute bottom-6 left-6 right-6 z-20">
                 <p
                   key={current}
-                  className="text-[13px] font-semibold text-white/90 font-sans leading-snug animate-fade-in"
+                  className="text-[13px] font-semibold text-white/95 font-sans leading-snug drop-shadow-md"
                 >
                   {slides[current].caption}
                 </p>
               </div>
 
               {/* Progress bar */}
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-10">
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/20 z-20">
                 <div
                   key={`bar-${current}`}
-                  className="h-full bg-white/60"
+                  className="h-full bg-[#c5a968]"
                   style={{
                     animation: `slideProgress ${AUTOPLAY_MS}ms linear forwards`,
                   }}
@@ -253,7 +279,7 @@ export default function Achievements() {
             </div>
 
             {/* Floating champagne badge */}
-            <div className="absolute -left-6 bottom-14 bg-[#0a1f3c] rounded-2xl px-6 py-5 shadow-2xl hidden lg:flex flex-col gap-0.5 border border-white/10 float-y">
+            <div className="absolute -left-6 bottom-14 bg-[#0a1f3c] rounded-2xl px-6 py-5 shadow-2xl hidden lg:flex flex-col gap-0.5 border border-white/10 float-y z-30">
               <p className="text-[10px] text-[#c5a968] font-bold uppercase tracking-wider">Thương hiệu quốc gia</p>
               <p className="text-[30px] font-display font-extrabold text-white leading-none mt-1">14</p>
               <p className="text-[11px] text-white/50 font-sans mt-1">NĂM LIÊN TIẾP</p>

@@ -30,6 +30,7 @@ function useReveal() {
 export default function ProductSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<ProductCategory | null>(null);
+  const [viewMode, setViewMode] = useState<"photo" | "technical">("photo");
   const headerRef = useReveal();
   const sliderRef = useReveal();
 
@@ -38,7 +39,7 @@ export default function ProductSection() {
       id: "nhom",
       name: "CỬA NHÔM",
       desc: "Sản phẩm cửa nhôm và cửa vách nhôm sản xuất từ vật liệu nhôm cao cấp",
-      image: "/images/figma_5d36_d29a_3a53e0de2f53eadb8296fd34023141e5.png",
+      image: "/images/official/cuanhom_hd.jpg",
       specs: [
         "Thanh profile nhôm sơn phủ PVDF chịu ăn mòn mặn bãi biển",
         "Kính hộp Low-E dán an toàn 2 lớp chống va đập",
@@ -54,7 +55,7 @@ export default function ProductSection() {
       id: "upvc",
       name: "CỬA uPVC",
       desc: "Sản phẩm cửa nhựa uPVC cách âm, cách nhiệt vượt trội, bảo vệ tổ ấm bền bỉ",
-      image: "/images/figma_6f4f_1929_f0193f9d85fef4c9e7b563dd8f35dc1d.png",
+      image: "/images/official/cuaupvc_hd.jpg",
       specs: [
         "Thanh profile uPVC định hình lõi thép gia cường",
         "Khả năng chống ốc lão hóa tia cực tím 20 năm",
@@ -70,7 +71,7 @@ export default function ProductSection() {
       id: "go",
       name: "CỬA GỖ",
       desc: "Độ cứng và độ bền cao, hạn chế tối đa sự biến đổi theo thời tiết.",
-      image: "/images/figma_29b7_754b_dcb3258841887f70bf6e16c62af9ca41.png",
+      image: "/images/official/cuago_hd.jpg",
       specs: [
         "Gỗ tự nhiên & gỗ công nghiệp chịu nước 100%",
         "Sơn PU cao cấp 6 lớp chống mối mọt cong vênh",
@@ -83,10 +84,26 @@ export default function ProductSection() {
       ]
     },
     {
+      id: "kinh",
+      name: "SẢN PHẨM KÍNH",
+      desc: "Vách kính & hệ cửa kính cao cấp trong suốt, tối ưu ánh sáng và không gian kiến trúc.",
+      image: "/images/official/vachkinh_hd.jpg",
+      specs: [
+        "Kính cường lực & kính hộp Low-E cách nhiệt, chống tia UV",
+        "Vách kính khung nhôm liền mạch, an toàn chịu lực",
+        "Kính dán an toàn 2 lớp chống va đập, cách âm 42-45 dB"
+      ],
+      features: [
+        "Tối ưu ánh sáng tự nhiên, tiết kiệm điện chiếu sáng",
+        "Đa dạng độ dày 5mm - 24mm theo công năng",
+        "Chống cháy tiêu chuẩn, an toàn cho công trình"
+      ]
+    },
+    {
       id: "cuon",
       name: "CỬA CUỐN",
       desc: "Giải pháp cửa cuốn hiện đại, tiết kiệm không gian và an toàn tối ưu.",
-      image: "/images/figma_625e_2a98_10ede3a9081058280de283a2c53cc8f5.png",
+      image: "/images/official/cuacuon_hd.jpg",
       specs: [
         "Nan nhôm hợp kim sơn tĩnh điện ngoài trời",
         "Tích hợp cảm biến tự dừng khi gặp vật cản",
@@ -102,7 +119,7 @@ export default function ProductSection() {
       id: "tudong",
       name: "CỬA TỰ ĐỘNG",
       desc: "Cửa tự động cao cấp cho không gian thương mại, khách sạn và tòa nhà.",
-      image: "/images/figma_4140_b90c_06d671ce00de7935b522cded3c8da554.png",
+      image: "/images/official/cuatudong_hd.jpg",
       specs: [
         "Mắt thần cảm ứng hồng ngoại vi sóng kép",
         "Cánh kính cường lực 10-12mm siêu trong",
@@ -147,80 +164,182 @@ export default function ProductSection() {
               Những hệ cửa tạo nên kiến trúc.
             </h2>
           </div>
-          <div className="flex-shrink-0">
-            <Link
-              href="#calculator"
-              className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#005bb7] border-b border-[#005bb7]/30 pb-1 hover:border-[#005bb7] transition-all whitespace-nowrap"
+          
+          {/* View Mode Switcher (Photo View vs Technical Profile View) */}
+          <div className="flex items-center gap-3 bg-gray-100 p-1.5 rounded-full border border-gray-200 self-start lg:self-end">
+            <button
+              onClick={() => setViewMode("photo")}
+              className={`px-4 py-2 rounded-full text-[10.5px] font-bold tracking-[0.14em] uppercase transition-all duration-300 cursor-pointer ${
+                viewMode === "photo"
+                  ? "bg-[#005bb7] text-white shadow-md"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
             >
-              — KHÁM PHÁ TẤT CẢ SẢN PHẨM
-            </Link>
+              📷 PHOTO VIEW
+            </button>
+            <button
+              onClick={() => setViewMode("technical")}
+              className={`px-4 py-2 rounded-full text-[10.5px] font-bold tracking-[0.14em] uppercase transition-all duration-300 cursor-pointer ${
+                viewMode === "technical"
+                  ? "bg-[#0a1f3c] text-[#c5a968] shadow-md border border-[#c5a968]/30"
+                  : "text-gray-600 hover:text-gray-900"
+              }`}
+            >
+              📐 TECHNICAL PROFILE
+            </button>
           </div>
         </div>
 
         {/* ── Slider area ── */}
         <div ref={sliderRef} className="reveal delay-100">
 
-          {/* Column headers row */}
-          <div className="grid gap-4 mb-5" style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
-            {visible.map((cat, idx) => (
-              <div key={cat.id + idx} className="space-y-1.5">
-                {/* Horizontal top border */}
-                <div className={`h-px w-full mb-3 ${idx === 0 ? "bg-[#005bb7]" : "bg-gray-200"}`} />
-                {/* Name */}
-                <h3
-                  className={`font-display font-bold tracking-widest uppercase transition-colors ${
-                    idx === 0
-                      ? "text-[#0a1f3c] text-[15px] sm:text-[17px]"
-                      : "text-gray-400 text-[13px] sm:text-[14px] cursor-pointer hover:text-[#005bb7]"
-                  }`}
-                  onClick={() => idx > 0 && setActiveIndex((activeIndex + idx) % total)}
-                >
-                  {cat.name}
-                </h3>
-                {/* Description — only for active (idx 0) */}
-                {idx === 0 && (
-                  <p className="text-[12px] sm:text-[13px] text-ink-muted font-sans leading-relaxed max-w-[280px]">
-                    {cat.desc}
-                  </p>
-                )}
-              </div>
-            ))}
+          {/* ── Mobile Layout (1 Item per view) ── */}
+          <div className="block md:hidden space-y-4 mb-6">
+            <div className="space-y-2">
+              <div className="h-0.5 w-full bg-[#005bb7] mb-2" />
+              <h3 className="font-display font-bold text-[20px] tracking-wider uppercase text-[#0a1f3c]">
+                {categories[activeIndex].name}
+              </h3>
+              <p className="text-[13px] text-ink-muted font-sans leading-relaxed">
+                {categories[activeIndex].desc}
+              </p>
+            </div>
+
+            <div
+              className="relative overflow-hidden rounded-2xl cursor-pointer group shadow-md"
+              style={{ aspectRatio: "4/3" }}
+              onClick={() => setSelectedProduct(categories[activeIndex])}
+            >
+              <div
+                className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04] ${
+                  viewMode === "technical" ? "brightness-50 contrast-125" : ""
+                }`}
+                style={{ backgroundImage: `url(${categories[activeIndex].image})` }}
+              />
+
+              {/* Technical Profile View Overlay */}
+              {viewMode === "technical" && (
+                <div className="absolute inset-0 bg-[#0a1f3c]/85 p-6 flex flex-col justify-between border border-[#c5a968]/30">
+                  <div className="flex justify-between items-start">
+                    <span className="text-[10px] font-bold text-[#c5a968] tracking-widest uppercase bg-black/40 px-3 py-1 rounded-full border border-[#c5a968]/30">
+                      TECHNICAL DRAWING — {categories[activeIndex].id.toUpperCase()}
+                    </span>
+                    <span className="text-[10px] font-mono text-white/60">CAD/BIM REVISION 2026</span>
+                  </div>
+
+                  <div className="space-y-2 my-auto">
+                    {categories[activeIndex].specs.map((spec, i) => (
+                      <div key={i} className="flex items-center gap-2 text-[11px] font-sans font-medium text-white/90">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#c5a968]" />
+                        <span>{spec}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <span className="text-[10px] font-bold text-[#c5a968] uppercase tracking-widest">
+                    CLICK ĐỂ PHÓNG TO BẢN VẼ BÓC TÁCH →
+                  </span>
+                </div>
+              )}
+
+              {viewMode === "photo" && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-5">
+                  <span className="text-[12px] font-bold text-white uppercase tracking-[0.14em] flex items-center gap-2">
+                    Xem chi tiết thông số →
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* Images row */}
-          <div className="grid gap-4" style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
-            {visible.map((cat, idx) => (
-              <div
-                key={cat.id + idx + "img"}
-                className={`relative overflow-hidden cursor-pointer group transition-all duration-500 ${
-                  idx === 0 ? "" : "opacity-90 hover:opacity-100"
-                }`}
-                style={{ aspectRatio: "4/3.2" }}
-                onClick={() => {
-                  if (idx === 0) {
-                    setSelectedProduct(cat);
-                  } else {
-                    setActiveIndex((activeIndex + idx) % total);
-                  }
-                }}
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04]"
-                  style={{ backgroundImage: `url(${cat.image})` }}
-                />
-                {/* Subtle dark overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+          {/* ── Desktop Layout (3 Equal Columns) ── */}
+          <div className="hidden md:block">
+            {/* Column headers row */}
+            <div className="grid grid-cols-3 gap-4 mb-5">
+              {visible.map((cat, idx) => (
+                <div key={cat.id + idx} className="space-y-1.5">
+                  <div className={`h-px w-full mb-3 ${idx === 0 ? "bg-[#005bb7]" : "bg-gray-200"}`} />
+                  <h3
+                    className={`font-display font-bold tracking-widest uppercase transition-colors ${
+                      idx === 0
+                        ? "text-[#0a1f3c] text-[15px] sm:text-[17px]"
+                        : "text-gray-400 text-[13px] sm:text-[14px] cursor-pointer hover:text-[#005bb7]"
+                    }`}
+                    onClick={() => idx > 0 && setActiveIndex((activeIndex + idx) % total)}
+                  >
+                    {cat.name}
+                  </h3>
+                  {idx === 0 && (
+                    <p className="text-[12px] sm:text-[13px] text-ink-muted font-sans leading-relaxed max-w-[280px]">
+                      {cat.desc}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
 
-                {/* Bottom gradient + CTA for active */}
-                {idx === 0 && (
-                  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/45 to-transparent flex items-end p-4 transition-opacity duration-300">
-                    <span className="text-[11px] font-bold text-white uppercase tracking-[0.14em] flex items-center gap-1.5">
-                      Xem chi tiết thông số →
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
+            {/* Images row */}
+            <div className="grid grid-cols-3 gap-4">
+              {visible.map((cat, idx) => (
+                <div
+                  key={cat.id + idx + "img"}
+                  className={`relative overflow-hidden cursor-pointer group transition-all duration-500 rounded-xl ${
+                    idx === 0 ? "" : "opacity-90 hover:opacity-100"
+                  }`}
+                  style={{ aspectRatio: "4/3.2" }}
+                  onClick={() => {
+                    if (idx === 0) {
+                      setSelectedProduct(cat);
+                    } else {
+                      setActiveIndex((activeIndex + idx) % total);
+                    }
+                  }}
+                >
+                  <div
+                    className={`absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04] ${
+                      viewMode === "technical" && idx === 0 ? "brightness-50 contrast-125" : ""
+                    }`}
+                    style={{ backgroundImage: `url(${cat.image})` }}
+                  />
+                  
+                  {/* Technical Overlay for Desktop Active Card */}
+                  {viewMode === "technical" && idx === 0 ? (
+                    <div className="absolute inset-0 bg-[#0a1f3c]/85 p-6 flex flex-col justify-between border border-[#c5a968]/30">
+                      <div className="flex justify-between items-start">
+                        <span className="text-[9px] font-bold text-[#c5a968] tracking-widest uppercase bg-black/40 px-3 py-1 rounded-full border border-[#c5a968]/30">
+                          TECHNICAL PROFILE — {cat.id.toUpperCase()}
+                        </span>
+                        <span className="text-[9px] font-mono text-white/50">CAD/BIM</span>
+                      </div>
+
+                      <div className="space-y-2 my-auto">
+                        {cat.specs.map((spec, i) => (
+                          <div key={i} className="flex items-center gap-2 text-[11px] font-sans text-white/90">
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#c5a968] flex-shrink-0" />
+                            <span className="truncate">{spec}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <span className="text-[10px] font-bold text-[#c5a968] uppercase tracking-widest">
+                        CLICK ĐỂ MỞ BẢN VẼ BÓC TÁCH →
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                      {idx === 0 && (
+                        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/45 to-transparent flex items-end p-4 transition-opacity duration-300">
+                          <span className="text-[11px] font-bold text-white uppercase tracking-[0.14em] flex items-center gap-1.5">
+                            Xem chi tiết thông số →
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Navigation arrows + progress */}

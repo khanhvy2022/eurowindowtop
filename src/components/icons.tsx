@@ -82,6 +82,42 @@ export const Youtube = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+// Custom Instagram Icon
+export const Instagram = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+// Custom Zalo Icon — speech-bubble mark
+export const ZaloIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M12 3C6.48 3 2 6.9 2 11.7c0 2.55 1.26 4.83 3.24 6.37-.1.72-.52 2.1-1.94 3.08 0 0 2.75-.14 4.28-1.7.8.21 1.65.34 2.54.34 5.52 0 10-3.9 10-8.7S17.52 3 12 3z" />
+    <path d="M8.5 8v5.5" />
+    <path d="M15.5 8v5.5" />
+    <path d="M9.5 8h6" />
+    <path d="M15.5 8l-4 5.5" />
+  </svg>
+);
+
 // Custom Eurowindow Emblem Icon
 export const EurowindowLogo = (props: React.SVGProps<SVGSVGElement>) => (
   <svg

@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 
 :root {
   /* ── Luxury Editorial Architecture palette ── */
@@ -80,6 +80,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ═══════════════════════════════════════
+   VIDEO OVERLAY & SHIMMER EFFECTS
+   ═══════════════════════════════════════ */
+.hero-gradient {
+  background: radial-gradient(circle at center, rgba(10, 31, 60, 0.4) 0%, rgba(6, 20, 42, 0.85) 100%);
+}
+
+@keyframes gradientBreathe {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.95; }
+}
+
+.gradient-breathe {
+  animation: gradientBreathe 8s ease-in-out infinite;
+}
+
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(197, 169, 104, 0.3), transparent);
+  animation: scanLine 6s linear infinite;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes scanLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.shimmer-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+}
+
+/* ═══════════════════════════════════════
    FIGMA SMART ANIMATE & SPRING PHYSICS
    ═══════════════════════════════════════ */
 .figma-spring {
@@ -102,7 +145,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .group:hover .figma-img-zoom {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
 /* ═══════════════════════════════════════
@@ -229,7 +272,8 @@ h1, h2, h3, h4, h5, h6 {
   .ken-burns-alt,
   .ken-burns-slow,
   .float-y,
-  .gradient-breathe {
+  .gradient-breathe,
+  .scan-line {
     animation: none !important;
     transform: none !important;
   }

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, EurowindowLogo, Check } from "./icons";
+import { ArrowRight, EurowindowLogo, Check, ChevronLeft, ChevronRight } from "./icons";
 
 interface ProjectItem {
   id: string;
@@ -35,6 +35,8 @@ export default function ProjectsSection() {
   const [lightboxProject, setLightboxProject] = useState<ProjectItem | null>(null);
   const headerRef = useReveal();
   const contentRef = useReveal();
+  const [catPage, setCatPage] = useState(0);
+  const ITEMS_PER_PAGE = 3;
 
   const categories = [
     { id: "all", label: "ALL" },
@@ -43,6 +45,13 @@ export default function ProjectsSection() {
     { id: "commercial", label: "COMMERCIAL" },
     { id: "hospitality", label: "HOSPITALITY" },
   ];
+
+  const maxCatPages = Math.ceil(categories.length / ITEMS_PER_PAGE);
+
+  const visibleCategories = Array.from({ length: ITEMS_PER_PAGE }, (_, i) => {
+    const index = (catPage * ITEMS_PER_PAGE + i) % categories.length;
+    return categories[index];
+  });
 
   const projects: ProjectItem[] = [
     {
@@ -53,7 +62,7 @@ export default function ProjectsSection() {
       investor: "Tổng công ty Cảng hàng không Việt Nam",
       volume: "18.500 m²",
       year: "2025",
-      image: "/images/figma_29b7_754b_dcb3258841887f70bf6e16c62af9ca41.png",
+      image: "/images/official/project_phubai_hd.jpg",
       specs: [
         "Mặt dựng nhôm kính tiết kiệm năng lượng Low-E 24mm",
         "Khung nhôm cầu cách nhiệt chịu áp lực gió cấp 15",
@@ -63,29 +72,29 @@ export default function ProjectsSection() {
     {
       id: "p-2",
       category: "commercial",
-      title: "DIAMOND CROWN HẢI PHÒNG",
-      type: "Commercial",
-      investor: "DOJI LAND",
+      title: "FPT TELECOM TOWER",
+      type: "Commercial Headquarters",
+      investor: "Tập đoàn FPT",
       volume: "28.000 m²",
-      year: "2024",
-      image: "/images/figma_5d36_d29a_3a53e0de2f53eadb8296fd34023141e5.png",
+      year: "2026",
+      image: "/images/official/project_office_hd.jpg",
       specs: [
-        "Vách kính cong Diagrid 3D sang trọng độc bản",
-        "Kính hộp phản quang tản nhiệt giảm bức xạ 85%",
-        "Cửa lùa thông minh tích hợp khóa vân tay"
+        "Mặt dựng Unitized 3D sang trọng chống ồn tản nhiệt",
+        "Kính hộp phản quang giảm bức xạ 85%",
+        "Hệ thống cửa nhôm kính cao cấp đồng bộ"
       ]
     },
     {
       id: "p-3",
-      category: "residential",
-      title: "VINHOMES SMART CITY",
-      type: "Residential",
-      investor: "Vinhomes JSC",
+      category: "national",
+      title: "TRỤ SỞ BỘ NGOẠI GIAO",
+      type: "National Headquarters",
+      investor: "Bộ Ngoại Giao Việt Nam",
       volume: "45.000 m²",
       year: "2024",
-      image: "/images/figma_4140_b90c_06d671ce00de7935b522cded3c8da554.png",
+      image: "/images/official/project_bongoaigiao_hd.jpg",
       specs: [
-        "Cửa nhựa uPVC Eurowindow cao cấp chống ồn 42dB",
+        "Cửa nhôm & vách kính Eurowindow cao cấp cách âm 45dB",
         "Kính an toàn dán 2 lớp chống tia UV 99%",
         "Phụ kiện kim khí đồng bộ tiêu chuẩn Đức"
       ]
@@ -93,31 +102,31 @@ export default function ProjectsSection() {
     {
       id: "p-4",
       category: "commercial",
-      title: "LOTTE MALL TÂY HỒ",
-      type: "Commercial",
-      investor: "Lotte Property & Development",
+      title: "BỆNH VIỆN UNG BƯỚU ĐÀ NẴNG",
+      type: "Commercial Healthcare",
+      investor: "Sở Y Tế Đà Nẵng",
       volume: "32.000 m²",
       year: "2023",
-      image: "/images/figma_8128_3c7c_74d6dbaa92c1c5cf911a777a203bf190.png",
+      image: "/images/official/project_ungbuou_hd.jpg",
       specs: [
-        "Vách vòm nhôm kính siêu lớn lấy sáng tự nhiên",
+        "Vách vòm nhôm kính lấy sáng tự nhiên cách nhiệt",
         "Cửa tự động cảm biến mắt thần nhập khẩu Nhật Bản",
         "Hệ thống nhôm sơn phủ PVDF chịu ăn mòn biển"
       ]
     },
     {
       id: "p-5",
-      category: "hospitality",
-      title: "RESORT NGHỈ DƯỠNG VINPEARL",
-      type: "Hospitality",
-      investor: "Vinpearl JSC",
-      volume: "21.000 m²",
-      year: "2023",
-      image: "/images/figma_8ded_3fa0_e51bcd93f06cd40fdd206fa2189f4d60.png",
+      category: "residential",
+      title: "VINHOMES GLOBAL GATE CỔ LOA",
+      type: "Urban Residential",
+      investor: "Tập đoàn Vingroup",
+      volume: "35.000 m²",
+      year: "2026",
+      image: "/images/official/project_resort_hd.jpg",
       specs: [
-        "Hệ cửa nhôm xếp trượt lấy sáng toàn cảnh biển",
-        "Kính Low-E chống nhiệt, giảm tiêu thụ điều hòa",
-        "Phụ kiện đồng bộ tiêu chuẩn khách sạn quốc tế"
+        "Hệ cửa nhôm kính panorama toàn cảnh đón ánh sáng",
+        "Kính Low-E chống nhiệt, tiết kiệm điện điều hòa",
+        "Phụ kiện cao cấp nhập khẩu tiêu chuẩn Châu Âu"
       ]
     }
   ];
@@ -135,7 +144,7 @@ export default function ProjectsSection() {
         {/* Header + Category Filter */}
         <div ref={headerRef} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-12 reveal">
           {/* Left: Tag + Headline */}
-          <div className="lg:col-span-8 space-y-4">
+          <div className="lg:col-span-7 space-y-4">
             <div className="eyebrow text-[#005bb7]">
               Featured Projects
             </div>
@@ -144,24 +153,45 @@ export default function ProjectsSection() {
             </h2>
           </div>
 
-          {/* Right: Category Filter — editorial pills */}
-          <div className="lg:col-span-4 flex flex-wrap items-center lg:justify-end gap-2 font-sans pb-1">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 py-2 text-[10.5px] font-bold tracking-[0.14em] uppercase border transition-all duration-300 cursor-pointer ${
-                    isActive
-                      ? "text-white bg-[#0a1f3c] border-[#0a1f3c]"
-                      : "text-ink-muted border-line hover:border-[#005bb7] hover:text-[#005bb7]"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
+          {/* Right: Category Filter — Slider displaying 3 categories per slide */}
+          <div className="lg:col-span-5 flex flex-wrap sm:flex-nowrap items-center lg:justify-end gap-2 font-sans pb-1">
+            {/* Category buttons (shows 3 items) */}
+            <div className="flex items-center gap-2 transition-all duration-300">
+              {visibleCategories.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`px-3.5 py-2 text-[10.5px] font-bold tracking-[0.14em] uppercase border transition-all duration-300 cursor-pointer whitespace-nowrap ${
+                      isActive
+                        ? "text-white bg-[#0a1f3c] border-[#0a1f3c] shadow-md"
+                        : "text-ink-muted border-line hover:border-[#005bb7] hover:text-[#005bb7] bg-white"
+                    }`}
+                  >
+                    {cat.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Slide Navigation Controls (loop: true) */}
+            <div className="flex items-center gap-1 ml-1 flex-shrink-0">
+              <button
+                onClick={() => setCatPage((prev) => (prev - 1 + maxCatPages) % maxCatPages)}
+                aria-label="Previous categories"
+                className="p-2 border border-line bg-white hover:bg-[#0a1f3c] hover:text-white hover:border-[#0a1f3c] text-[#0a1f3c] transition-all cursor-pointer shadow-xs active:scale-95"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <button
+                onClick={() => setCatPage((prev) => (prev + 1) % maxCatPages)}
+                aria-label="Next categories"
+                className="p-2 border border-line bg-white hover:bg-[#0a1f3c] hover:text-white hover:border-[#0a1f3c] text-[#0a1f3c] transition-all cursor-pointer shadow-xs active:scale-95"
+              >
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
 

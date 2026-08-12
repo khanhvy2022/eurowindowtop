@@ -169,7 +169,7 @@ export default function StatsSection() {
 
               {/* Row 1 */}
               <div className="pr-8 pb-12">
-                <Metric target={30} suffix="+" label="NĂM KIẾN TẠO" triggered={visible} delay={0} duration={1400} />
+                <Metric target={20} suffix="+" label="NĂM KIẾN TẠO" triggered={visible} delay={0} duration={1400} />
               </div>
               <div className="pl-8 pb-12">
                 <Metric target={5000} suffix="+" label="CÔNG TRÌNH KIẾN TẠO" triggered={visible} delay={150} duration={2000} />
@@ -183,7 +183,7 @@ export default function StatsSection() {
                 <Metric target={14} suffix="" label="NĂM LIÊN TIẾP THƯƠNG HIỆU QUỐC GIA" triggered={visible} delay={300} duration={1000} />
               </div>
               <div className="pl-8 pt-10">
-                <Metric target={12} suffix="+" label="SHOWROOM TRÊN TOÀN QUỐC" triggered={visible} delay={450} duration={1400} />
+                <Metric target={20} suffix="+" label="SHOWROOM TRÊN TOÀN QUỐC" triggered={visible} delay={450} duration={1400} />
               </div>
             </div>
           </div>

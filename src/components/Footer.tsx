@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { EurowindowLogo, EurowindowBrandLogo, Facebook, Youtube, TikTokIcon, ArrowRight } from "./icons";
+import { EurowindowLogo, EurowindowBrandLogo, Facebook, Youtube, Instagram, ZaloIcon, TikTokIcon, ArrowRight } from "./icons";
 
 export default function Footer() {
   const quickLinks = [
@@ -55,17 +55,14 @@ export default function Footer() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
         {/* Info Column */}
         <div className="space-y-6">
-          <div className="space-y-1">
+          <div className="space-y-2">
             <Image
-              src="/images/eurowindow-logo-banner.png"
+              src="/images/logo-ew-transparent-hd.png"
               alt="EUROWINDOW - Tiên Phong. Kiến Tạo. Đồng Hành."
-              width={4428}
-              height={827}
+              width={800}
+              height={200}
               className="h-10 sm:h-12 w-auto object-contain brightness-0 invert"
             />
-            <p className="text-[11px] font-sans font-bold text-white/80 tracking-wider">
-              Tiên Phong. Kiến Tạo. Đồng Hành.
-            </p>
           </div>
           <div className="space-y-3 text-sm text-blue-100 font-sans leading-relaxed">
             <p className="font-bold text-white text-base">CÔNG TY CỔ PHẦN EUROWINDOW</p>
@@ -81,23 +78,47 @@ export default function Footer() {
             <span className="text-xs uppercase tracking-widest font-bold text-blue-200 block">
               LIÊN KẾT MẠNG XÃ HỘI
             </span>
-            <div className="flex gap-3">
+            <div className="flex gap-3 flex-wrap">
               <a
-                href="#"
+                href="https://www.facebook.com/eurowindow.biz"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/eurowindow.biz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/channel/UCpMyOKyn5p1TX3urz_dHo7A"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
                 aria-label="Youtube"
               >
                 <Youtube className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://zalo.me/3969929733792079943"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
+                aria-label="Zalo"
+              >
+                <ZaloIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@eurowindow.official"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors text-white"
                 aria-label="TikTok"
               >
