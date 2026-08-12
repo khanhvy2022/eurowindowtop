@@ -1,6 +1,6 @@
 "use client";
 
-import React, { use } from "react";
+import React, { useState, use } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingControls from "@/components/FloatingControls";
@@ -18,6 +18,7 @@ interface ProductDetailData {
   specs: { label: string; value: string }[];
   features: { title: string; desc: string }[];
   gallery: string[];
+  basePricePerM2: number;
 }
 
 const productDatabase: Record<string, ProductDetailData> = {
@@ -28,6 +29,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW ALUMINUM SYSTEM",
     description: "Sản phẩm cửa nhôm và vách kính nhôm Eurowindow được sản xuất từ thanh profile nhôm cao cấp, bề mặt sơn phủ sơn tĩnh điện / PVDF chịu thời tiết khắc nghiệt. Tích hợp kính hộp Low-E cản tia UV 99% và hệ gioăng EPDM kép ngăn nước tuyệt đối.",
     highlights: ["Cách âm tiêu chuẩn ISO (giảm 42-45 dB)", "Chịu áp lực gió bão lên đến cấp 15", "Kính hộp Low-E dán an toàn 2 lớp", "Phụ kiện kim khí Roto nhập khẩu Đức"],
+    basePricePerM2: 3200000,
     specs: [
       { label: "Vật liệu profile", value: "Nhôm hợp kim 6063-T6 định hình cao cấp" },
       { label: "Xử lý bề mặt", value: "Sơn tĩnh điện / Phủ PVDF 3-4 lớp chống mặn" },
@@ -54,6 +56,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW uPVC SYSTEM",
     description: "Cửa nhựa uPVC Eurowindow có khả năng cách âm, cách nhiệt cao gấp nhiều lần cửa thông thường. Thanh profile uPVC đa khoang kết hợp thép gia cường mạ kẽm chịu lực, khóa đa điểm an toàn tuyệt đối.",
     highlights: ["Tiết kiệm 30% chi phí tiêu thụ điện", "Khóa chốt đa điểm chống trộm an toàn", "Chống lão hóa biến màu UV 20 năm", "Không dẫn điện, chống cháy lan"],
+    basePricePerM2: 2400000,
     specs: [
       { label: "Thanh Profile", value: "uPVC Kommerling / uFlex đa khoang trống" },
       { label: "Lõi gia cường", value: "Thép mạ kẽm chống gỉ dày 1.5 - 2.0mm" },
@@ -80,6 +83,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW WOODEN SYSTEM",
     description: "Cửa gỗ Eurowindow kết hợp giữa vẻ đẹp sang trọng của vân gỗ tự nhiên với công nghệ xử lý tẩm sấy Châu Âu chống mối mọt, cong vênh. Phủ sơn PU 6 lớp bền đẹp tinh tế.",
     highlights: ["Gỗ tự nhiên tẩm sấy tiêu chuẩn", "Chống cháy tiêu chuẩn 60 - 120 phút", "Sơn PU cao cấp 6 lớp mịn bóng", "Bản lề cối chịu lực chống xệ cánh"],
+    basePricePerM2: 3800000,
     specs: [
       { label: "Chất liệu gỗ", value: "Gỗ Lim, Trắc, Gõ Đỏ tự nhiên / Gỗ HDF chịu nước" },
       { label: "Công nghệ sấy", value: "Sấy chân không đạt độ ẩm tiêu chuẩn 8 - 12%" },
@@ -106,6 +110,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW ROLLER SHUTTER",
     description: "Cửa cuốn Eurowindow sản xuất từ nan nhôm hợp kim sơn tĩnh điện ngoài trời cao cấp. Tích hợp cảm biến tự dừng khi gặp vật cản và bộ điều khiển mã nhảy chống sao chép sóng.",
     highlights: ["Tự dừng khi gặp vật cản", "Mã nhảy chống sao chép điều khiển", "Động cơ nhập khẩu vận hành êm", "Bình lưu điện dự phòng cúp điện"],
+    basePricePerM2: 2100000,
     specs: [
       { label: "Vật liệu nan cửa", value: "Nhôm hợp kim 6063 sơn tĩnh điện ngoài trời" },
       { label: "Công nghệ nan", value: "Nan đôi khoang rỗng có lỗ khe thoáng lấy sáng" },
@@ -132,6 +137,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW AUTOMATIC SYSTEM",
     description: "Cửa tự động Eurowindow sử dụng mắt thần cảm ứng hồng ngoại vi sóng kép nhập khẩu Nhật Bản / Đức. Tần suất mở đến 100.000 lượt/ngày, kết nối trực tiếp hệ thống PCCC tòa nhà.",
     highlights: ["Mắt thần cảm biến hồng ngoại", "Kính cường lực 10 - 12mm siêu trong", "Tần suất 100.000 lượt/ngày", "Tự động khóa ban đêm an toàn"],
+    basePricePerM2: 4500000,
     specs: [
       { label: "Động cơ truyền động", value: "Motor DC không than chổi than vận hành liên tục" },
       { label: "Mắt thần cảm ứng", value: "Sensor vi sóng kép phạm vi quét 3 - 5m" },
@@ -158,6 +164,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW GLASS & CURTAIN WALL",
     description: "Sản phẩm kính và vách kính mặt dựng Eurowindow tối ưu ánh sáng tự nhiên, ngăn đến 99% tia UV độc hại và cách nhiệt chống bức xạ mặt trời, đem lại vẻ đẹp hiện đại tráng lệ cho tòa nhà.",
     highlights: ["Kính hộp Low-E cản nhiệt", "Ngăn 99% tia cực tím UV", "Chịu lực nén bão cấp 15", "Vách kính Unitized 3D liền mạch"],
+    basePricePerM2: 2800000,
     specs: [
       { label: "Chủng loại kính", value: "Kính cường lực, Kính dán an toàn, Kính hộp Low-E" },
       { label: "Độ dày kính", value: "5mm - 24mm tùy theo yêu cầu kết cấu" },
@@ -184,6 +191,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     badge: "EUROWINDOW SMART IOT GEN 5.0",
     description: "Dòng cửa thông minh thế hệ mới đột phá tích hợp công nghệ AI, cảm biến mưa gió tự động đóng cánh, khóa sinh trắc học vân tay tĩnh mạch và điều khiển quản lý từ xa qua Smartphone.",
     highlights: ["Cảm biến mưa gió tự đóng", "Nhận diện khuôn mặt 3D AI", "Quản lý từ xa qua App Mobile", "Kết nối hệ thống Smarthome"],
+    basePricePerM2: 5200000,
     specs: [
       { label: "Hệ điều khiển AI", value: "Chip vi xử lý IoT 32-bit kết nối Wi-Fi/Zigbee" },
       { label: "Cảm biến thời tiết", value: "Tự động phát hiện mưa bão ngắt đóng cửa" },
@@ -199,7 +207,7 @@ const productDatabase: Record<string, ProductDetailData> = {
     gallery: [
       "/images/official/cuanhom_hd.jpg",
       "/images/official/project_vinhomes_hd.jpg",
-      "/images/official/cuatuong_hd.jpg",
+      "/images/official/cuacuon_hd.jpg",
     ],
   },
 };
@@ -209,20 +217,30 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
   const slug = resolvedParams.slug || "cua-nhom";
   const data = productDatabase[slug] || productDatabase["cua-nhom"];
 
+  const [activeTab, setActiveTab] = useState<"specs" | "features" | "calculator" | "cad">("specs");
+  const [selectedGalleryImg, setSelectedGalleryImg] = useState(data.bannerImage);
+  
+  /* Price Estimator State */
+  const [widthM, setWidthM] = useState<number>(1.8);
+  const [heightM, setHeightM] = useState<number>(2.4);
+  const areaM2 = (widthM * heightM).toFixed(2);
+  const estimatedCost = Math.round(widthM * heightM * data.basePricePerM2);
+
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sans selection:bg-[#005bb7] selection:text-white">
       <Header />
 
-      {/* Hero Banner */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-[#0a1f3c] text-white overflow-hidden">
+      {/* Hero Banner Section with Glassmorphism */}
+      <section className="relative pt-32 pb-24 lg:pt-40 lg:pb-32 bg-[#0a1f3c] text-white overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-25 filter blur-sm"
-          style={{ backgroundImage: `url(${data.bannerImage})` }}
+          className="absolute inset-0 bg-cover bg-center opacity-30 filter blur-[2px] transition-all duration-700"
+          style={{ backgroundImage: `url(${selectedGalleryImg})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/85 to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(#c5a968_1px,transparent_1px)] [background-size:32px_32px] opacity-15 pointer-events-none" />
 
         <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10">
-          <div className="flex items-center gap-2 text-[12px] font-bold text-[#c5a968] uppercase tracking-wider mb-4">
+          <div className="flex items-center gap-2 text-[11px] font-bold text-[#c5a968] uppercase tracking-widest mb-6 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full w-fit border border-white/15">
             <Link href="/" className="hover:underline">Trang chủ</Link>
             <ChevronRight className="w-3.5 h-3.5" />
             <Link href="/san-pham" className="hover:underline">Sản phẩm</Link>
@@ -230,130 +248,286 @@ export default function ProductDetailPage({ params }: { params: Promise<{ slug: 
             <span className="text-white">{data.badge}</span>
           </div>
 
-          <div className="max-w-3xl space-y-6">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-[#005bb7] text-white text-[11px] font-bold uppercase tracking-widest shadow-lg">
-              {data.badge}
-            </span>
-            <h1 className="font-display font-bold text-[36px] sm:text-[48px] lg:text-[56px] leading-[1.12] tracking-tight">
-              {data.title}
-            </h1>
-            <p className="text-[16px] sm:text-[18px] text-gray-300 font-sans leading-relaxed">
-              {data.subtitle}
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-6">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-[#005bb7] text-white text-[10.5px] font-bold uppercase tracking-widest shadow-lg border border-white/20">
+                {data.badge}
+              </span>
+              <h1 className="font-display font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.1] tracking-tight">
+                {data.title}
+              </h1>
+              <p className="text-[16px] sm:text-[18px] text-gray-300 font-sans leading-relaxed max-w-2xl">
+                {data.subtitle}
+              </p>
+            </div>
+
+            {/* Price Badge Preview */}
+            <div className="lg:col-span-4 bg-white/10 backdrop-blur-xl p-6 sm:p-8 rounded-3xl border border-white/20 space-y-4 shadow-2xl">
+              <span className="text-[10px] font-bold text-[#c5a968] uppercase tracking-widest block">
+                ĐƠN GIÁ THAM KHẢO TIÊU CHUẨN 2026
+              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-[32px] sm:text-[40px] font-display font-bold text-white">
+                  {data.basePricePerM2.toLocaleString("vi-VN")}
+                </span>
+                <span className="text-sm text-gray-300 font-semibold">VNĐ / m²</span>
+              </div>
+              <p className="text-[12px] text-gray-300 font-sans leading-relaxed">
+                Đã bao gồm kính hộp Low-E / Kính an toàn, thanh nhôm cao cấp & phụ kiện kim khí đồng bộ.
+              </p>
+              <a
+                href="#calculator-tab"
+                onClick={() => setActiveTab("calculator")}
+                className="w-full inline-flex items-center justify-center gap-2 py-3 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[11px] uppercase tracking-widest rounded-xl transition-all shadow-md"
+              >
+                Dự toán ngân sách tự động ↓
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content & Specs Grid */}
-      <section className="py-20 lg:py-28 bg-white">
+      {/* Main Interactive Workspace & Gallery */}
+      <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             
-            {/* Left: Product Image Showcase (6 cols) */}
+            {/* Left Column: Interactive Image Gallery (6 cols) */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 group">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 group bg-gray-100">
                 <Image
-                  src={data.bannerImage}
+                  src={selectedGalleryImg}
                   alt={data.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
+                <div className="absolute top-4 left-4">
+                  <span className="bg-[#005bb7] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-md">
+                    Eurowindow Certified
+                  </span>
+                </div>
               </div>
 
-              {/* Gallery thumbnails */}
+              {/* Gallery Selector Thumbnails */}
               <div className="grid grid-cols-3 gap-4">
                 {data.gallery.map((img, i) => (
-                  <div key={i} className="relative aspect-[4/3] rounded-xl overflow-hidden border border-gray-200 shadow-sm">
-                    <Image src={img} alt={`Gallery ${i}`} fill className="object-cover" />
+                  <div
+                    key={i}
+                    onClick={() => setSelectedGalleryImg(img)}
+                    className={`relative aspect-[4/3] rounded-2xl overflow-hidden border-2 cursor-pointer transition-all duration-300 ${
+                      selectedGalleryImg === img
+                        ? "border-[#005bb7] ring-4 ring-[#005bb7]/20 scale-[1.02] shadow-md"
+                        : "border-transparent opacity-75 hover:opacity-100 hover:border-gray-300"
+                    }`}
+                  >
+                    <Image src={img} alt={`Gallery thumbnail ${i}`} fill className="object-cover" />
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Right: Technical Specs & Highlights (6 cols) */}
-            <div className="lg:col-span-6 space-y-8">
-              <div className="space-y-4">
-                <span className="text-[11px] font-bold text-[#005bb7] uppercase tracking-widest block">
-                  THÔNG SỐ KỸ THUẬT TIÊU CHUẨN
-                </span>
-                <p className="text-[14px] text-gray-600 font-sans leading-relaxed">
-                  {data.description}
-                </p>
-              </div>
-
-              {/* Highlights */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-blue-50/60 p-6 rounded-2xl border border-blue-100">
+              {/* Highlights List */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-[#f4f7fc] p-6 rounded-2xl border border-gray-200">
                 {data.highlights.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2.5 text-[13px] font-bold text-[#0a1f3c]">
+                  <div key={idx} className="flex items-center gap-2.5 text-[12.5px] font-bold text-[#0a1f3c]">
                     <Check className="h-4 w-4 text-[#005bb7] flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
+            </div>
 
-              {/* Specification Table */}
-              <div className="border border-gray-200 rounded-2xl overflow-hidden">
-                <div className="bg-[#0a1f3c] text-white px-6 py-3.5 text-[12px] font-bold uppercase tracking-wider">
-                  Bảng bóc tách thông số kỹ thuật chi tiết
-                </div>
-                <div className="divide-y divide-gray-100 font-sans">
-                  {data.specs.map((spec, i) => (
-                    <div key={i} className="flex items-center justify-between p-4 text-[13px]">
-                      <span className="font-semibold text-gray-500 w-44 flex-shrink-0">{spec.label}</span>
-                      <span className="font-bold text-gray-900 text-right">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Right Column: Tabbed Specs, CAD & Estimator (6 cols) */}
+            <div className="lg:col-span-6 space-y-8" id="calculator-tab">
+              
+              {/* Tab Navigation Switcher */}
+              <div className="flex items-center p-1.5 bg-[#eef3f9] rounded-2xl border border-gray-200 gap-1 overflow-x-auto scrollbar-none">
+                {[
+                  { id: "specs", label: "Thông số Kỹ thuật" },
+                  { id: "features", label: "Tính năng Công nghệ" },
+                  { id: "calculator", label: "Dự toán Ngân sách" },
+                  { id: "cad", label: "Tải Bản Vẽ CAD/BIM" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`px-4 py-2.5 text-[11.5px] font-bold rounded-xl transition-all duration-300 whitespace-nowrap cursor-pointer ${
+                      activeTab === tab.id
+                        ? "bg-[#005bb7] text-white shadow-md shadow-[#005bb7]/25"
+                        : "text-gray-600 hover:text-[#005bb7] hover:bg-white/60"
+                    }`}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
 
-              {/* CTA Action */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              {/* TAB 1: Specs Table */}
+              {activeTab === "specs" && (
+                <div className="space-y-6 animate-fade-in">
+                  <div className="space-y-3">
+                    <h3 className="font-display font-bold text-[22px] text-[#0a1f3c]">
+                      Bảng Bóc Tách Thông Số Tiêu Chuẩn
+                    </h3>
+                    <p className="text-[13.5px] text-gray-600 font-sans leading-relaxed">
+                      {data.description}
+                    </p>
+                  </div>
+
+                  <div className="border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                    <div className="bg-[#0a1f3c] text-white px-6 py-3.5 text-[12px] font-bold uppercase tracking-wider">
+                      HỆ KẾT CẤU & BẢO HÀNH CHÍNH HÃNG
+                    </div>
+                    <div className="divide-y divide-gray-100 font-sans">
+                      {data.specs.map((spec, i) => (
+                        <div key={i} className="flex items-center justify-between p-4 text-[13px] hover:bg-gray-50/80 transition-colors">
+                          <span className="font-semibold text-gray-500 w-44 flex-shrink-0">{spec.label}</span>
+                          <span className="font-bold text-gray-900 text-right">{spec.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 2: Technology Features */}
+              {activeTab === "features" && (
+                <div className="space-y-6 animate-fade-in">
+                  <h3 className="font-display font-bold text-[22px] text-[#0a1f3c]">
+                    Ưu Điểm Đột Phá Công Nghệ
+                  </h3>
+                  <div className="space-y-4">
+                    {data.features.map((feat, idx) => (
+                      <div key={idx} className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-2 hover:border-[#005bb7] transition-colors">
+                        <div className="flex items-center gap-3">
+                          <span className="w-8 h-8 rounded-full bg-blue-100 text-[#005bb7] flex items-center justify-center font-bold text-xs">
+                            0{idx + 1}
+                          </span>
+                          <h4 className="font-display font-bold text-[16px] text-gray-900">
+                            {feat.title}
+                          </h4>
+                        </div>
+                        <p className="text-[13px] text-gray-600 leading-relaxed font-sans pl-11">
+                          {feat.desc}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* TAB 3: Price Estimator Calculator */}
+              {activeTab === "calculator" && (
+                <div className="space-y-6 animate-fade-in bg-white p-8 rounded-3xl border border-gray-200 shadow-lg">
+                  <div>
+                    <span className="text-[10.5px] font-bold text-[#005bb7] uppercase tracking-widest block mb-1">
+                      TÍNH TOÁN NGÂN SÁCH NHANH
+                    </span>
+                    <h3 className="font-display font-bold text-[22px] text-gray-900">
+                      Công Cụ Dự Toán Tự Động
+                    </h3>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[12px] font-bold text-gray-700 uppercase">Chiều rộng (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0.5"
+                        max="10"
+                        value={widthM}
+                        onChange={(e) => setWidthM(parseFloat(e.target.value) || 1)}
+                        className="w-full p-3.5 rounded-xl border border-gray-300 font-bold text-gray-900 text-lg focus:outline-none focus:ring-2 focus:ring-[#005bb7]"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[12px] font-bold text-gray-700 uppercase">Chiều cao (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0.5"
+                        max="10"
+                        value={heightM}
+                        onChange={(e) => setHeightM(parseFloat(e.target.value) || 1)}
+                        className="w-full p-3.5 rounded-xl border border-gray-300 font-bold text-gray-900 text-lg focus:outline-none focus:ring-2 focus:ring-[#005bb7]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="bg-[#0a1f3c] text-white p-6 rounded-2xl space-y-3">
+                    <div className="flex justify-between items-center text-[13px] text-gray-300">
+                      <span>Diện tích công trình:</span>
+                      <span className="font-bold text-white text-base">{areaM2} m²</span>
+                    </div>
+                    <div className="flex justify-between items-center border-t border-white/10 pt-3">
+                      <span className="text-[13px] font-bold text-[#c5a968] uppercase">Ước tính ngân sách:</span>
+                      <span className="text-[26px] font-display font-bold text-white">
+                        {estimatedCost.toLocaleString("vi-VN")} <span className="text-sm font-sans font-normal text-gray-300">VNĐ</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-[11px] text-gray-400 font-sans italic">
+                    * Đơn giá ước tính đã bao gồm trọn gói tư vấn, lắp đặt & bảo hành chính hãng Eurowindow.
+                  </p>
+                </div>
+              )}
+
+              {/* TAB 4: CAD / BIM Download */}
+              {activeTab === "cad" && (
+                <div className="space-y-6 animate-fade-in bg-gray-50 p-8 rounded-3xl border border-gray-200">
+                  <div>
+                    <span className="text-[10.5px] font-bold text-[#005bb7] uppercase tracking-widest block mb-1">
+                      THƯ VIỆN KTS & KỸ THUẬT
+                    </span>
+                    <h3 className="font-display font-bold text-[22px] text-gray-900">
+                      Tải File Bản Vẽ & Profile
+                    </h3>
+                  </div>
+
+                  <div className="space-y-3">
+                    {[
+                      { name: "File CAD Profile Mặt Cắt (.DWG)", size: "4.2 MB", type: "DWG" },
+                      { name: "File Dựng Hình Revit Family 3D (.RFA)", size: "12.8 MB", type: "RFA" },
+                      { name: "Catalog Thông Số Kỹ Thuật PDF 2026", size: "8.5 MB", type: "PDF" },
+                      { name: "Chứng Nhận Kiểm Định Chất Lượng ISO", size: "2.1 MB", type: "PDF" },
+                    ].map((file, i) => (
+                      <div key={i} className="flex items-center justify-between p-4 bg-white rounded-2xl border border-gray-200 hover:border-[#005bb7] transition-all">
+                        <div className="space-y-0.5">
+                          <p className="text-[13px] font-bold text-gray-800">{file.name}</p>
+                          <span className="text-[11px] text-gray-400 font-mono">{file.size} • Format {file.type}</span>
+                        </div>
+                        <a
+                          href="/tai-lieu"
+                          className="px-4 py-2 bg-[#005bb7] hover:bg-[#00468c] text-white text-[11px] font-bold uppercase rounded-lg transition-colors"
+                        >
+                          Tải về ↓
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Direct Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <a
                   href="#contact"
-                  className="flex-1 text-center py-4 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[12px] uppercase tracking-widest rounded-xl transition-all shadow-lg shadow-[#005bb7]/25"
+                  className="flex-1 text-center py-4 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[12px] uppercase tracking-widest rounded-2xl transition-all shadow-lg shadow-[#005bb7]/25"
                 >
-                  Nhận Báo Giá & Tư Vấn Kỹ Thuật
+                  Yêu Cầu Báo Giá & Khảo Sát Tận Nơi
                 </a>
                 <Link
                   href="/tai-lieu"
-                  className="px-6 py-4 border border-gray-300 text-gray-800 font-bold text-[12px] uppercase tracking-widest rounded-xl hover:bg-gray-100 transition-all text-center"
+                  className="px-6 py-4 border border-gray-300 text-gray-800 font-bold text-[12px] uppercase tracking-widest rounded-2xl hover:bg-gray-100 transition-all text-center"
                 >
-                  Tải Catalog PDF
+                  Tải Thư Viện KTS
                 </Link>
               </div>
+
             </div>
 
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Details Section */}
-      <section className="py-20 bg-[#f4f7fc] border-t border-gray-200">
-        <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16">
-          <div className="text-center max-w-2xl mx-auto mb-16 space-y-3">
-            <span className="text-[11px] font-bold text-[#005bb7] uppercase tracking-widest">
-              TÍNH NĂNG NỔI BẬT
-            </span>
-            <h2 className="font-display font-bold text-[32px] text-[#0a1f3c]">
-              Ưu điểm vượt trội của sản phẩm
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {data.features.map((feat, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-2xl border border-gray-200 space-y-4 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 rounded-full bg-blue-100 text-[#005bb7] flex items-center justify-center font-bold text-lg">
-                  0{idx + 1}
-                </div>
-                <h3 className="font-display font-bold text-[18px] text-gray-900">
-                  {feat.title}
-                </h3>
-                <p className="text-[13px] text-gray-600 leading-relaxed font-sans">
-                  {feat.desc}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
