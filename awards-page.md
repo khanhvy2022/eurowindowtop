@@ -1,0 +1,405 @@
+- generic [ref=f1e2]:
+  - banner [ref=f1e3]:
+    - generic [ref=f1e5]:
+      - generic [ref=f1e6]:
+        - list [ref=f1e7]:
+          - listitem [ref=f1e8]: VN
+          - listitem [ref=f1e9]: ENG
+        - generic [ref=f1e11]:
+          - textbox "Tìm kiếm" [ref=f1e12]:
+            - /placeholder: Tìm kiếm...
+          - button "Tìm kiếm" [ref=f1e13] [cursor=pointer]
+      - link [ref=f1e17] [cursor=pointer]:
+        - /url: https://eurowindow.biz
+        - img "Eurowindow" [ref=f1e18]
+      - link "Nhận tư vấn" [ref=f1e20] [cursor=pointer]:
+        - /url: javascript:;
+    - list [ref=f1e24]:
+      - listitem [ref=f1e25]:
+        - link "GIỚI THIỆU" [ref=f1e26] [cursor=pointer]:
+          - /url: /gioi-thieu.html
+      - listitem [ref=f1e27]:
+        - link "SẢN PHẨM" [ref=f1e28] [cursor=pointer]:
+          - /url: javascript:;
+      - listitem [ref=f1e31]:
+        - link "SHOWROOM" [ref=f1e32] [cursor=pointer]:
+          - /url: /he-thong-cua-hang.html
+      - listitem [ref=f1e33]:
+        - link "CÔNG TRÌNH TIÊU BIỂU" [ref=f1e34] [cursor=pointer]:
+          - /url: https://eurowindow.biz/cong-trinh-tieu-bieu/cong-trinh-cap-quoc-gia
+      - listitem [ref=f1e37]:
+        - link "TÀI LIỆU" [ref=f1e38] [cursor=pointer]:
+          - /url: /tai-lieu.html
+      - listitem [ref=f1e39]:
+        - link "TIN TỨC" [ref=f1e40] [cursor=pointer]:
+          - /url: /tin-tuc
+      - listitem [ref=f1e43]:
+        - link "CHÍNH SÁCH" [ref=f1e44] [cursor=pointer]:
+          - /url: javascript:;
+      - listitem [ref=f1e47]:
+        - link "LIÊN HỆ" [ref=f1e48] [cursor=pointer]:
+          - /url: /lien-he.html
+  - main [ref=f1e49]:
+    - generic [ref=f1e52]:
+      - heading "Giải thưởng" [level=1] [ref=f1e54]
+      - list [ref=f1e56]:
+        - listitem [ref=f1e57]:
+          - link "Trang chủ" [ref=f1e58] [cursor=pointer]:
+            - /url: https://eurowindow.biz
+          - text: /
+        - listitem [ref=f1e59]:
+          - link "Giải thưởng" [ref=f1e60] [cursor=pointer]:
+            - /url: https://eurowindow.biz/giai-thuong
+    - generic [ref=f1e63]:
+      - generic [ref=f1e65]:
+        - generic [ref=f1e66]:
+          - article [ref=f1e67]:
+            - figure [ref=f1e68]:
+              - link [ref=f1e69] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-duoc-vinh-danh-top-10-doanh-nghiep-viet-nam-xanh-2026.html
+                - img "img-9961" [ref=f1e70]
+            - generic [ref=f1e71]:
+              - heading [level=2] [ref=f1e72]:
+                - link "Eurowindow tự hào được vinh danh Top 10 doanh nghiệp Việt Nam xanh 2026" [ref=f1e73] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-duoc-vinh-danh-top-10-doanh-nghiep-viet-nam-xanh-2026.html
+              - generic [ref=f1e74]:
+                - generic [ref=f1e75]: 08/07/2026
+                - generic [ref=f1e78]: 98 Lượt xem
+              - paragraph [ref=f1e81]: Ngày 26/6/2026, tại Hà Nội, Eurowindow vinh dự được xướng tên trong Top 10 Doanh nghiệp ESG Việt Nam Xanh 2026 thuộc nhóm ngành Vật liệu xây dựng. Chương trình ghi nhận những doanh nghiệp tiêu biểu ...
+              - link "Xem thêm" [ref=f1e82] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-duoc-vinh-danh-top-10-doanh-nghiep-viet-nam-xanh-2026.html
+          - article [ref=f1e83]:
+            - figure [ref=f1e84]:
+              - link [ref=f1e85] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-lot-top-top-10-noi-lam-viec-tot-nhat-viet-nam-nam-2025.html
+                - img "z7380809273272-654d91a7b50df56aeb403bb4956d3061" [ref=f1e86]
+            - generic [ref=f1e87]:
+              - heading [level=2] [ref=f1e88]:
+                - link "Eurowindow tự hào lọt top TOP 10 Nơi làm việc tốt nhất Việt Nam – năm 2025" [ref=f1e89] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-lot-top-top-10-noi-lam-viec-tot-nhat-viet-nam-nam-2025.html
+              - generic [ref=f1e90]:
+                - generic [ref=f1e91]: 19/01/2026
+                - generic [ref=f1e94]: 437 Lượt xem
+              - paragraph [ref=f1e97]: Ngày 26/12, Viet Research vừa phối hợp với Báo Tài chính – Đầu tư vinh danh các doanh nghiệp ngành vật liệu xây dựng nằm trong Bảng xếp hạng Top 10 Nơi làm việc tốt nhất Việt Nam (VBW10) năm 2025. ...
+              - link "Xem thêm" [ref=f1e98] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-tu-hao-lot-top-top-10-noi-lam-viec-tot-nhat-viet-nam-nam-2025.html
+          - article [ref=f1e99]:
+            - figure [ref=f1e100]:
+              - link [ref=f1e101] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-vung-vang-vi-the-trong-top-500-doanh-nghiep-lon-nhat-viet-nam-nam-2025.html
+                - img "jtm06501" [ref=f1e102]
+            - generic [ref=f1e103]:
+              - heading [level=2] [ref=f1e104]:
+                - link "Eurowindow vững vàng vị thế trong Top 500 doanh nghiệp lớn nhất Việt Nam năm 2025" [ref=f1e105] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-vung-vang-vi-the-trong-top-500-doanh-nghiep-lon-nhat-viet-nam-nam-2025.html
+              - generic [ref=f1e106]:
+                - generic [ref=f1e107]: 19/01/2026
+                - generic [ref=f1e110]: 451 Lượt xem
+              - paragraph [ref=f1e113]: Chiều ngày 8/1/2026, đại diện lãnh đạo Eurowindow vừa tham dự Lễ vinh danh Top 500 Doanh nghiệp lớn nhất Việt Nam (VNR500) năm 2025. Đây là năm thứ 16 năm liên tiếp, Eurowindow được xướng tên trong ...
+              - link "Xem thêm" [ref=f1e114] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-vung-vang-vi-the-trong-top-500-doanh-nghiep-lon-nhat-viet-nam-nam-2025.html
+          - article [ref=f1e115]:
+            - figure [ref=f1e116]:
+              - link [ref=f1e117] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/vietnam-esg-awards-eurowindow-tiep-tuc-duoc-vinh-danh-nam-thu-2-lien-tiep.html
+                - img "giai-thuong-esg-viet-nam-2025-193" [ref=f1e118]
+            - generic [ref=f1e119]:
+              - heading [level=2] [ref=f1e120]:
+                - 'link "Vietnam ESG Awards: Eurowindow tiếp tục được vinh danh năm thứ 2 liên tiếp" [ref=f1e121] [cursor=pointer]':
+                  - /url: https://eurowindow.biz/giai-thuong/vietnam-esg-awards-eurowindow-tiep-tuc-duoc-vinh-danh-nam-thu-2-lien-tiep.html
+              - generic [ref=f1e122]:
+                - generic [ref=f1e123]: 24/12/2025
+                - generic [ref=f1e126]: 472 Lượt xem
+              - paragraph [ref=f1e129]: Ngày 22/12/2025, Eurowindow tiếp tục được xướng tên tại Vietnam ESG Awards 2025 – giải thưởng uy tín do Báo Dân trí tổ chức năm thứ hai liên tiếp, vinh danh doanh nghiệp nhờ những nỗ lực nổi bật trong ...
+              - link "Xem thêm" [ref=f1e130] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/vietnam-esg-awards-eurowindow-tiep-tuc-duoc-vinh-danh-nam-thu-2-lien-tiep.html
+          - article [ref=f1e131]:
+            - figure [ref=f1e132]:
+              - link [ref=f1e133] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/cua-thong-minh-eurowindow-duoc-vinh-danh-top-10-san-pham-%E2%80%93-dich-vu-xanh-ben-vung-2025.html
+                - img "z7343145570593-baa69df47b181c4f9624c33a1fa8ea9e" [ref=f1e134]
+            - generic [ref=f1e135]:
+              - heading [level=2] [ref=f1e136]:
+                - link "Cửa thông minh Eurowindow được vinh danh Top 10 sản phẩm – dịch vụ xanh bền vững 2025" [ref=f1e137] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/cua-thong-minh-eurowindow-duoc-vinh-danh-top-10-san-pham-%E2%80%93-dich-vu-xanh-ben-vung-2025.html
+              - generic [ref=f1e138]:
+                - generic [ref=f1e139]: 24/12/2025
+                - generic [ref=f1e142]: 409 Lượt xem
+              - paragraph [ref=f1e145]: Ngày 18/12, cửa thông minh Eurowindow vừa được vinh danh giải thưởng uy tín - Top 10 sản phẩm – dịch vụ xanh bền vững trong khuôn khổ chương trình Tin dùng Việt Nam 2025. Đây là dấu mốc quan trọng của ...
+              - link "Xem thêm" [ref=f1e146] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/cua-thong-minh-eurowindow-duoc-vinh-danh-top-10-san-pham-%E2%80%93-dich-vu-xanh-ben-vung-2025.html
+          - article [ref=f1e147]:
+            - figure [ref=f1e148]:
+              - link [ref=f1e149] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-%E2%80%93-tu-hao-vinh-danh-top-10-doanh-nghiep-esg-viet-nam-xanh-2025.html
+                - img "z6751110268675-4e77c20b2e18d8b0355dd4682b9b1b24" [ref=f1e150]
+            - generic [ref=f1e151]:
+              - heading [level=2] [ref=f1e152]:
+                - link "Eurowindow – Tự hào vinh danh Top 10 Doanh nghiệp ESG Việt Nam Xanh 2025" [ref=f1e153] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-%E2%80%93-tu-hao-vinh-danh-top-10-doanh-nghiep-esg-viet-nam-xanh-2025.html
+              - generic [ref=f1e154]:
+                - generic [ref=f1e155]: 03/11/2025
+                - generic [ref=f1e158]: 424 Lượt xem
+              - paragraph [ref=f1e161]: Chiều ngày 27/06/2025, Eurowindow vừa vinh dự được xướng tên trong Top 10 Doanh nghiệp ESG Việt Nam Xanh ngành Vật liệu xây dựng. Lễ vinh danh được tổ chức trang trọng trong khuôn khổ Diễn đàn ESG ...
+              - link "Xem thêm" [ref=f1e162] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-%E2%80%93-tu-hao-vinh-danh-top-10-doanh-nghiep-esg-viet-nam-xanh-2025.html
+          - article [ref=f1e163]:
+            - figure [ref=f1e164]:
+              - link [ref=f1e165] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-giu-vung-danh-hieu-top-5-cong-ty-vlxd-uy-tin.html
+                - img "mti-8522" [ref=f1e166]
+            - generic [ref=f1e167]:
+              - heading [level=2] [ref=f1e168]:
+                - link "Eurowindow giữ vững danh hiệu Top 5 công ty VLXD uy tín" [ref=f1e169] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-giu-vung-danh-hieu-top-5-cong-ty-vlxd-uy-tin.html
+              - generic [ref=f1e170]:
+                - generic [ref=f1e171]: 03/11/2025
+                - generic [ref=f1e174]: 411 Lượt xem
+              - paragraph [ref=f1e177]: Tiếp tục được vinh danh trong Top 5 Công ty Vật liệu xây dựng uy tín năm 2025, Eurowindow đánh dấu năm thứ 9 liên tiếp có mặt trong bảng xếp hạng uy tín do Công ty Cổ phần Báo cáo Đánh giá Việt Nam ...
+              - link "Xem thêm" [ref=f1e178] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-giu-vung-danh-hieu-top-5-cong-ty-vlxd-uy-tin.html
+          - article [ref=f1e179]:
+            - figure [ref=f1e180]:
+              - link [ref=f1e181] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-duoc-vinh-danh-tai-vietnam-esg-awards.html
+                - img "vinh-danh-dien-dan-esg-viet-nam-9-1" [ref=f1e182]
+            - generic [ref=f1e183]:
+              - heading [level=2] [ref=f1e184]:
+                - link "Eurowindow được vinh danh tại Vietnam ESG Awards" [ref=f1e185] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-duoc-vinh-danh-tai-vietnam-esg-awards.html
+              - generic [ref=f1e186]:
+                - generic [ref=f1e187]: 03/11/2025
+                - generic [ref=f1e190]: 450 Lượt xem
+              - paragraph [ref=f1e193]: Vượt qua hơn 100 doanh nghiệp tham dự và trải qua quá trình thẩm định khắt khe từ Hội đồng chuyên môn, ngày 23/4, Eurowindow vinh dự được xướng tên cùng các thương hiệu lớn tại lễ trao giải Vietnam ...
+              - link "Xem thêm" [ref=f1e194] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-duoc-vinh-danh-tai-vietnam-esg-awards.html
+          - article [ref=f1e195]:
+            - figure [ref=f1e196]:
+              - link [ref=f1e197] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-danh-dau-16-nam-lien-tiep-duoc-vinh-danh-hang-viet-nam-chat-luong-cao-2025.html
+                - img "poster-hang-viet-nam-chat-luong-cao-01" [ref=f1e198]
+            - generic [ref=f1e199]:
+              - heading [level=2] [ref=f1e200]:
+                - link "Eurowindow đánh dấu 16 năm liên tiếp được vinh danh Hàng Việt Nam Chất Lượng Cao 2025" [ref=f1e201] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-danh-dau-16-nam-lien-tiep-duoc-vinh-danh-hang-viet-nam-chat-luong-cao-2025.html
+              - generic [ref=f1e202]:
+                - generic [ref=f1e203]: 03/11/2025
+                - generic [ref=f1e206]: 463 Lượt xem
+              - paragraph [ref=f1e209]: Năm 2025 đánh dấu một cột mốc quan trọng trong hành trình phát triển của Eurowindow khi lần thứ 16 liên tiếp doanh nghiệp vinh dự được bình chọn là Hàng Việt Nam Chất Lượng Cao. Danh hiệu này không ...
+              - link "Xem thêm" [ref=f1e210] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-danh-dau-16-nam-lien-tiep-duoc-vinh-danh-hang-viet-nam-chat-luong-cao-2025.html
+          - article [ref=f1e211]:
+            - figure [ref=f1e212]:
+              - link [ref=f1e213] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-thang-hang-trong-top-500-doanh-nghiep-lon-nhat-viet-nam.html
+                - img "mti-5875" [ref=f1e214]
+            - generic [ref=f1e215]:
+              - heading [level=2] [ref=f1e216]:
+                - link "Eurowindow thăng hạng trong Top 500 doanh nghiệp lớn nhất Việt Nam" [ref=f1e217] [cursor=pointer]:
+                  - /url: https://eurowindow.biz/giai-thuong/eurowindow-thang-hang-trong-top-500-doanh-nghiep-lon-nhat-viet-nam.html
+              - generic [ref=f1e218]:
+                - generic [ref=f1e219]: 05/02/2025
+                - generic [ref=f1e222]: 1291 Lượt xem
+              - paragraph [ref=f1e225]: Ngày 8/1/2025, đại diện công ty Eurowindow đã tham dự Lễ công bố Top 500 doanh nghiệp lớn nhất Việt Nam (VNR500) năm 2024. Đây là năm thứ 15 liên tiếp Eurowindow được vinh danh trong bảng xếp hạng ...
+              - link "Xem thêm" [ref=f1e226] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong/eurowindow-thang-hang-trong-top-500-doanh-nghiep-lon-nhat-viet-nam.html
+        - navigation [ref=f1e228]:
+          - list [ref=f1e229]:
+            - listitem "pagination.previous" [ref=f1e230]:
+              - generic [ref=f1e231]: ‹
+            - listitem [ref=f1e232]:
+              - generic [ref=f1e233]: "1"
+            - listitem [ref=f1e234]:
+              - link "2" [ref=f1e235] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong?page=2
+            - listitem [ref=f1e236]:
+              - link "pagination.next" [ref=f1e237] [cursor=pointer]:
+                - /url: https://eurowindow.biz/giai-thuong?page=2
+                - text: ›
+      - generic [ref=f1e239]:
+        - generic [ref=f1e240]:
+          - paragraph [ref=f1e242]: Danh mục tin tức
+          - list [ref=f1e243]:
+            - listitem [ref=f1e244]:
+              - link [ref=f1e245] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai
+                - paragraph [ref=f1e246]: Tin khuyến mãi
+            - listitem [ref=f1e247]:
+              - link [ref=f1e248] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tuyen-dung
+                - paragraph [ref=f1e249]: Tuyển dụng
+            - listitem [ref=f1e250]:
+              - link [ref=f1e251] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-noi-bo
+                - paragraph [ref=f1e252]: Tin nội bộ
+            - listitem [ref=f1e253]:
+              - link [ref=f1e254] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-du-an
+                - paragraph [ref=f1e255]: Tin dự án
+            - listitem [ref=f1e256]:
+              - link [ref=f1e257] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-tuc-su-kien
+                - paragraph [ref=f1e258]: Tin tức sự kiện
+        - generic [ref=f1e259]:
+          - paragraph [ref=f1e261]: Bài viết mới
+          - list [ref=f1e262]:
+            - listitem [ref=f1e263]:
+              - link [ref=f1e264] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tu-van/giai-phap-cach-nhiet-eurowindow-he-2026.html
+                - paragraph [ref=f1e265]: Tổng hợp giải pháp cửa chống nóng Eurowindow mùa hè 2026
+            - listitem [ref=f1e266]:
+              - link [ref=f1e267] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tu-van/nen-chon-cua-gi-cho-mua-he-nang-nong.html
+                - paragraph [ref=f1e268]: Nên chọn cửa gì cho mùa hè nắng nóng?
+            - listitem [ref=f1e269]:
+              - link [ref=f1e270] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-noi-bo/cap-nhat-cuoc-thi-eurowindow-noi-lam-viec-toi-yeu-16-cau-chuyen-dau-tien-va-loi-moi-goi-tiep-noi-hanh-trinh.html
+                - paragraph [ref=f1e271]: "Cập nhật cuộc thi \"Eurowindow – Nơi làm việc tôi yêu\": 16 câu chuyện đầu tiên và lời mời gọi tiếp nối hành trình"
+        - generic [ref=f1e272]:
+          - paragraph [ref=f1e274]: Bài viết đọc nhiều
+          - list [ref=f1e275]:
+            - listitem [ref=f1e276]:
+              - link [ref=f1e277] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai/eurowindow-khuyen-mai-nhan-dip-vietbuild-don-cua-tan-gia-nhan-qua-nghi-duong.html
+                - paragraph [ref=f1e278]: "EUROWINDOW KHUYẾN MÃI NHÂN DỊP VIETBUILD: “ĐÓN CỬA TÂN GIA – NHẬN QUÀ NGHỈ DƯỠNG”"
+            - listitem [ref=f1e279]:
+              - link [ref=f1e280] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai/the-le-chuong-trinh-khuyen-mai-ngan-uu-dai-vang-tri-an-khach-hang-nhan-ky-niem-20-nam-thanh-lap-eurowindow.html
+                - paragraph [ref=f1e281]: "THỂ LỆ CHƯƠNG TRÌNH KHUYẾN MÃI: “NGÀN ƯU ĐÃI VÀNG – TRI ÂN KHÁCH HÀNG” NHÂN KỶ NIỆM 20 NĂM THÀNH LẬP EUROWINDOW"
+            - listitem [ref=f1e282]:
+              - link [ref=f1e283] [cursor=pointer]:
+                - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai/the-le-chuong-trinh-khuyen-mai-%E2%80%9Cdau-tu-xung-tam-%E2%80%93-uu-dai-cuc-pham%E2%80%9D.html
+                - paragraph [ref=f1e284]: THỂ LỆ CHƯƠNG TRÌNH KHUYẾN MÃI “ĐẦU TƯ XỨNG TẦM – ƯU ĐÃI CỰC PHẨM”
+        - link [ref=f1e286] [cursor=pointer]:
+          - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai/chuong-trinh-khuyen-mai-dac-biet-danh-cho-khach-hang-mua-kinh-dien-eurowindow.html
+          - img "popup-website" [ref=f1e287]
+        - generic [ref=f1e289]:
+          - generic [ref=f1e290]:
+            - img "logo-ngang-xanh-13" [ref=f1e292]
+            - paragraph [ref=f1e294]: Đăng ký ngay để nhận tư vấn từ Eurowindow!
+          - generic [ref=f1e296]:
+            - generic [ref=f1e297]:
+              - textbox "Họ và tên *" [ref=f1e299]
+              - textbox "Số điện thoại *" [ref=f1e301]
+              - textbox "Email *" [ref=f1e303]
+            - textbox "Lời nhắn tới Eurowindow" [ref=f1e305]
+            - button "Gửi" [ref=f1e307] [cursor=pointer]
+  - contentinfo [ref=f1e308]:
+    - generic [ref=f1e310]:
+      - generic [ref=f1e311]:
+        - link [ref=f1e313] [cursor=pointer]:
+          - /url: https://eurowindow.biz
+          - img "logo-ngang-xanh-13" [ref=f1e314]
+        - generic [ref=f1e315]:
+          - link "Facebook" [ref=f1e316] [cursor=pointer]:
+            - /url: https://www.facebook.com/eurowindow.biz
+            - img "Facebook" [ref=f1e317]
+          - link "Instagram" [ref=f1e318] [cursor=pointer]:
+            - /url: https://www.instagram.com/eurowindow.biz/
+            - img "Instagram" [ref=f1e319]
+          - link "Youtube" [ref=f1e320] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UCpMyOKyn5p1TX3urz_dHo7A
+            - img "Youtube" [ref=f1e321]
+          - link "Zalo" [ref=f1e322] [cursor=pointer]:
+            - /url: https://zalo.me/3969929733792079943
+            - img "Zalo" [ref=f1e323]
+          - link "Tiktok" [ref=f1e324] [cursor=pointer]:
+            - /url: https://www.tiktok.com/@eurowindow.official
+        - link "(84 - 24) 37 47 47 00" [ref=f1e328] [cursor=pointer]:
+          - /url: tel:(84 - 24) 37 47 47 00
+        - link "infoew@eurowindow.biz" [ref=f1e332] [cursor=pointer]:
+          - /url: mailto:infoew@eurowindow.biz
+        - paragraph [ref=f1e336]:
+          - link "Tòa nhà Văn phòng Eurowindow Office Building, Số 02 Tôn Thất Tùng, Kim Liên, Hà Nội" [ref=f1e339] [cursor=pointer]:
+            - /url: https://maps.app.goo.gl/6Bj1QCJAheiMKr9Z6
+        - generic [ref=f1e340]:
+          - link "Bộ Công Thương" [ref=f1e341] [cursor=pointer]:
+            - /url: javascript:;
+            - img "Bộ Công Thương" [ref=f1e342]
+          - link "DMCA Protection Status" [ref=f1e343] [cursor=pointer]:
+            - /url: //www.dmca.com/Protection/Status.aspx?ID=9753a5d8-c1fa-42e2-876e-3a12383d7ae0
+            - img "DMCA.com Protection Status" [ref=f1e344]
+      - generic [ref=f1e345]:
+        - generic [ref=f1e346]: Giới thiệu
+        - list [ref=f1e347]:
+          - listitem [ref=f1e348]:
+            - link "Giới thiệu" [ref=f1e349] [cursor=pointer]:
+              - /url: /gioi-thieu.html
+          - listitem [ref=f1e350]:
+            - link "Tầm nhìn sứ mệnh" [ref=f1e351] [cursor=pointer]:
+              - /url: /tam-nhin-su-menh.html
+          - listitem [ref=f1e352]:
+            - link "Giải thưởng" [ref=f1e353] [cursor=pointer]:
+              - /url: /giai-thuong
+          - listitem [ref=f1e354]:
+            - link "Tài liệu" [ref=f1e355] [cursor=pointer]:
+              - /url: /tai-lieu.html
+      - generic [ref=f1e356]:
+        - generic [ref=f1e357]: Sản phẩm
+        - list [ref=f1e358]:
+          - listitem [ref=f1e359]:
+            - link "Cửa - Vách nhôm" [ref=f1e360] [cursor=pointer]:
+              - /url: https://eurowindow.biz/cua-vach-nhom
+          - listitem [ref=f1e361]:
+            - link "Cửa uPVC" [ref=f1e362] [cursor=pointer]:
+              - /url: https://eurowindow.biz/cua-nhua-upvc
+          - listitem [ref=f1e363]:
+            - link "Cửa gỗ" [ref=f1e364] [cursor=pointer]:
+              - /url: https://eurowindow.biz/cua-go
+          - listitem [ref=f1e365]:
+            - link "Cửa cuốn" [ref=f1e366] [cursor=pointer]:
+              - /url: https://eurowindow.biz/cua-cuon
+          - listitem [ref=f1e367]:
+            - link "Cửa thông minh" [ref=f1e368] [cursor=pointer]:
+              - /url: https://eurowindow.biz/cua-thong-minh-the-he-moi
+      - generic [ref=f1e369]:
+        - generic [ref=f1e370]: Tin tức
+        - list [ref=f1e371]:
+          - listitem [ref=f1e372]:
+            - link "Tin tức sự kiện" [ref=f1e373] [cursor=pointer]:
+              - /url: https://eurowindow.biz/tin-tuc/tin-tuc-su-kien
+          - listitem [ref=f1e374]:
+            - link "Tin dự án" [ref=f1e375] [cursor=pointer]:
+              - /url: https://eurowindow.biz/tin-tuc/tin-du-an
+          - listitem [ref=f1e376]:
+            - link "Tin nội bộ" [ref=f1e377] [cursor=pointer]:
+              - /url: https://eurowindow.biz/tin-tuc/tin-noi-bo
+          - listitem [ref=f1e378]:
+            - link "Tin khuyến mãi" [ref=f1e379] [cursor=pointer]:
+              - /url: https://eurowindow.biz/tin-tuc/tin-khuyen-mai
+          - listitem [ref=f1e380]:
+            - link "Tư vấn" [ref=f1e381] [cursor=pointer]:
+              - /url: /tu-van
+      - generic [ref=f1e382]:
+        - generic [ref=f1e383]: Chăm sóc khách hàng
+        - list [ref=f1e384]:
+          - listitem [ref=f1e385]:
+            - link "Chính sách bảo hành" [ref=f1e386] [cursor=pointer]:
+              - /url: https://eurowindow.biz/bao-hanh.html
+          - listitem [ref=f1e387]:
+            - link "Chính sách bảo mật thông tin khách hàng" [ref=f1e388] [cursor=pointer]:
+              - /url: https://eurowindow.biz/chinh-sach-bao-mat-thong-tin-khach-hang.html
+          - listitem [ref=f1e389]:
+            - link "(84 - 24) 37 47 47 00" [ref=f1e390] [cursor=pointer]:
+              - /url: tel:(84 - 24) 37 47 47 00
+          - listitem [ref=f1e393]:
+            - link "cskhhn@eurowindow.biz" [ref=f1e394] [cursor=pointer]:
+              - /url: mailto:cskhhn@eurowindow.biz
+          - generic [ref=f1e397]: Dự án quốc tế và xuất khẩu
+          - list [ref=f1e398]:
+            - listitem [ref=f1e399]:
+              - link "+84 -903 41 55 52" [ref=f1e400] [cursor=pointer]:
+                - /url: tel:+84 -903 41 55 52
+            - listitem [ref=f1e403]:
+              - link "export@eurowindow.biz" [ref=f1e404] [cursor=pointer]:
+                - /url: mailto:export@eurowindow.biz
+    - generic [ref=f1e409]:
+      - generic [ref=f1e410]:
+        - paragraph
+        - paragraph
+      - generic [ref=f1e411]:
+        - paragraph
+        - paragraph [ref=f1e412]: Copyright © 2021 www.eurowindow.biz
+  - link "Gọi điện thoại" [ref=f1e418] [cursor=pointer]:
+    - /url: tel:+84909 888 000
+    - img "Hotline" [ref=f1e419]

@@ -34,8 +34,8 @@ export default function HeroSection() {
       {/* ── Full-bleed Headquarters Building Background ── */}
       <div className="absolute inset-0 w-full h-full">
         <Image
-          src="/images/eurowindow-hero.png"
-          alt=""
+          src="/images/hop-tac-eurowindow.png"
+          alt="EUROWINDOW - Hợp tác kiến tạo"
           fill
           priority
           sizes="100vw"
