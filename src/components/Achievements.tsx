@@ -68,11 +68,20 @@ export default function Achievements() {
     { id: "iaf", logo: "/images/official/award_iaf_hd.webp", text: "Chứng nhận quốc tế IAF (International Accreditation Forum)" },
   ];
   const [awardPage, setAwardPage] = useState(0);
-  const AWARDS_PER_PAGE = 3;
-  const totalAwardPages = Math.ceil(awards.length / AWARDS_PER_PAGE);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const visibleAwards = Array.from({ length: AWARDS_PER_PAGE }, (_, i) => {
-    const index = (awardPage * AWARDS_PER_PAGE + i) % awards.length;
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const itemsPerPage = isMobile ? 1 : 3;
+  const totalAwardPages = Math.ceil(awards.length / itemsPerPage);
+
+  const visibleAwards = Array.from({ length: itemsPerPage }, (_, i) => {
+    const index = (awardPage * itemsPerPage + i) % awards.length;
     return awards[index];
   });
 
@@ -158,8 +167,8 @@ export default function Achievements() {
                 </div>
               </div>
 
-              {/* 3 Award Cards (Dark background, bright glow on hover) */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 items-stretch w-full min-h-[195px]">
+              {/* Award Cards (1 card on mobile, 3 cards on desktop) */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch w-full min-h-[195px]">
                 {visibleAwards.map((award, idx) => (
                   <motion.div
                     key={award.id}
