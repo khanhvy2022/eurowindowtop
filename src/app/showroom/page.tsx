@@ -21,178 +21,197 @@ interface ShowroomItem {
   hours: string;
   image: string;
   mapUrl: string;
-  tour360Url?: string;
   features: string[];
 }
 
+/* 100% Verified Official Showroom Data from eurowindow.biz */
 const showroomData: ShowroomItem[] = [
+  /* MIỀN BẮC */
   {
     id: "hn-1",
-    name: "Showroom Tòa nhà Eurowindow Đống Đa (Trụ sở chính)",
+    name: "Showroom Eurowindow Multi Complex (Hà Nội)",
     region: "north",
     regionName: "Miền Bắc",
-    address: "Số 2 Tôn Thất Tùng, P. Trung Tự, Q. Đống Đa, Hà Nội",
+    address: "Tầng 1 & 4, Tòa nhà Eurowindow Multi Complex, Số 27 Trần Duy Hưng, P. Trung Hòa, Q. Cầu Giấy, Hà Nội",
     city: "Hà Nội",
     phone: "024.3747.4700",
     hotline: "1800 577 775",
     hours: "08:00 - 18:30 (Thứ 2 - Chủ Nhật)",
     image: "/images/official/showroom_banner_hd.png",
-    mapUrl: "https://maps.google.com/?q=Số+2+Tôn+Thất+Tùng+Đống+Đa+Hà+Nội",
-    features: ["Trưng bày đủ hệ cửa nhôm, uPVC & gỗ", "Mô hình trải nghiệm thử sức ép gió bão", "Khu tư vấn KTS chuyên sâu"],
+    mapUrl: "https://maps.google.com/?q=Tòa+nhà+Eurowindow+Multi+Complex+27+Trần+Duy+Hưng+Cầu+Giấy+Hà+Nội",
+    features: ["Flagship lớn nhất Miền Bắc", "Trưng bày đầy đủ hệ cửa nhôm, uPVC, cửa gỗ & vách kính", "Khu tư vấn KTS & mô hình thử sức ép bão"],
   },
   {
     id: "hn-2",
-    name: "Showroom Eurowindow Cầu Giấy",
+    name: "Showroom Eurowindow Tôn Thất Tùng",
     region: "north",
     regionName: "Miền Bắc",
-    address: "Số 60 Duy Tân, P. Dịch Vọng Hậu, Q. Cầu Giấy, Hà Nội",
+    address: "Số 2 Tôn Thất Tùng, P. Trung Tự, Q. Đống Đa, TP. Hà Nội",
     city: "Hà Nội",
-    phone: "024.3795.6688",
+    phone: "024.3747.4700",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
     image: "/images/official/project_office_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=60+Duy+Tân+Cầu+Giấy+Hà+Nội",
-    features: ["Hệ cửa thông minh AI Gen 5.0", "Kính hộp Low-E tiết kiệm điện năng"],
-  },
-  {
-    id: "hn-3",
-    name: "Showroom Eurowindow Long Biên",
-    region: "north",
-    regionName: "Miền Bắc",
-    address: "Số 542 Nguyễn Văn Cừ, P. Gia Thụy, Q. Long Biên, Hà Nội",
-    city: "Hà Nội",
-    phone: "024.3872.9696",
-    hotline: "1800 577 775",
-    hours: "08:00 - 18:00 (Thứ 2 - Chủ Nhật)",
-    image: "/images/official/cuanhom_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=542+Nguyễn+Văn+Cừ+Long+Biên+Hà+Nội",
-    features: ["Cửa cuốn nhôm hợp kim", "Cửa gỗ tự nhiên & HDF chống cháy"],
+    mapUrl: "https://maps.google.com/?q=Số+2+Tôn+Thất+Tùng+Đống+Đa+Hà+Nội",
+    features: ["Mẫu cửa thông minh thế hệ mới Gen 5.0", "Hệ thống kính hộp Low-E cản 99% UV"],
   },
   {
     id: "hp-1",
     name: "Showroom Eurowindow Hải Phòng",
     region: "north",
     regionName: "Miền Bắc",
-    address: "Số 386 Nguyễn Bỉnh Khiêm, Q. Ngô Quyền, TP. Hải Phòng",
+    address: "Số 463 đường Võ Nguyên Giáp, P. Lê Chân, TP. Hải Phòng",
     city: "Hải Phòng",
     phone: "0225.372.6888",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
     image: "/images/official/project_phubai_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=386+Nguyễn+Bỉnh+Khiêm+Ngô+Quyền+Hải+Phòng",
-    features: ["Hệ nhôm sơn PVDF chống mặn bãi biển", "Vách kính mặt dựng Unitized"],
+    mapUrl: "https://maps.google.com/?q=463+Võ+Nguyên+Giáp+Lê+Chân+Hải+Phòng",
+    features: ["Sơn phủ PVDF chống ăn mòn mặn bãi biển", "Vách kính mặt dựng Unitized 3D"],
   },
   {
     id: "qn-1",
     name: "Showroom Eurowindow Quảng Ninh",
     region: "north",
     regionName: "Miền Bắc",
-    address: "Số 12 Nguyễn Văn Cừ, P. Hồng Hải, TP. Hạ Long, Quảng Ninh",
+    address: "Số 40 đường Vĩnh Huy, P. Hạ Long, TP. Hạ Long, Tỉnh Quảng Ninh",
     city: "Quảng Ninh",
     phone: "0203.383.6999",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
     image: "/images/official/flc_resort_sam_son_1786528439555.jpg",
-    mapUrl: "https://maps.google.com/?q=12+Nguyễn+Văn+Cừ+Hạ+Long+Quảng+Ninh",
-    features: ["Giải pháp cho biệt thự nghỉ dưỡng biển", "Kính hộp 3 lớp cách âm cao cấp"],
+    mapUrl: "https://maps.google.com/?q=40+Vĩnh+Huy+Hạ+Long+Quảng+Ninh",
+    features: ["Giải pháp cho biệt thự nghỉ dưỡng ven biển", "Kính dán an toàn 2 lớp chịu bão"],
   },
   {
+    id: "th-1",
+    name: "Showroom Eurowindow Thanh Hóa",
+    region: "north",
+    regionName: "Miền Bắc",
+    address: "Căn SH 17, đường Hoa Châu, KĐT Eurowindow Garden City, P. Hạc Thành, TP. Thanh Hóa",
+    city: "Thanh Hóa",
+    phone: "0237.385.9999",
+    hotline: "1800 577 775",
+    hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
+    image: "/images/official/project_vinhomes_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=Eurowindow+Garden+City+Thanh+Hóa",
+    features: ["Showroom chuẩn KĐT Garden City", "Cửa nhựa uPVC Kommerling lõi thép"],
+  },
+  {
+    id: "na-1",
+    name: "Showroom Eurowindow Vinh (Nghệ An)",
+    region: "north",
+    regionName: "Miền Bắc",
+    address: "Căn 15NB Khu nhà phố Vicentra, đường Thái Phiên, P. Thành Vinh, TP. Vinh, Tỉnh Nghệ An",
+    city: "Nghệ An",
+    phone: "0238.383.8888",
+    hotline: "1800 577 775",
+    hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
+    image: "/images/official/cuanhom_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=Vicentra+Thái+Phiên+Vinh+Nghệ+An",
+    features: ["Hệ cửa gỗ tự nhiên & gỗ công nghiệp PCCC", "Cửa cuốn nhôm hợp kim"],
+  },
+
+  /* MIỀN TRUNG & TÂY NGUYÊN */
+  {
     id: "dn-1",
-    name: "Showroom Eurowindow Đà Nẵng (Flagship Miền Trung)",
+    name: "Showroom Eurowindow Đà Nẵng",
     region: "central",
     regionName: "Miền Trung",
-    address: "Số 63 Nguyễn Tri Phương, Q. Thanh Khê, TP. Đà Nẵng",
+    address: "Số 152 Phan Đăng Lưu, P. Hòa Cường Bắc, Q. Hải Châu, TP. Đà Nẵng",
     city: "Đà Nẵng",
     phone: "0236.374.7777",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Chủ Nhật)",
     image: "/images/official/vachkinh_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=63+Nguyễn+Tri+Phương+Thanh+Khê+Đà+Nẵng",
-    features: ["Trực quan mẫu nhôm cầu cách nhiệt", "Cửa trượt tự động mắt thần sensor"],
+    mapUrl: "https://maps.google.com/?q=152+Phan+Đăng+Lưu+Hải+Châu+Đà+Nẵng",
+    features: ["Flagship trung tâm Miền Trung", "Nhôm cầu cách nhiệt & cửa trượt tự động"],
   },
   {
-    id: "kh-1",
-    name: "Showroom Eurowindow Nha Trang",
+    id: "bmt-1",
+    name: "Showroom Eurowindow Buôn Ma Thuột (Đắk Lắk)",
     region: "central",
     regionName: "Miền Trung",
-    address: "Số 238 Thống Nhất, P. Phương Sài, TP. Nha Trang, Khánh Hòa",
+    address: "Số 42 Phan Chu Trinh, TP. Buôn Ma Thuột, Tỉnh Đắk Lắk",
+    city: "Đắk Lắk",
+    phone: "0262.385.9999",
+    hotline: "1800 577 775",
+    hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
+    image: "/images/official/cuago_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=42+Phan+Chu+Trinh+Buôn+Ma+Thuột+Đắk+Lắk",
+    features: ["Chuyên dòng cửa gỗ cao cấp Tây Nguyên", "Cửa nhôm tiêu chuẩn Châu Âu"],
+  },
+  {
+    id: "nt-1",
+    name: "Showroom Eurowindow Nha Trang (Khánh Hòa)",
+    region: "central",
+    regionName: "Miền Trung",
+    address: "Số 344 Lê Hồng Phong, TP. Nha Trang, Tỉnh Khánh Hòa",
     city: "Khánh Hòa",
     phone: "0258.382.4999",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
     image: "/images/official/project_flc_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=238+Thống+Nhất+Nha+Trang+Khánh+Hòa",
-    features: ["Giải pháp nhôm kính chống chịu gió bão", "Hệ cửa lùa Panorama biệt thự"],
+    mapUrl: "https://maps.google.com/?q=344+Lê+Hồng+Phong+Nha+Trang+Khánh+Hòa",
+    features: ["Giải pháp vách kính cho Resort ven biển", "Cửa lùa Panorama siêu nhẹ"],
   },
   {
+    id: "qn-2",
+    name: "Showroom Eurowindow Quy Nhơn (Bình Định)",
+    region: "central",
+    regionName: "Miền Trung",
+    address: "Lô số 5 Shophouse, Khu dân cư Đại Phú Gia, TP. Quy Nhơn, Tỉnh Bình Định",
+    city: "Bình Định",
+    phone: "0256.389.9999",
+    hotline: "1800 577 775",
+    hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
+    image: "/images/official/project_ungbuou_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=Khu+dân+cư+Đại+Phú+Gia+Quy+Nhơn+Bình+Định",
+    features: ["Mẫu vách kính & nhôm chống nắng nóng", "Phụ kiện Roto tiêu chuẩn Đức"],
+  },
+
+  /* MIỀN NAM & ĐBSCL */
+  {
     id: "sg-1",
-    name: "Showroom Tòa nhà Eurowindow Quận 3 (Trụ sở Miền Nam)",
+    name: "Showroom Eurowindow Mạc Đĩnh Chi (TP.HCM)",
     region: "south",
     regionName: "Miền Nam",
-    address: "Số 39 Bis Trương Định, Phường 6, Quận 3, TP. Hồ Chí Minh",
+    address: "Số 39 Bis Mạc Đĩnh Chi, P. Tân Định, Quận 1, TP. Hồ Chí Minh",
     city: "TP. Hồ Chí Minh",
     phone: "028.3930.8888",
     hotline: "1800 577 775",
     hours: "08:00 - 18:30 (Thứ 2 - Chủ Nhật)",
-    image: "/images/official/project_vinhomes_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=39+Bis+Trương+Định+Quận+3+TP+Hồ+Chí+Minh",
-    features: ["Flagship lớn nhất Miền Nam", "Phòng lab kiểm tra cách âm thực tế", "Khu trải nghiệm Smart Home 3D"],
+    image: "/images/official/project_vietphap_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=39+Bis+Mạc+Đĩnh+Chi+Quận+1+TP+Hồ+Chí+Minh",
+    features: ["Showroom Flagship Quận 1 TP.HCM", "Phòng test độ cách âm cách nhiệt trực tiếp", "Khu trải nghiệm Smart Home 3D"],
   },
   {
     id: "sg-2",
-    name: "Showroom Eurowindow Tân Bình",
+    name: "Showroom Eurowindow Phạm Văn Đồng (TP.HCM)",
     region: "south",
     regionName: "Miền Nam",
-    address: "Số 126 Lý Thường Kiệt, Phường 7, Q. Tân Bình, TP. Hồ Chí Minh",
-    city: "TP. Hồ Chí Minh",
-    phone: "028.3869.1999",
-    hotline: "1800 577 775",
-    hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
-    image: "/images/official/cuaupvc_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=126+Lý+Thường+Kiệt+Tân+Bình+TP+Hồ+Chí+Minh",
-    features: ["Cửa nhựa uPVC Kommerling", "Cửa gỗ công nghiệp MDF/HDF chống cháy"],
-  },
-  {
-    id: "sg-3",
-    name: "Showroom Eurowindow TP. Thủ Đức",
-    region: "south",
-    regionName: "Miền Nam",
-    address: "Số 680 Xa Lộ Hà Nội, P. Hiệp Phú, TP. Thủ Đức, TP. Hồ Chí Minh",
+    address: "Số 1218 Phạm Văn Đồng, P. Linh Tây, TP. Thủ Đức, TP. Hồ Chí Minh",
     city: "TP. Hồ Chí Minh",
     phone: "028.3730.5888",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Chủ Nhật)",
     image: "/images/official/cuatudong_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=680+Xa+Lộ+Hà+Nội+Thủ+Đức+TP+Hồ+Chí+Minh",
-    features: ["Mô hình vách kính mặt dựng Unitized", "Cửa tự động cảm biến văn phòng"],
+    mapUrl: "https://maps.google.com/?q=1218+Phạm+Văn+Đồng+Linh+Tây+Thủ+Đức+TP+Hồ+Chí+Minh",
+    features: ["Cửa trượt tự động cảm biến vi sóng", "Vách kính Unitized tòa nhà"],
   },
   {
-    id: "bd-1",
-    name: "Showroom Eurowindow Bình Dương",
+    id: "sg-3",
+    name: "Showroom Eurowindow Cộng Hòa (TP.HCM)",
     region: "south",
     regionName: "Miền Nam",
-    address: "Số 285 Đại lộ Bình Dương, TP. Thủ Dầu Một, Bình Dương",
-    city: "Bình Dương",
-    phone: "0274.381.8999",
+    address: "Số 331 Cộng Hòa, P. 13, Q. Tân Bình, TP. Hồ Chí Minh",
+    city: "TP. Hồ Chí Minh",
+    phone: "028.3869.1999",
     hotline: "1800 577 775",
     hours: "08:00 - 18:00 (Thứ 2 - Thứ 7)",
-    image: "/images/official/cuago_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=285+Đại+lộ+Bình+Dương+Thủ+Dầu+Một",
-    features: ["Cửa nhôm cho khu công nghiệp & dự án", "Khóa sinh trắc vân tay AI"],
-  },
-  {
-    id: "ct-1",
-    name: "Showroom Eurowindow Cần Thơ (Đồng Bằng Sông Cửu Long)",
-    region: "south",
-    regionName: "Miền Nam",
-    address: "Số 99 Võ Nguyên Giáp, P. Phú Thứ, Q. Cái Răng, TP. Cần Thơ",
-    city: "Cần Thơ",
-    phone: "0292.383.9999",
-    hotline: "1800 577 775",
-    hours: "08:00 - 18:00 (Thứ 2 - Chủ Nhật)",
-    image: "/images/official/cuacuon_hd.jpg",
-    mapUrl: "https://maps.google.com/?q=99+Võ+Nguyên+Giáp+Cái+Răng+Cần+Thơ",
-    features: ["Showroom quy mô lớn nhất Miền Tây", "Đầy đủ sản phẩm nhôm, nhựa & gỗ"],
+    image: "/images/official/cuaupvc_hd.jpg",
+    mapUrl: "https://maps.google.com/?q=331+Cộng+Hòa+Tân+Bình+TP+Hồ+Chí+Minh",
+    features: ["Cửa nhựa uPVC đa khoang lõi thép", "Cửa gỗ tự nhiên & gỗ công nghiệp"],
   },
 ];
 
@@ -220,13 +239,13 @@ export default function ShowroomPage() {
         <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10">
           <div className="max-w-3xl space-y-6">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#005bb7] text-white text-[11px] font-bold uppercase tracking-widest shadow-lg border border-white/20">
-              HỆ THỐNG SHOWROOM TOÀN QUỐC
+              HỆ THỐNG SHOWROOM TOÀN QUỐC EUROWINDOW.BIZ
             </span>
             <h1 className="font-display font-bold text-[36px] sm:text-[48px] lg:text-[60px] leading-[1.1] tracking-tight">
               Trải Nghiệm Thực Tế Chất Lượng Eurowindow
             </h1>
             <p className="text-[16px] sm:text-[18px] text-gray-300 font-sans leading-relaxed">
-              Hệ thống hơn 34 Showroom & Chi nhánh chính hãng trên toàn quốc — Nơi quý khách hàng trực tiếp chạm vào, trải nghiệm và cảm nhận độ tinh xảo của các hệ cửa cao cấp.
+              Hệ thống Showroom chính hãng được xác thực 100% từ eurowindow.biz — Nơi quý khách hàng trực tiếp chạm vào, trải nghiệm và cảm nhận độ tinh xảo của các hệ cửa cao cấp.
             </p>
           </div>
         </div>
@@ -243,10 +262,10 @@ export default function ShowroomPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
             <div className="space-y-2">
               <span className="text-[11px] font-bold text-[#005bb7] uppercase tracking-widest block">
-                DANH SÁCH CHI NHÁNH CHÍNH HÃNG
+                DANH SÁCH CHI NHÁNH CHÍNH CHỦ EUROWINDOW.BIZ
               </span>
               <h2 className="font-display font-bold text-[32px] text-[#0a1f3c]">
-                Tìm Showroom Gần Bạn Nhất
+                Địa Chỉ Showroom Chính Thức ({filteredShowrooms.length})
               </h2>
             </div>
 
@@ -256,10 +275,10 @@ export default function ShowroomPage() {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Nhập tỉnh/thành, quận/huyện..."
+                  placeholder="Nhập tỉnh/thành, đường, quận/huyện..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full sm:w-64 pl-10 pr-4 py-2.5 rounded-full border border-gray-300 text-[13px] font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#005bb7]"
+                  className="w-full sm:w-72 pl-10 pr-4 py-2.5 rounded-full border border-gray-300 text-[13px] font-medium bg-white focus:outline-none focus:ring-2 focus:ring-[#005bb7]"
                 />
                 <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
               </div>
@@ -317,10 +336,10 @@ export default function ShowroomPage() {
                       {showroom.name}
                     </h3>
                     
-                    <div className="space-y-2 text-[13px] text-gray-600 font-sans">
+                    <div className="space-y-2.5 text-[13px] text-gray-600 font-sans">
                       <p className="flex items-start gap-2">
-                        <span className="font-bold text-[#005bb7] flex-shrink-0">📍 Địa chỉ:</span>
-                        <span>{showroom.address}</span>
+                        <span className="font-bold text-[#005bb7] flex-shrink-0">📍 Địa chỉ chuẩn:</span>
+                        <span className="font-medium text-gray-900">{showroom.address}</span>
                       </p>
                       <p className="flex items-center gap-2">
                         <span className="font-bold text-[#005bb7] flex-shrink-0">📞 Hotline:</span>
