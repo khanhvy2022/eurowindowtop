@@ -3,26 +3,75 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, type Easing } from "framer-motion";
-import { Search, Menu, X, ArrowRight, EurowindowBrandLogo } from "./icons";
+import { motion, AnimatePresence, type Easing } from "framer-motion";
+import { Search, Menu, X, ArrowRight, ChevronDown } from "./icons";
 
 const EASE: Easing = [0.21, 1.11, 0.34, 1];
 
-const menuItems = [
-  { label: "Sản phẩm", href: "#products", id: "products" },
-  { label: "Công trình", href: "#projects", id: "projects" },
-  { label: "Về Eurowindow", href: "#intro", id: "intro" },
-  { label: "Architect Hub", href: "#architect-hub", id: "architect-hub" },
-  { label: "Showroom", href: "#showroom", id: "showroom" },
-];
+interface SubMenuItem {
+  label: string;
+  href: string;
+}
 
-const secondaryItems = [
-  { label: "Tin tức", href: "#news", id: "news" },
-  { label: "Liên hệ", href: "#footer", id: "footer" },
-  { label: "Tư vấn & Hỗ trợ", href: "#contact", id: "contact" },
-];
+interface MenuItem {
+  id: string;
+  label: string;
+  href: string;
+  children?: SubMenuItem[];
+}
 
-const observedIds = [...menuItems, ...secondaryItems].map((m) => m.id);
+const menuItems: MenuItem[] = [
+  {
+    id: "intro",
+    label: "GIỚI THIỆU",
+    href: "#intro",
+  },
+  {
+    id: "products",
+    label: "SẢN PHẨM",
+    href: "#products",
+    children: [
+      { label: "CỬA NHÔM", href: "#products" },
+      { label: "CỬA uPVC", href: "#products" },
+      { label: "CỬA GỖ", href: "#products" },
+      { label: "CỬA CUỐN", href: "#products" },
+      { label: "CỬA TỰ ĐỘNG", href: "#products" },
+      { label: "SẢN PHẨM KÍNH", href: "#products" },
+      { label: "CỬA THÔNG MINH THẾ HỆ MỚI", href: "#products" },
+    ],
+  },
+  {
+    id: "showroom",
+    label: "SHOWROOM",
+    href: "#showroom",
+  },
+  {
+    id: "projects",
+    label: "CÔNG TRÌNH TIÊU BIỂU",
+    href: "#projects",
+    children: [
+      { label: "CÔNG TRÌNH CẤP QUỐC GIA", href: "#projects" },
+      { label: "DỰ ÁN THƯƠNG MẠI & Y TẾ", href: "#projects" },
+      { label: "KHU ĐÔ THỊ & DÂN CƯ", href: "#projects" },
+      { label: "RESORT & NGHỈ DƯỠNG", href: "#projects" },
+    ],
+  },
+  {
+    id: "architect-hub",
+    label: "TÀI LIỆU",
+    href: "#architect-hub",
+  },
+  {
+    id: "news",
+    label: "TIN TỨC",
+    href: "#news",
+    children: [
+      { label: "TIN TỨC SỰ KIỆN", href: "#news" },
+      { label: "TỌA ĐÀM & HỘI THẢO", href: "#news" },
+      { label: "TẠO DỰNG TƯƠNG LAI XANH", href: "#news" },
+    ],
+  },
+];
 
 const popularSearches = [
   { title: "Cửa nhôm cao cấp Low-E", category: "Sản phẩm", link: "#products" },
@@ -34,40 +83,23 @@ const popularSearches = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeMobileAccordion, setActiveMobileAccordion] = useState<string | null>(null);
   const [lang, setLang] = useState<"vi" | "en">("vi");
-  const [activeItem, setActiveItem] = useState("Về Eurowindow");
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
-  /* IntersectionObserver — active nav highlight */
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const matched = menuItems.find((m) => m.id === entry.target.id);
-          if (entry.isIntersecting && matched) setActiveItem(matched.label);
-        });
-      },
-      { threshold: 0.3 }
-    );
-    observedIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <>
       <motion.header
-        className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/60 to-transparent text-white transition-all duration-500"
+        className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/75 via-black/45 to-transparent text-white backdrop-blur-[2px] transition-all duration-500"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.65, ease: EASE, delay: 0.1 }}
       >
-        <div className="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between gap-3 h-16 sm:h-20 border-b border-white/10">
+        <div className="max-w-[1536px] mx-auto px-6 sm:px-10 lg:px-14 flex items-center justify-between gap-4 h-16 sm:h-20 border-b border-white/15">
           
-          {/* Logo — Custom logo-ew from D:\hinh Q12\Favicon */}
+          {/* Logo — Custom logo-ew */}
           <motion.div
             initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
@@ -87,49 +119,76 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          {/* Navigation — center */}
-          <nav className="hidden xl:flex items-center gap-0.5">
+          {/* Navigation — Desktop Top Menu */}
+          <nav className="hidden xl:flex items-center gap-1 font-sans">
             {menuItems.map((item, i) => {
-              const isActive = activeItem === item.label;
+              const hasChildren = Boolean(item.children && item.children.length > 0);
+              const isHovered = hoveredMenu === item.id;
+
               return (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, ease: EASE, delay: 0.25 + i * 0.03 }}
+                <div
+                  key={item.id}
+                  className="relative group py-6"
+                  onMouseEnter={() => setHoveredMenu(item.id)}
+                  onMouseLeave={() => setHoveredMenu(null)}
                 >
                   <Link
                     href={item.href}
-                    onClick={() => setActiveItem(item.label)}
-                    className={`group relative px-3 py-2 text-[12.5px] font-bold whitespace-nowrap transition-colors duration-200 rounded-md text-white/85 hover:text-white ${
-                      isActive ? "text-white" : ""
-                    }`}
+                    className="inline-flex items-center gap-1 px-3 py-1 text-[13px] font-bold tracking-wider uppercase transition-colors duration-200 text-white/90 hover:text-white"
                   >
                     {item.label}
-                    <span
-                      className={`absolute bottom-0.5 left-3 right-3 h-0.5 rounded-full transition-transform origin-left duration-300 bg-white ${
-                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      }`}
-                    />
+                    {hasChildren && (
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-300 text-white/80 ${
+                          isHovered ? "rotate-180 text-white" : ""
+                        }`}
+                      />
+                    )}
                   </Link>
-                </motion.div>
+
+                  {/* Dropdown Panel matching reference design */}
+                  {hasChildren && (
+                    <AnimatePresence>
+                      {isHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                          className="absolute top-full left-0 w-72 bg-white text-gray-900 shadow-2xl rounded-b-xl border border-gray-100 overflow-hidden z-50 py-1"
+                        >
+                          {item.children?.map((sub, subIdx) => (
+                            <Link
+                              key={subIdx}
+                              href={sub.href}
+                              className="block px-6 py-3.5 text-[12.5px] font-bold tracking-wide uppercase text-gray-800 hover:text-[#005bb7] hover:bg-gray-50 border-b border-gray-100/70 last:border-none transition-colors duration-200"
+                            >
+                              {sub.label}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  )}
+                </div>
               );
             })}
           </nav>
 
-          {/* Language + Search + CTA — right */}
+          {/* Language + Search + CTA — Right side */}
           <div className="hidden lg:flex items-center gap-5 flex-shrink-0">
-            <div className="flex items-center gap-1.5 text-[12px] font-bold text-white/70">
+            {/* Language Switcher */}
+            <div className="flex items-center gap-1.5 text-[12px] font-bold text-white/80">
               <button
                 onClick={() => setLang("vi")}
-                className={`cursor-pointer px-1 transition-colors ${lang === "vi" ? "text-white" : "hover:text-white"}`}
+                className={`cursor-pointer px-1 transition-colors ${lang === "vi" ? "text-white underline underline-offset-4" : "hover:text-white opacity-60"}`}
               >
                 VI
               </button>
               <span className="opacity-30">|</span>
               <button
                 onClick={() => setLang("en")}
-                className={`cursor-pointer px-1 transition-colors ${lang === "en" ? "text-white" : "hover:text-white"}`}
+                className={`cursor-pointer px-1 transition-colors ${lang === "en" ? "text-white underline underline-offset-4" : "hover:text-white opacity-60"}`}
               >
                 EN
               </button>
@@ -144,21 +203,22 @@ export default function Header() {
                 onFocus={() => setSearchOpen(true)}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-40 xl:w-48 pl-3.5 pr-8 py-1.5 rounded-lg text-[12px] font-medium bg-white/10 border border-white/25 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all cursor-pointer"
+                className="w-40 xl:w-44 pl-3.5 pr-8 py-1.5 rounded-full text-[12px] font-medium bg-white/10 border border-white/30 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white/40 transition-all cursor-pointer"
               />
-              <Search className="absolute right-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/60 pointer-events-none" />
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-white/70 pointer-events-none" />
             </div>
 
+            {/* CTA Button */}
             <Link
               href="#contact"
-              className="hidden xl:inline-flex items-center gap-2.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-3 rounded-full transition-all duration-300 group whitespace-nowrap"
+              className="hidden xl:inline-flex items-center gap-2 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-2.5 rounded-full transition-all duration-300 shadow-md group whitespace-nowrap border border-white/20"
             >
               NHẬN TƯ VẤN
               <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
 
-          {/* Mobile Controls */}
+          {/* Mobile Menu Button */}
           <div className="flex xl:hidden items-center gap-3 flex-shrink-0">
             <div className="flex items-center gap-1 text-[11px] font-bold text-white/80">
               <button onClick={() => setLang("vi")} className={lang === "vi" ? "text-white" : ""}>VI</button>
@@ -175,54 +235,76 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation Drawer */}
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: EASE }}
-            className="xl:hidden bg-black/85 backdrop-blur-xl border-t border-white/10 text-white"
+            className="xl:hidden bg-[#0a1f3c] border-t border-white/10 text-white max-h-[85vh] overflow-y-auto"
           >
             <div className="px-6 py-4 space-y-1">
-              {menuItems.map((item) => (
+              {menuItems.map((item) => {
+                const hasChildren = Boolean(item.children && item.children.length > 0);
+                const isOpen = activeMobileAccordion === item.id;
+
+                return (
+                  <div key={item.id} className="border-b border-white/10 pb-1">
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        onClick={() => !hasChildren && setIsMobileMenuOpen(false)}
+                        className="block px-2 py-3 text-[13.5px] font-bold tracking-wider uppercase text-white/90"
+                      >
+                        {item.label}
+                      </Link>
+                      {hasChildren && (
+                        <button
+                          onClick={() => setActiveMobileAccordion(isOpen ? null : item.id)}
+                          className="p-2 text-white/70 hover:text-white"
+                        >
+                          <ChevronDown className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                        </button>
+                      )}
+                    </div>
+
+                    {hasChildren && isOpen && (
+                      <div className="pl-4 pb-2 space-y-1 bg-white/5 rounded-xl my-1 p-2">
+                        {item.children?.map((sub, subIdx) => (
+                          <Link
+                            key={subIdx}
+                            href={sub.href}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="block px-3 py-2 text-[12px] font-semibold text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                          >
+                            {sub.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+
+              <div className="pt-4 space-y-3">
                 <Link
-                  key={item.label}
-                  href={item.href}
+                  href="#contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block px-4 py-2.5 rounded-xl text-[13.5px] font-semibold text-white/85 hover:text-white hover:bg-white/10 transition-colors"
+                  className="w-full flex items-center justify-center gap-2 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-3 rounded-xl transition-all"
                 >
-                  {item.label}
+                  NHẬN TƯ VẤN
+                  <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
-              ))}
-              <div className="pl-4 pt-1 pb-1">
-                {secondaryItems.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-4 py-2 text-[12.5px] font-medium text-white/55 hover:text-white hover:bg-white/5 transition-colors"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-              <Link
-                href="#contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mx-4 mt-2 flex items-center justify-center gap-2.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[11px] uppercase tracking-[0.14em] px-6 py-3.5 rounded-full transition-all duration-300"
-              >
-                NHẬN TƯ VẤN
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-              <div className="pt-2 relative">
-                <input
-                  type="text"
-                  placeholder="Tìm kiếm..."
-                  onClick={() => setSearchOpen(true)}
-                  className="w-full pl-4 pr-9 py-2.5 bg-white/10 border border-white/25 rounded-xl text-[13px] text-white placeholder-white/50 focus:outline-none"
-                />
-                <Search className="absolute right-3 top-[22px] h-3.5 w-3.5 text-white/55 pointer-events-none" />
+                <div className="relative">
+                  <input
+                    type="text"
+                    placeholder="Tìm kiếm..."
+                    onClick={() => setSearchOpen(true)}
+                    className="w-full pl-4 pr-9 py-2.5 bg-white/10 border border-white/25 rounded-xl text-[13px] text-white placeholder-white/50 focus:outline-none"
+                  />
+                  <Search className="absolute right-3 top-3 h-3.5 w-3.5 text-white/55 pointer-events-none" />
+                </div>
               </div>
             </div>
           </motion.div>
