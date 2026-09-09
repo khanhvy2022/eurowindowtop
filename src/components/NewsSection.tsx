@@ -65,27 +65,6 @@ const newsData: NewsArticle[] = [
   },
 ];
 
-const secondaryNews = [
-  {
-    title: "Eurowindow khởi động chiến dịch '90 ngày tái thiết nơi làm việc tốt nhất'",
-    date: "20/07/2026",
-    category: "Tin Công ty",
-    image: "/images/official/news_taithiet_hd.jpg",
-  },
-  {
-    title: "Eurowindow góp phần kiến tạo không gian sống thượng lưu Sunshine Noble Palace",
-    date: "15/07/2026",
-    category: "Tin Dự án",
-    image: "/images/official/architect_hub_hd.jpg",
-  },
-  {
-    title: "Tổng hợp giải pháp cửa chống nóng & cách nhiệt Eurowindow mùa hè 2026",
-    date: "10/07/2026",
-    category: "Giải pháp Kỹ thuật",
-    image: "/images/official/cuanhom_hd.jpg",
-  },
-];
-
 const categories = [
   { id: "all", label: "Tin tức & Sự kiện" },
   { id: "du-an", label: "Tin dự án" },
@@ -104,21 +83,18 @@ export default function NewsSection() {
   const currentArticle = filteredPool[activeArticleIdx % filteredPool.length] || newsData[0];
 
   return (
-    <section id="news" className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
-      <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10 space-y-16">
+    <section id="news" className="py-20 lg:py-28 bg-slate-50 relative overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10 space-y-12">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8">
-          <div className="space-y-3 max-w-2xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-6">
+          <div className="space-y-2 max-w-2xl">
             <span className="text-[11px] font-bold text-[#005bb7] uppercase tracking-widest block">
               EUROWINDOW JOURNAL & NEWS
             </span>
-            <h2 className="font-display font-bold text-[32px] sm:text-[44px] text-[#0a1f3c] leading-tight">
+            <h2 className="font-display font-bold text-[32px] sm:text-[40px] text-[#0a1f3c] leading-tight">
               Tin Tức & Sự Kiện Nổi Bật.
             </h2>
-            <p className="text-[15px] text-gray-600 font-sans leading-relaxed">
-              Cập nhật những thông tin mới nhất về các dự án trúng thầu, hoạt động doanh nghiệp & giải thưởng uy tín.
-            </p>
           </div>
 
           <Link
@@ -130,11 +106,11 @@ export default function NewsSection() {
           </Link>
         </div>
 
-        {/* Main Interactive News Hub Layout */}
+        {/* Minimal High-End Clean Layout (No 3 cards below) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column: Category Navigation Sidebar (3 cols) */}
-          <div className="lg:col-span-3 flex flex-col gap-2 bg-white p-3 rounded-3xl border border-slate-200/80 shadow-sm h-fit">
+          <div className="lg:col-span-3 flex flex-col gap-2 bg-white p-3.5 rounded-3xl border border-slate-200/80 shadow-sm h-fit">
             {categories.map((cat) => {
               const isActive = activeCat === cat.id;
               return (
@@ -144,13 +120,13 @@ export default function NewsSection() {
                     setActiveCat(cat.id);
                     setActiveArticleIdx(0);
                   }}
-                  className={`px-5 py-3.5 rounded-2xl text-left text-[13px] font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group ${
+                  className={`px-5 py-4 rounded-2xl text-left text-[13.5px] font-bold transition-all duration-300 flex items-center justify-between cursor-pointer group ${
                     isActive
                       ? "bg-[#005bb7] text-white shadow-md shadow-[#005bb7]/20"
                       : "text-gray-600 hover:bg-slate-100 hover:text-gray-900"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2.5">
                     {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#c5a968]" />}
                     <span>{cat.label}</span>
                   </div>
@@ -160,24 +136,24 @@ export default function NewsSection() {
             })}
           </div>
 
-          {/* Right Main Spotlight Card Grid (9 cols) */}
+          {/* Right Main Spotlight Clean Card (9 cols) */}
           <div className="lg:col-span-9 bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-xl grid grid-cols-1 lg:grid-cols-12 group">
             
             {/* Spotlight Image Box (7 cols) */}
-            <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-auto min-h-[380px] overflow-hidden bg-gray-100">
+            <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-auto min-h-[400px] overflow-hidden bg-gray-100">
               <AnimatePresence mode="popLayout">
                 <motion.div
                   key={currentArticle.id}
-                  initial={{ opacity: 0, scale: 1.05 }}
+                  initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.4 }}
                   className="absolute inset-0 bg-cover bg-center"
                   style={{ backgroundImage: `url(${currentArticle.image})` }}
                 />
               </AnimatePresence>
               
-              <div className="absolute top-4 left-4 z-10">
+              <div className="absolute top-5 left-5 z-10">
                 <span className="bg-[#0a1f3c]/90 text-white text-[10px] font-bold uppercase tracking-widest px-3.5 py-1.5 rounded-full backdrop-blur-md border border-white/20">
                   {currentArticle.categoryLabel}
                 </span>
@@ -238,45 +214,6 @@ export default function NewsSection() {
 
           </div>
 
-        </div>
-
-        {/* Secondary Articles Bento Grid (3 cards) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
-          {secondaryNews.map((news, idx) => (
-            <Link
-              key={idx}
-              href="/tin-tuc"
-              className="bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#005bb7] transition-all duration-300 flex flex-col justify-between group"
-            >
-              <div className="space-y-4">
-                <div className="relative aspect-[16/10] overflow-hidden bg-gray-100">
-                  <Image
-                    src={news.image}
-                    alt={news.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 text-gray-800 text-[9.5px] font-bold uppercase tracking-widest px-3 py-1 rounded-full backdrop-blur-md shadow-sm">
-                      {news.category}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="p-6 space-y-2">
-                  <span className="text-[11px] font-semibold text-gray-400 font-sans">{news.date}</span>
-                  <h4 className="font-display font-bold text-[16px] text-gray-900 group-hover:text-[#005bb7] transition-colors leading-snug line-clamp-2">
-                    {news.title}
-                  </h4>
-                </div>
-              </div>
-
-              <div className="px-6 pb-6 pt-2 flex items-center justify-between text-[11.5px] font-bold text-[#005bb7] group-hover:translate-x-1 transition-transform">
-                <span>ĐỌC BÀI VIẾT</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </Link>
-          ))}
         </div>
 
       </div>
