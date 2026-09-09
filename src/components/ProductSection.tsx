@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
-import Link from "next/link";
-import { Check, ArrowRight } from "./icons";
+import { Check } from "./icons";
 
 interface ProductCategory {
   id: string;
@@ -30,9 +29,18 @@ function useReveal() {
 export default function ProductSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<ProductCategory | null>(null);
-  const [viewMode, setViewMode] = useState<"photo" | "technical">("photo");
+  const [viewMode] = useState<"photo" | "technical">("photo");
   const headerRef = useReveal();
   const sliderRef = useReveal();
+
+  useEffect(() => {
+    if (!selectedProduct) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedProduct(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedProduct]);
 
   const categories: ProductCategory[] = [
     {
@@ -143,7 +151,6 @@ export default function ProductSection() {
     setActiveIndex((i) => (i + 1) % total);
   }, [total]);
 
-  // Get 3 visible items: active, next, next+1
   const visible = [
     categories[activeIndex % total],
     categories[(activeIndex + 1) % total],
@@ -154,7 +161,6 @@ export default function ProductSection() {
     <section id="products" className="py-20 lg:py-28 bg-white relative overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
 
-        {/* ── Section header ── */}
         <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 reveal">
           <div className="space-y-4 max-w-3xl">
             <div className="eyebrow text-[#005bb7]">
@@ -164,37 +170,15 @@ export default function ProductSection() {
               Những hệ cửa tạo nên kiến trúc.
             </h2>
           </div>
-          
-          {/* View Mode Switcher (Photo View vs Technical Profile View) */}
-          <div className="flex items-center gap-3 bg-gray-100 p-1.5 rounded-full border border-gray-200 self-start lg:self-end">
-            <button
-              onClick={() => setViewMode("photo")}
-              className={`px-4 py-2 rounded-full text-[10.5px] font-bold tracking-[0.14em] uppercase transition-all duration-300 cursor-pointer ${
-                viewMode === "photo"
-                  ? "bg-[#005bb7] text-white shadow-md"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              📷 PHOTO VIEW
-            </button>
-            <button
-              onClick={() => setViewMode("technical")}
-              className={`px-4 py-2 rounded-full text-[10.5px] font-bold tracking-[0.14em] uppercase transition-all duration-300 cursor-pointer ${
-                viewMode === "technical"
-                  ? "bg-[#0a1f3c] text-[#c5a968] shadow-md border border-[#c5a968]/30"
-                  : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              📐 TECHNICAL PROFILE
-            </button>
-          </div>
+          <p className="text-[13px] text-ink-muted font-sans max-w-xs lg:text-right self-start lg:self-end">
+            Từ nhôm cao cấp đến giải pháp kính thông minh — mỗi hệ thống đều được kỹ thuật tỉ mỉ.
+          </p>
         </div>
 
-        {/* ── Slider area ── */}
         <div ref={sliderRef} className="reveal delay-100">
 
-          {/* ── Mobile Layout (1 Item per view) ── */}
-          <div className="block md:hidden space-y-4 mb-6">
+          {/* ── Mobile Layout ── */}
+          <div className="block md:hidden space-y-5 mb-8">
             <div className="space-y-2">
               <div className="h-0.5 w-full bg-[#005bb7] mb-2" />
               <h3 className="font-display font-bold text-[20px] tracking-wider uppercase text-[#0a1f3c]">
@@ -206,7 +190,7 @@ export default function ProductSection() {
             </div>
 
             <div
-              className="relative overflow-hidden rounded-2xl cursor-pointer group shadow-md"
+              className="relative overflow-hidden rounded-2xl cursor-pointer group card-shadow"
               style={{ aspectRatio: "4/3" }}
               onClick={() => setSelectedProduct(categories[activeIndex])}
             >
@@ -217,7 +201,6 @@ export default function ProductSection() {
                 style={{ backgroundImage: `url(${categories[activeIndex].image})` }}
               />
 
-              {/* Technical Profile View Overlay */}
               {viewMode === "technical" && (
                 <div className="absolute inset-0 bg-[#0a1f3c]/85 p-6 flex flex-col justify-between border border-[#c5a968]/30">
                   <div className="flex justify-between items-start">
@@ -243,7 +226,7 @@ export default function ProductSection() {
               )}
 
               {viewMode === "photo" && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex items-end p-5">
                   <span className="text-[12px] font-bold text-white uppercase tracking-[0.14em] flex items-center gap-2">
                     Xem chi tiết thông số →
                   </span>
@@ -252,18 +235,17 @@ export default function ProductSection() {
             </div>
           </div>
 
-          {/* ── Desktop Layout (3 Equal Columns) ── */}
+          {/* ── Desktop Layout ── */}
           <div className="hidden md:block">
-            {/* Column headers row */}
-            <div className="grid grid-cols-3 gap-4 mb-5">
+            <div className="grid grid-cols-3 gap-6 mb-6">
               {visible.map((cat, idx) => (
-                <div key={cat.id + idx} className="space-y-1.5">
+                <div key={cat.id + idx} className="space-y-2">
                   <div className={`h-px w-full mb-3 ${idx === 0 ? "bg-[#005bb7]" : "bg-gray-200"}`} />
                   <h3
-                    className={`font-display font-bold tracking-widest uppercase transition-colors ${
+                    className={`font-display font-bold tracking-widest uppercase transition-colors cursor-pointer ${
                       idx === 0
                         ? "text-[#0a1f3c] text-[15px] sm:text-[17px]"
-                        : "text-gray-400 text-[13px] sm:text-[14px] cursor-pointer hover:text-[#005bb7]"
+                        : "text-gray-500 text-[13px] sm:text-[14px] hover:text-[#005bb7]"
                     }`}
                     onClick={() => idx > 0 && setActiveIndex((activeIndex + idx) % total)}
                   >
@@ -278,12 +260,11 @@ export default function ProductSection() {
               ))}
             </div>
 
-            {/* Images row */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-6">
               {visible.map((cat, idx) => (
                 <div
                   key={cat.id + idx + "img"}
-                  className={`relative overflow-hidden cursor-pointer group transition-all duration-500 rounded-xl ${
+                  className={`relative overflow-hidden cursor-pointer group transition-all duration-500 rounded-xl card-shadow ${
                     idx === 0 ? "" : "opacity-90 hover:opacity-100"
                   }`}
                   style={{ aspectRatio: "4/3.2" }}
@@ -301,8 +282,7 @@ export default function ProductSection() {
                     }`}
                     style={{ backgroundImage: `url(${cat.image})` }}
                   />
-                  
-                  {/* Technical Overlay for Desktop Active Card */}
+
                   {viewMode === "technical" && idx === 0 ? (
                     <div className="absolute inset-0 bg-[#0a1f3c]/85 p-6 flex flex-col justify-between border border-[#c5a968]/30">
                       <div className="flex justify-between items-start">
@@ -342,9 +322,7 @@ export default function ProductSection() {
             </div>
           </div>
 
-          {/* Navigation arrows + progress */}
-          <div className="flex items-center gap-4 mt-8">
-            {/* Prev */}
+          <div className="flex items-center gap-4 mt-10">
             <button
               onClick={prev}
               aria-label="Previous"
@@ -355,7 +333,6 @@ export default function ProductSection() {
               </svg>
             </button>
 
-            {/* Next */}
             <button
               onClick={next}
               aria-label="Next"
@@ -366,7 +343,6 @@ export default function ProductSection() {
               </svg>
             </button>
 
-            {/* Dot indicators */}
             <div className="flex items-center gap-1.5 ml-2">
               {categories.map((_, i) => (
                 <button
@@ -382,8 +358,7 @@ export default function ProductSection() {
               ))}
             </div>
 
-            {/* Counter */}
-            <span className="ml-auto text-[12px] font-bold text-gray-400 font-sans tabular-nums">
+            <span className="ml-auto text-[12px] font-bold text-gray-500 font-sans tabular-nums">
               {String(activeIndex + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
             </span>
           </div>
@@ -394,6 +369,9 @@ export default function ProductSection() {
       {/* ── Product Quick View Modal ── */}
       {selectedProduct && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedProduct.name}
           className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 sm:p-8 backdrop-blur-md animate-fade-in"
           onClick={() => setSelectedProduct(null)}
         >
@@ -403,12 +381,12 @@ export default function ProductSection() {
           >
             <button
               onClick={() => setSelectedProduct(null)}
+              aria-label="Đóng sản phẩm"
               className="absolute top-4 right-4 z-20 text-gray-500 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center font-bold text-lg cursor-pointer transition-colors"
             >
               ✕
             </button>
 
-            {/* Image Col */}
             <div className="md:col-span-6 relative min-h-[300px] md:min-h-[440px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
@@ -421,7 +399,6 @@ export default function ProductSection() {
               </div>
             </div>
 
-            {/* Content Col */}
             <div className="md:col-span-6 p-8 flex flex-col justify-between bg-gray-50">
               <div className="space-y-6">
                 <div>
@@ -453,7 +430,7 @@ export default function ProductSection() {
 
               <div className="mt-8 pt-4 border-t border-gray-200 flex gap-3">
                 <a
-                  href="#calculator"
+                  href="#contact"
                   onClick={() => setSelectedProduct(null)}
                   className="flex-1 text-center py-3 bg-[#005bb7] hover:bg-[#00468c] text-white font-bold text-[11px] uppercase tracking-widest rounded-xl transition-all shadow-md"
                 >

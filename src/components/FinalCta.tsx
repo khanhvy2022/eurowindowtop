@@ -23,7 +23,6 @@ export default function FinalCta() {
 
   return (
     <section className="relative bg-[#0a1f3c] overflow-hidden">
-      {/* Cinematic background image */}
       <div className="absolute inset-0">
         <div
           className="absolute inset-0 bg-cover bg-center opacity-40"
@@ -37,7 +36,7 @@ export default function FinalCta() {
 
       <div
         ref={ref}
-        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 py-32 lg:py-44 text-center reveal"
+        className="relative z-10 max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 py-32 lg:py-40 text-center reveal"
       >
         <div className="eyebrow text-[#c5a968] justify-center mb-8">
           Your Space, Your Way
@@ -58,7 +57,7 @@ export default function FinalCta() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
           <Link
-            href="#showroom"
+            href="/showroom"
             className="inline-flex items-center gap-3 border border-white/30 hover:border-white text-white font-bold text-xs uppercase tracking-[0.16em] px-10 py-5 rounded-full transition-all duration-300 group"
           >
             TÌM SHOWROOM

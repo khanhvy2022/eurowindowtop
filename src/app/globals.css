@@ -2,14 +2,14 @@
 
 :root {
   /* ── Luxury Editorial Architecture palette ── */
-  --background: #fbf9f5;          /* warm white */
+  --background: #faf8f4;          /* warm white */
   --foreground: #101c2b;          /* deep ink */
   --brand-blue: #005bb7;          /* primary sapphire */
   --brand-blue-hover: #00468c;
   --brand-blue-light: #e8f0fb;
   --midnight: #0a1f3c;            /* midnight sapphire */
   --midnight-deep: #06142a;       /* deep navy */
-  --warm-white: #fbf9f5;
+  --warm-white: #faf8f4;
   --champagne: #c5a968;           /* champagne accent */
   --champagne-soft: #eadfc9;
   --ink-muted: #5b6776;           /* muted slate */
@@ -36,6 +36,12 @@
 }
 
 html { scroll-behavior: smooth; }
+
+:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 
 body {
   background: var(--background);
@@ -66,6 +72,10 @@ h1, h2, h3, h4, h5, h6 {
   background: currentColor;
   opacity: 0.55;
 }
+.eyebrow.centered::before,
+.eyebrow.justify-center::before {
+  margin: 0;
+}
 
 /* ── Thin editorial rule ── */
 .rule-line {
@@ -83,16 +93,16 @@ h1, h2, h3, h4, h5, h6 {
    VIDEO OVERLAY & SHIMMER EFFECTS
    ═══════════════════════════════════════ */
 .hero-gradient {
-  background: radial-gradient(circle at center, rgba(10, 31, 60, 0.4) 0%, rgba(6, 20, 42, 0.85) 100%);
+  background: radial-gradient(circle at center, rgba(10, 31, 60, 0.3) 0%, rgba(6, 20, 42, 0.7) 100%);
 }
 
 @keyframes gradientBreathe {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.95; }
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 0.9; }
 }
 
 .gradient-breathe {
-  animation: gradientBreathe 8s ease-in-out infinite;
+  animation: gradientBreathe 10s ease-in-out infinite;
 }
 
 .scan-line {
@@ -240,6 +250,18 @@ h1, h2, h3, h4, h5, h6 {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ═══════════════════════════════════════
+   SHADOW & CARD UTILITIES
+   ═══════════════════════════════════════ */
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(16, 28, 43, 0.04),
+              0 12px 32px rgba(16, 28, 43, 0.06);
+}
+.card-shadow-hover {
+  box-shadow: 0 2px 6px rgba(16, 28, 43, 0.05),
+              0 20px 48px rgba(0, 91, 183, 0.1);
 }
 
 .section-tag {

@@ -96,12 +96,10 @@ export default function NewsSection() {
   const mainRef   = useReveal();
   const gridRef   = useReveal();
 
-  /* Filter articles by category — fall back to first article */
   const filtered = allArticles.filter(a => a.category === activeCat);
   const pool     = filtered.length ? filtered : allArticles;
   const article  = pool[currentIdx % pool.length];
 
-  /* ── Go to index with slide transition ── */
   const goTo = useCallback((idx: number) => {
     if (transitioning) return;
     setTransitioning(true);
@@ -119,7 +117,6 @@ export default function NewsSection() {
     goTo((currentIdx + 1) % pool.length);
   }, [currentIdx, pool.length, goTo]);
 
-  /* ── Autoplay ── */
   const resetTimer = useCallback(() => {
     if (timerRef.current) clearTimeout(timerRef.current);
     timerRef.current = setTimeout(nextSlide, AUTOPLAY_MS);
@@ -130,7 +127,6 @@ export default function NewsSection() {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, [currentIdx, activeCat, resetTimer]);
 
-  /* ── Reset index when category changes ── */
   const handleCatChange = (cat: string) => {
     setActiveCat(cat);
     setCurrentIdx(0);
@@ -139,12 +135,20 @@ export default function NewsSection() {
     setTextVisible(true);
   };
 
+  useEffect(() => {
+    if (!isPlayingVideo) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsPlayingVideo(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isPlayingVideo]);
+
   return (
     <section id="news" className="py-24 lg:py-32 bg-white relative">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-16 xl:px-20">
 
-        {/* ── Header ── */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16 reveal">
+        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14 reveal">
           <div className="space-y-4">
             <div className="eyebrow text-[#005bb7]">
               Journal
@@ -153,15 +157,13 @@ export default function NewsSection() {
               Tin tức &amp; Sự kiện
             </h2>
           </div>
-          <a href="#" className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#005bb7] border-b border-[#005bb7]/25 pb-1 hover:border-[#005bb7] transition-all whitespace-nowrap self-end">
+          <a href="/tin-tuc" className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#005bb7] border-b border-[#005bb7]/25 pb-1 hover:border-[#005bb7] transition-all whitespace-nowrap self-end">
             — XEM TẤT CẢ TIN TỨC
           </a>
         </div>
 
-        {/* ── Main 3-column layout ── */}
         <div ref={mainRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16 reveal delay-100">
 
-          {/* 1. Left sidebar — categories */}
           <div className="lg:col-span-3">
             <div className="flex flex-col gap-0 border-l-2 border-gray-100 pl-5">
               {categories.map((cat) => (
@@ -169,7 +171,7 @@ export default function NewsSection() {
                   key={cat.id}
                   onClick={() => handleCatChange(cat.id)}
                   className={`text-left text-[13px] font-bold py-3 transition-all duration-200 cursor-pointer relative ${
-                    activeCat === cat.id ? "text-[#005bb7]" : "text-gray-400 hover:text-gray-600"
+                    activeCat === cat.id ? "text-[#005bb7]" : "text-gray-500 hover:text-gray-700"
                   }`}
                 >
                   {activeCat === cat.id && (
@@ -184,14 +186,12 @@ export default function NewsSection() {
             </div>
           </div>
 
-          {/* 2. Center — auto-sliding featured image */}
           <div className="lg:col-span-5">
             <div
               className="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
               style={{ aspectRatio: "4/3" }}
               onClick={() => { if (timerRef.current) clearTimeout(timerRef.current); nextSlide(); }}
             >
-              {/* Exiting slide */}
               {prevIdx !== null && (
                 <div
                   key={`exit-${prevIdx}`}
@@ -205,7 +205,6 @@ export default function NewsSection() {
                 />
               )}
 
-              {/* Active slide — ken-burns while shown */}
               <div
                 key={`enter-${currentIdx}-${activeCat}`}
                 className="absolute inset-0 bg-cover bg-center ken-burns"
@@ -217,10 +216,8 @@ export default function NewsSection() {
                 }}
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-black/8 group-hover:bg-black/18 transition-colors duration-500 z-10" />
 
-              {/* Progress bar */}
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/15 z-20">
                 <div
                   key={`prog-${currentIdx}-${activeCat}`}
@@ -229,7 +226,6 @@ export default function NewsSection() {
                 />
               </div>
 
-              {/* Play button for video */}
               {article.type === "video" && (
                 <div className="absolute inset-0 flex items-center justify-center z-20">
                   <button
@@ -242,7 +238,6 @@ export default function NewsSection() {
                 </div>
               )}
 
-              {/* Badge */}
               <div className="absolute top-4 left-4 z-20">
                 <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full ${
                   article.type === "video" ? "bg-[#005bb7] text-white" : "bg-white/90 text-gray-700"
@@ -252,7 +247,6 @@ export default function NewsSection() {
               </div>
             </div>
 
-            {/* Dot nav below image */}
             {pool.length > 1 && (
               <div className="flex items-center gap-1.5 mt-4">
                 {pool.map((_, i) => (
@@ -271,7 +265,6 @@ export default function NewsSection() {
             )}
           </div>
 
-          {/* 3. Right — article text, fades on slide change */}
           <div
             className="lg:col-span-4 flex flex-col justify-center space-y-6 lg:min-h-full lg:pl-2"
             style={{
@@ -281,7 +274,7 @@ export default function NewsSection() {
             }}
           >
             <div className="space-y-3">
-              <span className="text-[11px] font-bold text-gray-400 font-sans tracking-widest uppercase">
+              <span className="text-[11px] font-bold text-gray-500 font-sans tracking-widest uppercase">
                 {article.date}{article.type === "video" ? " · Video" : ""}
               </span>
               <h3
@@ -297,7 +290,7 @@ export default function NewsSection() {
               {article.desc}
             </p>
             <a
-              href="#"
+              href="/tin-tuc"
               className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#005bb7] group border-b border-[#005bb7]/20 pb-1.5 w-fit hover:border-[#005bb7] transition-all"
             >
               Xem chi tiết
@@ -307,10 +300,9 @@ export default function NewsSection() {
 
         </div>
 
-        {/* ── Secondary articles grid ── */}
         <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 border-t border-gray-100 pt-14 reveal delay-200">
           {secondaryArticles.map((art, idx) => (
-            <div key={idx} className="space-y-4 cursor-pointer group">
+            <a key={idx} href="/tin-tuc" className="space-y-4 cursor-pointer group no-underline">
               <div className="rounded-xl overflow-hidden relative" style={{ aspectRatio: "16/10" }}>
                 <div
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04]"
@@ -318,20 +310,22 @@ export default function NewsSection() {
                 />
               </div>
               <div className="space-y-1.5">
-                <span className="text-[11px] font-semibold text-gray-400 font-sans">{art.date}</span>
+                <span className="text-[11px] font-semibold text-gray-500 font-sans">{art.date}</span>
                 <h4 className="font-display font-bold text-[14px] sm:text-[15px] text-gray-900 group-hover:text-[#005bb7] transition-colors line-clamp-2 leading-snug">
                   {art.title}
                 </h4>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
       </div>
 
-      {/* ── Video modal ── */}
       {isPlayingVideo && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Video Eurowindow"
           className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in"
           onClick={() => setIsPlayingVideo(false)}
         >
@@ -341,6 +335,7 @@ export default function NewsSection() {
           >
             <button
               onClick={() => setIsPlayingVideo(false)}
+              aria-label="Đóng video"
               className="absolute top-4 right-4 z-10 text-white/80 hover:text-white bg-black/60 hover:bg-black/90 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl cursor-pointer transition-colors"
             >
               ✕
@@ -359,7 +354,6 @@ export default function NewsSection() {
         </div>
       )}
 
-      {/* Progress bar animation */}
       <style>{`
         @keyframes slideProgress {
           from { width: 0%; }

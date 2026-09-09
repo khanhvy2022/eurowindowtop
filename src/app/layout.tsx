@@ -32,6 +32,26 @@ export const metadata: Metadata = {
       "Giải pháp cửa & vách kính kiến tạo những công trình khác biệt.",
     type: "website",
     locale: "vi_VN",
+    siteName: "Eurowindow",
+    images: [
+      {
+        url: "/images/eurowindow-hero.png",
+        width: 845,
+        height: 575,
+        alt: "Eurowindow - Giải pháp cửa & vách kính",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eurowindow - Tiên Phong. Kiến Tạo. Đồng Hành.",
+    description:
+      "Giải pháp cửa & vách kính kiến tạo những công trình khác biệt.",
+    images: ["/images/eurowindow-hero.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   alternates: {
     canonical: "/",

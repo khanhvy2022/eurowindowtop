@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { ArrowRight, Check, ChevronLeft, ChevronRight } from "./icons";
 
 interface ProjectItem {
@@ -36,6 +35,15 @@ export default function ProjectsSection() {
   const [lightboxProject, setLightboxProject] = useState<ProjectItem | null>(null);
   const headerRef = useReveal();
   const contentRef = useReveal();
+
+  useEffect(() => {
+    if (!lightboxProject) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setLightboxProject(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxProject]);
 
   const categories = [
     { id: "all", label: "Tất cả" },
@@ -178,10 +186,8 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="bg-[#f4f7fc] py-20 lg:py-32 relative overflow-hidden">
       <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16">
-        
-        {/* Header + Category Filter */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 reveal">
-          {/* Left: Tag + Headline */}
+
+        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 reveal">
           <div className="space-y-3 max-w-2xl">
             <div className="eyebrow text-[#005bb7]">
               Featured Projects
@@ -191,9 +197,7 @@ export default function ProjectsSection() {
             </h2>
           </div>
 
-          {/* Right: Category Segmented Bar + Carousel Controls */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 self-start lg:self-end">
-            {/* Category Segmented Control */}
             <div className="flex items-center overflow-x-auto max-w-full p-1.5 bg-[#eef3f9] rounded-2xl border border-gray-200/80 shadow-xs gap-1 scrollbar-none">
               {categories.map((cat) => {
                 const isActive = activeCategory === cat.id;
@@ -213,7 +217,6 @@ export default function ProjectsSection() {
               })}
             </div>
 
-            {/* Next / Prev Buttons */}
             <div className="flex items-center gap-2 flex-shrink-0 bg-white p-1 rounded-2xl border border-gray-200/80 shadow-xs">
               <button
                 onClick={prevProject}
@@ -238,26 +241,22 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        {/* Main Showcase Container */}
-        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-line reveal delay-200 shadow-lg">
-          
-          {/* Left: Interactive Project Image (6 cols) */}
+        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden border border-line reveal delay-200 card-shadow-hover">
+
           <div
             onClick={() => setLightboxProject(activeProject)}
             className="lg:col-span-6 relative aspect-[4/3] lg:aspect-auto lg:h-[580px] overflow-hidden group cursor-pointer"
           >
             <div
               key={activeProject.id}
-              className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-[1.04]"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.04]"
               style={{
                 backgroundImage: `url(${activeProject.image})`,
                 animation: "scaleIn 0.5s ease-out",
               }}
             />
-            {/* Gradient on bottom */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent group-hover:from-black/75 transition-all duration-500" />
-            
-            {/* Project category badge */}
+
             <div className="absolute top-6 left-6">
               <span className="glass text-white text-[10.5px] font-bold uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
                 {activeProject.type}
@@ -265,10 +264,8 @@ export default function ProjectsSection() {
             </div>
           </div>
 
-          {/* Right: Project Specs (6 cols) */}
           <div className="lg:col-span-6 bg-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between relative">
             <div className="space-y-6">
-              {/* Project Title + Category Tag */}
               <div>
                 <span className="text-[10.5px] font-bold text-[#005bb7] uppercase tracking-widest block mb-2 font-sans">
                   EUROWINDOW CERTIFIED PROJECT — {safeIndex + 1}/{totalFiltered}
@@ -278,7 +275,6 @@ export default function ProjectsSection() {
                 </h3>
               </div>
 
-              {/* Meta Rows */}
               <div className="space-y-0 font-sans border-t border-gray-100 pt-2">
                 {[
                   { label: "Loại công trình", value: activeProject.type },
@@ -287,7 +283,7 @@ export default function ProjectsSection() {
                   { label: "Năm hoàn thành", value: activeProject.year },
                 ].map((row, i) => (
                   <div key={i} className="flex items-start justify-between py-3.5 border-b border-gray-100 last:border-0">
-                    <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider flex-shrink-0 w-36">
+                    <span className="text-[11px] text-gray-500 font-bold uppercase tracking-wider flex-shrink-0 w-36">
                       {row.label}
                     </span>
                     <span className="text-sm font-bold text-gray-800 text-right">{row.value}</span>
@@ -296,7 +292,6 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Bottom Actions + Prev/Next Controls inside card */}
             <div className="pt-6 border-t border-gray-100 flex items-center justify-between">
               <button
                 onClick={() => setLightboxProject(activeProject)}
@@ -306,7 +301,6 @@ export default function ProjectsSection() {
                 <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </button>
 
-              {/* Prev / Next buttons inside card */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={prevProject}
@@ -331,9 +325,11 @@ export default function ProjectsSection() {
 
       </div>
 
-      {/* ── Figma Lightbox Modal ── */}
       {lightboxProject && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightboxProject.title}
           className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-4 sm:p-8 backdrop-blur-md animate-fade-in"
           onClick={() => setLightboxProject(null)}
         >
@@ -343,12 +339,12 @@ export default function ProjectsSection() {
           >
             <button
               onClick={() => setLightboxProject(null)}
+              aria-label="Đóng dự án"
               className="absolute top-4 right-4 z-20 text-gray-500 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-full w-9 h-9 flex items-center justify-center font-bold text-lg cursor-pointer transition-colors"
             >
               ✕
             </button>
 
-            {/* Modal Image */}
             <div className="md:col-span-7 relative min-h-[300px] md:min-h-[460px]">
               <div
                 className="absolute inset-0 bg-cover bg-center"
@@ -361,7 +357,6 @@ export default function ProjectsSection() {
               </div>
             </div>
 
-            {/* Modal Content & Technical Highlights */}
             <div className="md:col-span-5 p-8 flex flex-col justify-between bg-gray-50">
               <div className="space-y-6">
                 <div>

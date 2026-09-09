@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 export default function FloatingControls() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  const [showGridOverlay, setShowGridOverlay] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,36 +34,8 @@ export default function FloatingControls() {
         />
       </div>
 
-      {/* ── Architectural 12-Column Grid Overlay (Interactive KTS Toggle) ── */}
-      {showGridOverlay && (
-        <div className="fixed inset-0 z-[90] pointer-events-none max-w-[1440px] mx-auto px-6 sm:px-12 lg:px-16 flex justify-between opacity-35 transition-opacity duration-300">
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div
-              key={i}
-              className="h-full w-px bg-gradient-to-b from-[#c5a968]/40 via-[#005bb7]/20 to-[#c5a968]/40 border-r border-dashed border-[#c5a968]/30"
-            />
-          ))}
-        </div>
-      )}
-
-      {/* ── Floating Controls Group (Bottom Right) ── */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
-        {/* Architect Grid View Toggle Button */}
-        <button
-          onClick={() => setShowGridOverlay(!showGridOverlay)}
-          aria-label="Bật/Tắt Lưới Kiến Trúc"
-          title="Bật/Tắt Lưới Kiến Trúc (Architect Grid)"
-          className={`h-11 px-4 rounded-full font-sans text-[10.5px] font-bold tracking-[0.14em] uppercase transition-all duration-300 shadow-lg border flex items-center gap-2 cursor-pointer ${
-            showGridOverlay
-              ? "bg-[#0a1f3c] text-[#c5a968] border-[#c5a968]"
-              : "bg-white/90 backdrop-blur-md text-gray-700 hover:text-[#005bb7] border-gray-200 hover:border-[#005bb7]/40"
-          }`}
-        >
-          <span className="text-[13px]">📐</span>
-          <span className="hidden sm:inline">GRID VIEW</span>
-        </button>
-
-        {/* Smooth Back-to-Top Button */}
+      {/* ── Smooth Back-to-Top Button ── */}
+      <div className="fixed bottom-6 right-6 z-40">
         <button
           onClick={scrollToTop}
           aria-label="Cuộn về đầu trang"

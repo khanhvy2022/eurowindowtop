@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { ArrowRight, Check } from "./icons";
 
 export default function ContactSection() {
@@ -9,8 +10,8 @@ export default function ContactSection() {
     phone: "",
     email: "",
     address: "",
-    projectType: "",
-    agree: false
+    projectType: "biet-thu",
+    agree: true,
   });
   const [submitted, setSubmitted] = useState(false);
 
@@ -28,133 +29,168 @@ export default function ContactSection() {
         phone: "",
         email: "",
         address: "",
-        projectType: "",
-        agree: false
+        projectType: "biet-thu",
+        agree: true,
       });
-    }, 3000);
+    }, 4000);
   };
 
   const facadeImage = "/images/figma_6ec2_706d_ea930f037278fa58840f9e6b134f00d9.png";
 
   return (
-    <section id="contact" className="relative py-24 lg:py-32 bg-white overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
-        
-        {/* Form Container Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-gray-100 min-h-[580px]">
-          
-          {/* Left: Facade Grid Image (span 7 columns) */}
-          <div className="lg:col-span-7 relative hidden lg:block overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
-              style={{ backgroundImage: `url(${facadeImage})` }}
+    <section id="contact" className="relative py-24 lg:py-32 bg-slate-50 overflow-hidden">
+      <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10">
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-slate-200 bg-white">
+
+          {/* Left Column: Photo Banner with Glass Badge (6 cols) */}
+          <div className="lg:col-span-6 relative hidden lg:block overflow-hidden min-h-[640px]">
+            <Image
+              src={facadeImage}
+              alt="Eurowindow Architectural Interior"
+              fill
+              className="object-cover transition-transform duration-1000 hover:scale-105"
+              priority
             />
-            <div className="absolute inset-0 bg-brand-blue/15" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#0a1f3c]/70 via-transparent to-transparent" />
+
+            {/* Floating Trust Glass Badge */}
+            <div className="absolute bottom-8 left-8 right-8 bg-white/85 backdrop-blur-md p-6 rounded-2xl border border-white/40 shadow-xl space-y-2">
+              <span className="text-[10px] font-bold text-[#005bb7] uppercase tracking-widest block">
+                TƯ VẤN CHUYÊN TẬN TÂM — KHẢO SÁT TẬN NƠI
+              </span>
+              <p className="text-[15px] font-bold text-gray-900 leading-snug">
+                Đội ngũ kỹ sư Eurowindow trực tiếp đo đạc, bóc tách khối lượng & tư vấn giải pháp nhôm kính tối ưu.
+              </p>
+              <div className="flex items-center gap-4 pt-2 text-[12px] font-semibold text-gray-600">
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#005bb7]" /> Miễn phí 100%</span>
+                <span className="flex items-center gap-1.5"><Check className="w-3.5 h-3.5 text-[#005bb7]" /> Hỗ trợ toàn quốc</span>
+              </div>
+            </div>
           </div>
 
-          {/* Right: Registration Form Overlay (span 5 columns) */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-brand-blue/95 via-brand-blue to-[#004a96] text-white p-8 sm:p-12 flex flex-col justify-center relative">
+          {/* Right Column: High-End Form Card (6 cols) */}
+          <div className="lg:col-span-6 bg-[#005bb7] bg-gradient-to-br from-[#005bb7] via-[#004e9e] to-[#0a1f3c] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-center relative">
+            
             {submitted ? (
-              <div className="flex flex-col items-center justify-center text-center space-y-4 transition-opacity duration-300 opacity-100">
-                <div className="h-16 w-16 bg-white rounded-full flex items-center justify-center text-brand-blue shadow-lg">
-                  <Check className="h-8 w-8 stroke-[3]" />
+              <div className="flex flex-col items-center justify-center text-center space-y-5 py-12 animate-fade-in">
+                <div className="h-20 w-20 bg-white text-[#005bb7] rounded-full flex items-center justify-center shadow-2xl">
+                  <Check className="h-10 w-10 stroke-[3]" />
                 </div>
-                <h3 className="font-display font-bold text-2xl">
-                  Gửi thành công!
+                <h3 className="font-display font-bold text-[28px] text-white">
+                  Đăng Ký Thành Công!
                 </h3>
-                <p className="text-sm text-blue-100 max-w-xs">
-                  Cảm ơn bạn đã quan tâm. Chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất.
+                <p className="text-[14.5px] text-blue-100 max-w-sm font-sans leading-relaxed">
+                  Cảm ơn quý khách đã gửi thông tin. Chuyên viên tư vấn Eurowindow sẽ liên hệ trong vòng 15 phút.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-3">
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl leading-snug">
+                  <span className="inline-block px-3 py-1 rounded-full bg-white/10 text-[#c5a968] text-[10px] font-bold uppercase tracking-widest border border-white/15">
+                    EUROWINDOW CONSULTATION FORM
+                  </span>
+                  <h3 className="font-display font-bold text-[28px] sm:text-[36px] leading-snug">
                     Bắt đầu công trình của bạn.
                   </h3>
-                  <p className="text-xs text-blue-200">
-                    Chia sẻ nhu cầu. Đội ngũ chuyên gia Eurowindow sẽ đề xuất giải pháp phù hợp.
+                  <p className="text-[14px] text-blue-100 font-sans leading-relaxed">
+                    Chia sẻ nhu cầu công trình. Đội ngũ chuyên gia Eurowindow sẽ đề xuất giải pháp & báo giá chi tiết.
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  {/* Name */}
-                  <input
-                    type="text"
-                    required
-                    placeholder="Họ và tên"
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:bg-white/20 focus:border-white transition-all placeholder-blue-200"
-                  />
-
-                  {/* Phone & Email Row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-blue-100 block mb-1.5">
+                      Họ và tên quý khách *
+                    </label>
                     <input
-                      type="tel"
+                      type="text"
                       required
-                      placeholder="Số điện thoại liên hệ"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:bg-white/20 focus:border-white transition-all placeholder-blue-200"
-                    />
-                    <input
-                      type="email"
-                      required
-                      placeholder="Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:bg-white/20 focus:border-white transition-all placeholder-blue-200"
+                      placeholder="Nhập họ và tên đầy đủ..."
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-[14px] font-medium text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all"
                     />
                   </div>
 
-                  {/* Project Address */}
-                  <input
-                    type="text"
-                    required
-                    placeholder="Địa chỉ công trình"
-                    value={formData.address}
-                    onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                    className="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:bg-white/20 focus:border-white transition-all placeholder-blue-200"
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-blue-100 block mb-1.5">
+                        Số điện thoại liên hệ *
+                      </label>
+                      <input
+                        type="tel"
+                        required
+                        placeholder="090x xxx xxx"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-[14px] font-medium text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[11px] font-bold uppercase tracking-wider text-blue-100 block mb-1.5">
+                        Địa chỉ Email
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="email@domain.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-[14px] font-medium text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all"
+                      />
+                    </div>
+                  </div>
 
-                  {/* Project Type */}
-                  <select
-                    required
-                    value={formData.projectType}
-                    onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
-                    className="w-full bg-white/10 border border-white/25 rounded-2xl px-4 py-3.5 text-sm focus:outline-none focus:bg-white/20 focus:border-white transition-all text-white placeholder-blue-200 cursor-pointer"
-                  >
-                    <option value="" disabled className="text-gray-900">Loại công trình</option>
-                    <option value="biet-thu" className="text-gray-900">Biệt thự - Nhà phố</option>
-                    <option value="chung-cu" className="text-gray-900">Căn hộ chung cư</option>
-                    <option value="van-phong" className="text-gray-900">Tòa nhà văn phòng</option>
-                    <option value="khac" className="text-gray-900">Khác</option>
-                  </select>
+                  <div>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-blue-100 block mb-1.5">
+                      Địa chỉ công trình *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Tỉnh/Thành phố, Quận/Huyện..."
+                      value={formData.address}
+                      onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                      className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3.5 text-[14px] font-medium text-white placeholder-blue-200/60 focus:outline-none focus:ring-2 focus:ring-white/50 focus:bg-white/20 transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-blue-100 block mb-1.5">
+                      Loại hình công trình *
+                    </label>
+                    <select
+                      required
+                      value={formData.projectType}
+                      onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+                      className="w-full bg-[#0a1f3c] border border-white/20 rounded-xl px-4 py-3.5 text-[14px] font-medium text-white focus:outline-none focus:ring-2 focus:ring-white/50 cursor-pointer"
+                    >
+                      <option value="biet-thu">Biệt thự - Nhà phố cao cấp</option>
+                      <option value="chung-cu">Căn hộ chung cư cao cấp</option>
+                      <option value="van-phong">Tòa nhà văn phòng & Showroom</option>
+                      <option value="resort">Khu nghỉ dưỡng & Khách sạn 5 sao</option>
+                      <option value="khac">Hạng mục công trình khác</option>
+                    </select>
+                  </div>
                 </div>
 
-                {/* Privacy Checkbox */}
-                <label className="flex items-start gap-3 cursor-pointer select-none">
+                <label className="flex items-center gap-3 cursor-pointer select-none pt-1">
                   <input
                     type="checkbox"
                     checked={formData.agree}
                     onChange={(e) => setFormData({ ...formData, agree: e.target.checked })}
-                    className="mt-1 h-4 w-4 bg-white/10 border border-white/30 text-brand-blue rounded-md focus:ring-0 cursor-pointer"
+                    className="h-4 w-4 bg-white/10 border border-white/30 text-[#005bb7] rounded focus:ring-0 cursor-pointer"
                   />
-                  <span className="text-xs text-blue-100 leading-relaxed">
-                    Đồng ý với{" "}
-                    <a href="#" className="underline hover:text-white transition-colors">
-                      Chính sách bảo mật
-                    </a>
+                  <span className="text-[12px] text-blue-100">
+                    Tôi đồng ý với <span className="underline font-semibold">Chính sách bảo mật thông tin</span> của Eurowindow.
                   </span>
                 </label>
 
-                {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full py-4 bg-white text-brand-blue hover:bg-gray-100 font-bold text-xs uppercase tracking-widest rounded-2xl transition-all shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full py-4 bg-white text-[#005bb7] hover:bg-gray-100 font-bold text-[12px] uppercase tracking-widest rounded-xl transition-all shadow-xl flex items-center justify-center gap-2 group cursor-pointer"
                 >
-                  NHẬN TƯ VẤN
+                  NHẬN TƯ VẤN & BÁO GIÁ CHI TIẾT
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </form>
