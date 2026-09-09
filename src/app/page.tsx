@@ -29,7 +29,6 @@ export default function Home() {
       <ContactSection />
       <ArchitectHub />
       <NewsSection />
-      <ShowroomEcho />
       <FinalCta />
       <Footer />
     </main>
