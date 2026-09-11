@@ -14,7 +14,9 @@ import {
   Image as ImageIcon,
   Layers,
   Play,
-  Check
+  Check,
+  BookOpen,
+  Palette
 } from "lucide-react";
 
 // Re-export standard icons
@@ -33,7 +35,9 @@ export {
   ImageIcon,
   Layers,
   Play,
-  Check
+  Check,
+  BookOpen,
+  Palette
 };
 
 // Custom TikTok Icon

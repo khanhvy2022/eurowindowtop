@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check, ChevronLeft, ChevronRight } from "./icons";
+import { ArrowRight, Check } from "./icons";
 
 interface ProjectItem {
   id: string;
@@ -140,6 +140,36 @@ const projects: ProjectItem[] = [
       "Sơn phủ công nghệ anodized chống ăn mòn hóa chất mặn",
     ],
   },
+  {
+    id: "p-8",
+    category: "commercial",
+    title: "FPT TELECOM TOWER",
+    type: "Commercial Office",
+    investor: "Công ty Cổ phần Viễn thông FPT (FPT Telecom)",
+    volume: "33.000 hạng mục",
+    year: "2026",
+    image: "/images/official/project_fpt_hd.jpg",
+    specs: [
+      "Hệ mặt dựng nhôm kính và cửa tự động chuẩn văn phòng hạng A",
+      "Mái kính kết hợp lan can kính cường lực an toàn",
+      "Cấu kiện kim loại phụ trợ gia công độ chính xác cao",
+    ],
+  },
+  {
+    id: "p-9",
+    category: "residential",
+    title: "SUNSHINE CRYSTAL RIVER",
+    type: "Luxury Residential",
+    investor: "Tập đoàn Sunshine Group",
+    volume: "30.000 m²",
+    year: "2025",
+    image: "/images/official/project_sunshine_hd.jpg",
+    specs: [
+      "Vách mặt dựng nhôm kính giấu đố sang trọng, tối giản",
+      "Kính dán an toàn tăng chịu lực, cách âm, cản tia UV",
+      "Lan can kính louver và mái kính hoàn thiện trọn gói",
+    ],
+  },
 ];
 
 const categories = [
@@ -152,7 +182,6 @@ const categories = [
 
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("all");
-  const [activeIdx, setActiveIdx] = useState(0);
   const [lightbox, setLightbox] = useState<ProjectItem | null>(null);
   const headerRef = useReveal();
 
@@ -170,43 +199,40 @@ export default function ProjectsSection() {
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
-  const total = filtered.length;
-  const safeIdx = activeIdx % total;
-  const active = filtered[safeIdx] ?? projects[0];
-
   const handleCategory = (id: string) => {
     setActiveCategory(id);
-    setActiveIdx(0);
   };
 
-  const next = () => setActiveIdx((i) => (i + 1) % total);
-  const prev = () => setActiveIdx((i) => (i - 1 + total) % total);
-
   return (
-    <section id="projects" className="bg-[#f4f7fc] py-20 lg:py-32 relative overflow-hidden">
+    <section id="projects" className="bg-[#0a1f3c] py-24 lg:py-32 relative overflow-hidden">
+      {/* Ambient orbs */}
+      <div className="pointer-events-none absolute -top-48 right-0 h-[34rem] w-[34rem] rounded-full bg-[#005bb7]/25 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-0 -left-32 h-[28rem] w-[28rem] rounded-full bg-[#c5a968]/10 blur-[130px]" />
       {/* Subtle dot grid texture */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.018]"
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, #0a1f3c 1px, transparent 0)",
-          backgroundSize: "40px 40px",
+            "radial-gradient(circle at 1px 1px, #c5a968 1px, transparent 0)",
+          backgroundSize: "44px 44px",
         }}
       />
+      {/* Gold hairline divider */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c5a968]/30 to-transparent" />
 
       <div className="relative max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16">
 
         {/* ── Header ── */}
-        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10 reveal">
-          <div className="space-y-3 max-w-2xl">
+        <div ref={headerRef} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 reveal">
+          <div className="space-y-4 max-w-2xl">
             <motion.span
               initial={{ opacity: 0, x: -16 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: EASE }}
-              className="inline-flex items-center gap-2 text-[#005bb7] text-[10px] font-bold uppercase tracking-[0.22em]"
+              className="inline-flex items-center gap-2 text-[#c5a968] text-[10px] font-bold uppercase tracking-[0.22em]"
             >
-              <span className="h-px w-6 bg-[#005bb7]" />
+              <span className="h-px w-6 bg-[#c5a968]" />
               Công Trình Tiêu Biểu
             </motion.span>
             <motion.h2
@@ -214,211 +240,98 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: EASE, delay: 0.08 }}
-              className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.1] text-[#0a1f3c] tracking-tight"
+              className="font-display font-bold text-[28px] sm:text-[36px] md:text-[44px] lg:text-[50px] leading-[1.1] text-white tracking-tight"
             >
               Công trình kiến tạo dấu ấn.
             </motion.h2>
           </div>
 
-          {/* Filter + nav */}
-          <div className="flex flex-wrap items-center gap-3 self-start lg:self-end">
-            <div className="flex items-center p-1.5 bg-white rounded-2xl border border-gray-200/70 shadow-sm gap-1 flex-wrap">
-              {categories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => handleCategory(cat.id)}
-                  className={`px-4 py-2 text-[11px] font-bold transition-all duration-300 rounded-xl cursor-pointer whitespace-nowrap ${
-                    activeCategory === cat.id
-                      ? "bg-[#0a1f3c] text-white shadow-sm"
-                      : "text-gray-500 hover:text-[#0a1f3c] hover:bg-gray-50"
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-1.5 bg-white p-1 rounded-2xl border border-gray-200/70 shadow-sm">
-              <button onClick={prev} aria-label="Trước" className="h-9 w-9 text-gray-500 hover:text-[#0a1f3c] hover:bg-gray-100 rounded-xl flex items-center justify-center transition-all cursor-pointer">
-                <ChevronLeft className="w-4 h-4" />
+          {/* Filter */}
+          <div className="flex items-center p-1.5 bg-white/[0.06] backdrop-blur-md rounded-2xl border border-white/15 gap-1 flex-wrap">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => handleCategory(cat.id)}
+                className={`px-4 py-2 text-[11px] font-bold transition-all duration-300 rounded-xl cursor-pointer whitespace-nowrap ${
+                  activeCategory === cat.id
+                    ? "bg-[#c5a968] text-[#0a1f3c] shadow-lg shadow-[#c5a968]/20"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {cat.label}
               </button>
-              <span className="text-[11px] font-bold text-[#005bb7] font-mono px-2">
-                {String(safeIdx + 1).padStart(2, "0")}/{String(total).padStart(2, "0")}
-              </span>
-              <button onClick={next} aria-label="Sau" className="h-9 w-9 text-gray-500 hover:text-[#0a1f3c] hover:bg-gray-100 rounded-xl flex items-center justify-center transition-all cursor-pointer">
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
+            ))}
           </div>
         </div>
 
-        {/* ── Main showcase ── */}
+        {/* ── Media-card grid ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
-          className="grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl shadow-[#0a1f3c]/12"
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7"
         >
-          {/* ── Left: Image ── */}
-          <div
-            onClick={() => setLightbox(active)}
-            className="lg:col-span-6 relative aspect-[4/3] lg:aspect-auto overflow-hidden group cursor-pointer"
-            style={{ minHeight: "520px" }}
-          >
-            <AnimatePresence mode="wait">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((project, i) => (
               <motion.div
-                key={active.id + "-img"}
-                initial={{ opacity: 0, scale: 1.06 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: EASE }}
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-[1.03] transition-transform duration-700"
-                style={{ backgroundImage: `url(${active.image})` }}
-              />
-            </AnimatePresence>
-
-            {/* Gradient overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 group-hover:from-black/70 transition-all duration-500" />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/20" />
-
-            {/* Type badge */}
-            <div className="absolute top-6 left-6 z-10">
-              <span className="bg-white/15 backdrop-blur-md border border-white/25 text-white text-[10px] font-bold uppercase tracking-[0.15em] px-4 py-2 rounded-full">
-                {active.type}
-              </span>
-            </div>
-
-            {/* Year badge */}
-            <div className="absolute top-6 right-6 z-10">
-              <span className="bg-[#c5a968] text-[#0a1f3c] text-[10px] font-extrabold tracking-widest px-3.5 py-1.5 rounded-full">
-                {active.year}
-              </span>
-            </div>
-
-            {/* Click to expand hint */}
-            <div className="absolute bottom-6 left-6 z-10 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div className="h-8 w-8 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center">
-                <svg className="h-3.5 w-3.5 text-white" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                </svg>
-              </div>
-              <span className="text-[10px] font-bold text-white uppercase tracking-widest">Phóng to</span>
-            </div>
-
-            {/* Thumbnail strip */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent pt-10 pb-5 px-6 flex gap-2.5 overflow-x-auto scrollbar-none">
-              {filtered.map((p, i) => (
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.45, ease: EASE, delay: i * 0.05 }}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 hover:border-[#c5a968]/60 bg-[#0d2548] shadow-2xl shadow-black/30 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer"
+              >
+                {/* Invisible full-card click target (keyboard accessible) */}
                 <button
-                  key={p.id}
-                  onClick={(e) => { e.stopPropagation(); setActiveIdx(i); }}
-                  className={`flex-shrink-0 h-11 w-16 rounded-lg overflow-hidden border-2 transition-all duration-300 cursor-pointer ${
-                    i === safeIdx
-                      ? "border-[#c5a968] opacity-100 scale-105"
-                      : "border-white/20 opacity-50 hover:opacity-80"
-                  }`}
-                  style={{ backgroundImage: `url(${p.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-                  aria-label={p.title}
+                  type="button"
+                  onClick={() => setLightbox(project)}
+                  aria-label={`Xem chi tiết dự án ${project.title}`}
+                  className="absolute inset-0 z-20 cursor-pointer focus:outline-none"
                 />
-              ))}
-            </div>
-          </div>
 
-          {/* ── Right: Info Panel (dark navy) ── */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={active.id + "-panel"}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: EASE }}
-              className="lg:col-span-6 bg-[#0a1f3c] flex flex-col relative"
-            >
-              {/* Ambient orb */}
-              <div className="pointer-events-none absolute -bottom-32 -right-32 h-80 w-80 rounded-full bg-[#005bb7]/12 blur-[80px]" />
-              <div className="pointer-events-none absolute -top-20 left-10 h-48 w-48 rounded-full bg-[#c5a968]/5 blur-[60px]" />
+                <div className="relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06]"
+                    style={{ backgroundImage: `url(${project.image})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/25 to-black/10" />
 
-              {/* ── Panel Top: Index + Title ── */}
-              <div className="relative px-8 sm:px-12 pt-10 pb-7 border-b border-white/[0.08]">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[9px] font-bold text-[#c5a968] uppercase tracking-[0.25em] font-sans">
-                    EUROWINDOW CERTIFIED
-                  </span>
-                  <span className="text-[11px] font-mono font-bold text-white/25">
-                    {String(safeIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                  </span>
-                </div>
-                <h3 className="font-display font-bold text-[20px] sm:text-[26px] lg:text-[30px] text-white leading-tight tracking-tight">
-                  {active.title}
-                </h3>
-              </div>
-
-              {/* ── Panel Middle: Meta rows ── */}
-              <div className="relative px-8 sm:px-12 py-6 border-b border-white/[0.08] space-y-0">
-                {[
-                  { label: "Loại công trình", value: active.type },
-                  { label: "Chủ đầu tư", value: active.investor },
-                  { label: "Khối lượng thi công", value: active.volume },
-                  { label: "Năm hoàn thành", value: active.year },
-                ].map((row, i) => (
-                  <div key={i} className="flex items-start justify-between py-3.5 border-b border-white/[0.06] last:border-0">
-                    <span className="text-[10px] text-white/35 font-bold uppercase tracking-wider flex-shrink-0 w-32">
-                      {row.label}
-                    </span>
-                    <span className="text-[12px] font-semibold text-white/80 text-right leading-snug max-w-[55%]">
-                      {row.value}
+                  {/* Type badge */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="bg-white/15 backdrop-blur-md border border-white/25 text-white text-[9px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full">
+                      {project.type}
                     </span>
                   </div>
-                ))}
-              </div>
 
-              {/* ── Panel Bottom: Tech specs + CTA ── */}
-              <div className="relative px-8 sm:px-12 py-7 flex flex-col gap-6 flex-1">
-                <div className="space-y-3">
-                  <p className="text-[9px] font-bold text-white/30 uppercase tracking-[0.2em]">
-                    Giải pháp kỹ thuật
-                  </p>
-                  <ul className="space-y-3">
-                    {active.specs.map((spec, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <div className="flex-shrink-0 mt-0.5 h-5 w-5 rounded-full bg-[#c5a968]/15 border border-[#c5a968]/30 flex items-center justify-center">
-                          <Check className="h-2.5 w-2.5 text-[#c5a968]" />
-                        </div>
-                        <span className="text-[12px] text-white/65 font-sans leading-snug">{spec}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                  {/* Year badge */}
+                  <div className="absolute top-4 right-4 z-10">
+                    <span className="bg-[#c5a968] text-[#0a1f3c] text-[10px] font-extrabold tracking-widest px-3 py-1.5 rounded-full">
+                      {project.year}
+                    </span>
+                  </div>
 
-                {/* CTA row */}
-                <div className="mt-auto pt-5 border-t border-white/[0.08] flex items-center justify-between">
-                  <button
-                    onClick={() => setLightbox(active)}
-                    className="inline-flex items-center gap-2 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[10px] uppercase tracking-[0.15em] px-6 py-3 rounded-full transition-all duration-300 group shadow-lg shadow-[#c5a968]/20 cursor-pointer"
-                  >
-                    Xem chi tiết
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={prev}
-                      aria-label="Dự án trước"
-                      className="h-10 w-10 rounded-full border border-white/15 hover:border-white/35 text-white/40 hover:text-white flex items-center justify-center transition-all cursor-pointer"
-                    >
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={next}
-                      aria-label="Dự án sau"
-                      className="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/15 text-white flex items-center justify-center transition-all cursor-pointer"
-                    >
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
+                  {/* Bottom content */}
+                  <div className="relative z-10 p-6 space-y-3">
+                    <div className="flex items-center gap-2.5">
+                      <span className="h-px w-5 bg-[#c5a968]" />
+                      <span className="text-[9px] font-bold text-[#c5a968] uppercase tracking-widest">
+                        {project.volume}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-bold text-[18px] sm:text-[20px] text-white leading-snug drop-shadow-md">
+                      {project.title}
+                    </h3>
+                    <span className="inline-flex items-center gap-2 text-[10px] font-bold text-white/70 uppercase tracking-widest opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      Xem chi tiết
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </AnimatePresence>
         </motion.div>
 
@@ -432,7 +345,7 @@ export default function ProjectsSection() {
         >
           <a
             href="/cong-trinh"
-            className="inline-flex items-center gap-2.5 text-[11px] font-bold text-[#0a1f3c]/60 uppercase tracking-[0.15em] hover:text-[#005bb7] border-b border-[#0a1f3c]/15 hover:border-[#005bb7] pb-1 transition-all duration-300 group"
+            className="inline-flex items-center gap-2.5 text-[11px] font-bold text-white/50 uppercase tracking-[0.15em] hover:text-[#c5a968] border-b border-white/15 hover:border-[#c5a968] pb-1 transition-all duration-300 group"
           >
             Xem toàn bộ công trình
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />

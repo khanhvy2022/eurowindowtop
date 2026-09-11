@@ -9,15 +9,36 @@ export default function FinalCta() {
     <section className="relative bg-[#0a1f3c] text-white py-24 lg:py-36 overflow-hidden">
       {/* Background Layer with Dark Gradient */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-30 filter blur-[1px]"
-          style={{
-            backgroundImage:
-              "url('/images/figma_7b8b_7492_9f80bd72474c265be9813af7bc879a99.png')",
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/85 to-[#0a1f3c]/90" />
-        <div className="absolute inset-0 bg-[radial-gradient(#c5a968_1px,transparent_1px)] [background-size:36px_36px] opacity-15" />
+        {/* Deep cinematic gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(130%_95%_at_50%_-10%,#14325f_0%,#0a1f3c_55%,#06142a_100%)]" />
+        {/* Architectural line-art (window grid motif) */}
+        <svg
+          className="absolute inset-0 h-full w-full opacity-[0.14]"
+          viewBox="0 0 1440 800"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+          stroke="#c5a968"
+          strokeWidth="1"
+          aria-hidden="true"
+        >
+          <rect x="110" y="130" width="560" height="540" />
+          <line x1="110" y1="290" x2="670" y2="290" />
+          <line x1="110" y1="450" x2="670" y2="450" />
+          <line x1="250" y1="130" x2="250" y2="670" />
+          <line x1="410" y1="130" x2="410" y2="670" />
+          <rect x="900" y="110" width="360" height="420" />
+          <line x1="900" y1="250" x2="1260" y2="250" />
+          <line x1="1020" y1="110" x2="1020" y2="530" />
+          <line x1="1140" y1="110" x2="1140" y2="530" />
+          <rect x="1160" y="560" width="220" height="150" />
+          <line x1="1160" y1="635" x2="1380" y2="635" />
+        </svg>
+        {/* Gold dot grid */}
+        <div className="absolute inset-0 bg-[radial-gradient(#c5a968_1px,transparent_1px)] [background-size:36px_36px] opacity-[0.12]" />
+        {/* Gold horizon hairline */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c5a968]/40 to-transparent" />
+        {/* Bottom fog */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-black/35 to-transparent" />
       </div>
 
       <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10 space-y-16">

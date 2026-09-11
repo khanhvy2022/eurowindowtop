@@ -239,6 +239,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-fade-in { animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
+@keyframes awardMarquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.awards-marquee {
+  will-change: transform;
+  animation: awardMarquee var(--marquee-duration, 46s) linear infinite;
+}
+.awards-marquee:hover {
+  animation-play-state: paused;
+}
+
 .glass {
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(16px);

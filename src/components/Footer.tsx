@@ -60,9 +60,19 @@ export default function Footer() {
   ];
 
   return (
-    <footer id="footer" className="bg-[#0a1f3c] text-white relative">
+    <footer id="footer" className="bg-[#0a1f3c] text-white relative overflow-hidden">
+      {/* Wordmark watermark */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 select-none z-0"
+      >
+        <span className="block text-center font-display font-black text-[13vw] lg:text-[11rem] leading-[0.75] text-white/[0.025] tracking-tighter whitespace-nowrap pb-24">
+          EUROWINDOW
+        </span>
+      </div>
+
       {/* ── Top CTA Banner ── */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-16 pb-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 pt-16 pb-8 relative z-10">
         <div className="relative bg-white/[0.07] backdrop-blur-md rounded-3xl border border-white/[0.12] overflow-hidden flex flex-col md:flex-row items-center justify-between p-8 sm:p-12 lg:p-14 gap-8">
           {/* Shimmer overlay */}
           <div
@@ -117,8 +127,13 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Gold divider */}
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#c5a968]/50 to-transparent" />
+      </div>
+
       {/* ── Main Footer Content ── */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 relative z-10">
 
         {/* Info Column */}
         <div className="space-y-6">

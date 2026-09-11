@@ -6,6 +6,8 @@ import { ArrowRight } from "./icons";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
+const INTRO_SKIP_SECONDS = 20;
+
 export default function HeroVideo() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
@@ -15,6 +17,20 @@ export default function HeroVideo() {
     const t = setTimeout(() => setIsLoaded(true), 120);
     return () => clearTimeout(t);
   }, []);
+
+  /** Skip intro: set start time when metadata loads */
+  const handleLoadedMetadata = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = INTRO_SKIP_SECONDS;
+    }
+  };
+
+  /** When video loops, skip intro again */
+  const handleTimeUpdate = () => {
+    if (videoRef.current && videoRef.current.currentTime < INTRO_SKIP_SECONDS) {
+      videoRef.current.currentTime = INTRO_SKIP_SECONDS;
+    }
+  };
 
   const toggleMute = () => {
     if (videoRef.current) {
@@ -45,6 +61,8 @@ export default function HeroVideo() {
           loop
           playsInline
           poster="/images/figma_7b8b_7492_9f80bd72474c265be9813af7bc879a99.png"
+          onLoadedMetadata={handleLoadedMetadata}
+          onTimeUpdate={handleTimeUpdate}
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>

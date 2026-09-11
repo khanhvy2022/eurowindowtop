@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import StatsSection from "@/components/StatsSection";
@@ -14,6 +15,15 @@ import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 import FloatingControls from "@/components/FloatingControls";
 
+export const metadata: Metadata = {
+  title: "Eurowindow - Tiên Phong. Kiến Tạo. Đồng Hành. | Giải Pháp Cửa & Vách Kính",
+  description:
+    "Nhà cung cấp giải pháp tổng thể về cửa và vách nhôm kính hàng đầu Việt Nam: Cửa nhôm cao cấp, Cửa nhựa uPVC, Cửa gỗ, Cửa cuốn, Cửa thông minh và Kính hộp Low-E.",
+  alternates: {
+    canonical: "/",
+  },
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen relative">
@@ -26,10 +36,10 @@ export default function Home() {
       <BusinessSolution />
       <ProjectsSection />
       <Achievements />
-      <ContactSection />
       <ArchitectHub />
       <NewsSection />
       <FinalCta />
+      <ContactSection />
       <Footer />
     </main>
   );

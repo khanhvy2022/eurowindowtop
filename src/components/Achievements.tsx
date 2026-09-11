@@ -2,8 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { Check, ArrowRight } from "./icons";
 
 interface AwardItem {
   id: string;
@@ -90,10 +88,24 @@ export default function Achievements() {
   const filteredAwards = awardsList.filter((a) => filter === "all" || a.category === filter);
 
   return (
-    <section className="py-24 lg:py-32 bg-slate-50 relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute right-0 top-0 select-none pointer-events-none opacity-40">
-        <span className="font-display font-black text-[14vw] text-slate-200 tracking-tighter leading-none block">
+    <section className="py-24 lg:py-32 bg-[#0a1f3c] relative overflow-hidden">
+      {/* Ambient orbs */}
+      <div className="pointer-events-none absolute -top-48 right-0 h-[34rem] w-[34rem] rounded-full bg-[#005bb7]/25 blur-[150px]" />
+      <div className="pointer-events-none absolute bottom-0 -left-32 h-[28rem] w-[28rem] rounded-full bg-[#c5a968]/10 blur-[130px]" />
+      {/* Subtle dot grid texture */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, #c5a968 1px, transparent 0)",
+          backgroundSize: "44px 44px",
+        }}
+      />
+      {/* Gold hairline divider */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#c5a968]/30 to-transparent" />
+
+      {/* Gold ghost wordmark */}
+      <div className="absolute right-0 top-0 select-none pointer-events-none">
+        <span className="font-display font-black text-[14vw] text-[#c5a968]/[0.09] tracking-tighter leading-none block">
           EUROWINDOW
         </span>
       </div>
@@ -101,21 +113,23 @@ export default function Achievements() {
       <div className="max-w-[1536px] mx-auto px-6 sm:px-12 lg:px-16 relative z-10 space-y-16">
         
         {/* Section Title */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-200 pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 relative">
+          <div className="absolute bottom-0 left-0 h-px w-32 bg-[#c5a968]" />
           <div className="space-y-3 max-w-2xl">
-            <span className="text-[11px] font-bold text-[#005bb7] uppercase tracking-widest block">
+            <span className="inline-flex items-center gap-2 text-[10px] font-bold text-[#c5a968] uppercase tracking-[0.22em]">
+              <span className="h-px w-6 bg-[#c5a968]" />
               RECOGNITION & STANDARDS
             </span>
-            <h2 className="font-display font-bold text-[32px] sm:text-[44px] text-[#0a1f3c] leading-tight">
+            <h2 className="font-display font-bold text-[32px] sm:text-[44px] text-white leading-tight tracking-[-0.01em] text-pretty">
               Được ghi nhận bởi những tiêu chuẩn cao nhất.
             </h2>
-            <p className="text-[15px] text-gray-600 font-sans leading-relaxed">
+            <p className="text-[15px] text-white/60 font-sans leading-relaxed">
               Nhiều năm liền được vinh danh bởi các tổ chức uy tín trong và ngoài nước — bằng chứng cho cam kết chất lượng không ngừng.
             </p>
           </div>
 
           {/* Category Filter Pills */}
-          <div className="flex items-center gap-1.5 bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm text-[12px] font-bold">
+          <div className="flex items-center gap-1.5 bg-white/[0.06] p-1.5 rounded-2xl border border-white/15 backdrop-blur-md text-[12px] font-bold">
             {[
               { id: "all", label: "Tất cả giải thưởng" },
               { id: "national", label: "Giải thưởng Quốc gia" },
@@ -123,11 +137,11 @@ export default function Achievements() {
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setFilter(tab.id as any)}
+                onClick={() => setFilter(tab.id as "all" | "national" | "international")}
                 className={`px-4 py-2 rounded-xl transition-all duration-300 cursor-pointer ${
                   filter === tab.id
-                    ? "bg-[#005bb7] text-white shadow-md"
-                    : "text-gray-600 hover:text-[#005bb7] hover:bg-slate-100"
+                    ? "bg-[#c5a968] text-[#0a1f3c] shadow-md"
+                    : "text-white/60 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {tab.label}
@@ -136,98 +150,123 @@ export default function Achievements() {
           </div>
         </div>
 
-        {/* Main Bento Grid Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Left: Award Cards Grid (7 cols) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <AnimatePresence mode="popLayout">
-              {filteredAwards.map((award) => (
-                <motion.div
-                  key={award.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-[#005bb7] transition-all duration-300 flex flex-col justify-between space-y-4 group"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold uppercase tracking-widest bg-blue-50 text-[#005bb7] px-3 py-1 rounded-full border border-blue-100">
-                      {award.year}
-                    </span>
-                    <div className="w-2 h-2 rounded-full bg-[#c5a968]" />
-                  </div>
+        {/* Featured Project Image — full width showcase */}
+        <div className="bg-[#06142a] rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative flex flex-col justify-between min-h-[480px] lg:min-h-[600px] p-8 sm:p-12 text-white group">
+          <div
+            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+            style={{ backgroundImage: `url(${featuredProjects[activeProjectIdx].img})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/45 to-transparent pointer-events-none" />
 
-                  <div className="flex items-center gap-4 py-2">
-                    <div className="w-20 h-20 relative flex-shrink-0 bg-slate-50 rounded-2xl p-2 border border-slate-100 flex items-center justify-center group-hover:scale-105 transition-transform">
+          {/* Top Badge */}
+          <div className="relative z-10 flex items-center justify-between">
+            <span className="bg-white/15 backdrop-blur-md text-[#c5a968] text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-white/20">
+              {featuredProjects[activeProjectIdx].badge}
+            </span>
+            <div className="flex gap-1.5">
+              {featuredProjects.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveProjectIdx(i)}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${activeProjectIdx === i ? "w-6 bg-[#c5a968]" : "w-2 bg-white/40"}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Bottom Project Caption */}
+          <div className="relative z-10 space-y-4 pt-24">
+            <span className="text-[10px] font-bold text-white/50 uppercase tracking-widest block">
+              CÔNG TRÌNH BIỂU TƯỢNG HOÀN THÀNH
+            </span>
+            <h3 className="font-display font-bold text-[24px] sm:text-[34px] text-white leading-snug drop-shadow-md">
+              {featuredProjects[activeProjectIdx].title}
+            </h3>
+            
+            <div className="flex items-center justify-between pt-2 border-t border-white/20">
+              <span className="text-[12px] font-bold text-[#c5a968]">EUROWINDOW QUALITY ASSURED</span>
+              <button
+                onClick={() => setActiveProjectIdx((prev) => (prev + 1) % featuredProjects.length)}
+                className="text-[11px] font-bold uppercase tracking-wider text-white hover:underline cursor-pointer flex items-center gap-1"
+              >
+                Dự án tiếp theo →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Awards Marquee — gently slides under the project image */}
+        <div>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[10px] font-bold text-[#c5a968] uppercase tracking-[0.22em] flex items-center gap-2">
+              GIẢI THƯỞNG & CHỨNG NHẬN
+            </span>
+            <span className="text-[10px] text-white/40 uppercase tracking-widest">
+              Hover để tạm dừng
+            </span>
+          </div>
+
+          <div className="overflow-hidden rounded-2xl border-y border-white/10 py-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div
+              className="awards-marquee flex w-max select-none"
+              style={{ "--marquee-duration": "46s" } as React.CSSProperties}
+            >
+              <div className="flex gap-5 pr-5">
+                {filteredAwards.map((award, i) => (
+                  <div
+                    key={`set1-${award.id}-${i}`}
+                    title={award.subtitle}
+                    className="group/chip flex items-center gap-4 bg-[#0d2548] border border-white/10 hover:border-[#c5a968]/70 rounded-2xl px-5 py-3.5 shadow-lg hover:shadow-[#c5a968]/10 transition-all duration-300 flex-shrink-0 cursor-default"
+                  >
+                    <div className="w-14 h-14 relative flex-shrink-0 bg-white/[0.06] rounded-xl p-1.5 border border-white/10 flex items-center justify-center group-hover/chip:scale-105 transition-transform">
                       <Image
                         src={award.logo}
                         alt={award.title}
-                        width={80}
-                        height={80}
+                        width={56}
+                        height={56}
                         className="object-contain max-h-full"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <h3 className="font-display font-bold text-[16px] text-gray-900 group-hover:text-[#005bb7] transition-colors leading-snug">
+                    <div className="space-y-1.5 min-w-[210px]">
+                      <span className="inline-block text-[9px] font-bold uppercase tracking-widest bg-[#c5a968] text-[#0a1f3c] px-2.5 py-0.5 rounded-full w-fit">
+                        {award.year}
+                      </span>
+                      <p className="font-display font-bold text-[13.5px] text-white leading-snug">
                         {award.title}
-                      </h3>
-                      <p className="text-[12px] text-gray-500 font-sans leading-relaxed">
-                        {award.subtitle}
                       </p>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-
-          {/* Right: Iconic Project Highlight Card (5 cols) */}
-          <div className="lg:col-span-5 bg-[#0a1f3c] rounded-3xl overflow-hidden shadow-2xl border border-white/10 relative flex flex-col justify-between min-h-[480px] p-8 text-white group">
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-              style={{ backgroundImage: `url(${featuredProjects[activeProjectIdx].img})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/60 to-transparent pointer-events-none" />
-
-            {/* Top Badge */}
-            <div className="relative z-10 flex items-center justify-between">
-              <span className="bg-white/15 backdrop-blur-md text-[#c5a968] text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-white/20">
-                {featuredProjects[activeProjectIdx].badge}
-              </span>
-              <div className="flex gap-1.5">
-                {featuredProjects.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActiveProjectIdx(i)}
-                    className={`h-2 rounded-full transition-all cursor-pointer ${activeProjectIdx === i ? "w-6 bg-[#c5a968]" : "w-2 bg-white/40"}`}
-                  />
+                ))}
+              </div>
+              <div className="flex gap-5 pr-5" aria-hidden="true">
+                {filteredAwards.map((award, i) => (
+                  <div
+                    key={`set2-${award.id}-${i}`}
+                    title={award.subtitle}
+                    className="group/chip flex items-center gap-4 bg-[#0d2548] border border-white/10 hover:border-[#c5a968]/70 rounded-2xl px-5 py-3.5 shadow-lg hover:shadow-[#c5a968]/10 transition-all duration-300 flex-shrink-0 cursor-default"
+                  >
+                    <div className="w-14 h-14 relative flex-shrink-0 bg-white/[0.06] rounded-xl p-1.5 border border-white/10 flex items-center justify-center group-hover/chip:scale-105 transition-transform">
+                      <Image
+                        src={award.logo}
+                        alt=""
+                        width={56}
+                        height={56}
+                        className="object-contain max-h-full"
+                      />
+                    </div>
+                    <div className="space-y-1.5 min-w-[210px]">
+                      <span className="inline-block text-[9px] font-bold uppercase tracking-widest bg-[#c5a968] text-[#0a1f3c] px-2.5 py-0.5 rounded-full w-fit">
+                        {award.year}
+                      </span>
+                      <p className="font-display font-bold text-[13.5px] text-white leading-snug">
+                        {award.title}
+                      </p>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
-
-            {/* Bottom Project Caption */}
-            <div className="relative z-10 space-y-4 pt-20">
-              <span className="text-[10px] font-bold text-gray-300 uppercase tracking-widest block">
-                CÔNG TRÌNH BIỂU TƯỢNG HOÀN THÀNH
-              </span>
-              <h3 className="font-display font-bold text-[22px] text-white leading-snug drop-shadow-md">
-                {featuredProjects[activeProjectIdx].title}
-              </h3>
-              
-              <div className="flex items-center justify-between pt-2 border-t border-white/20">
-                <span className="text-[12px] font-bold text-[#c5a968]">EUROWINDOW QUALITY ASSURED</span>
-                <button
-                  onClick={() => setActiveProjectIdx((prev) => (prev + 1) % featuredProjects.length)}
-                  className="text-[11px] font-bold uppercase tracking-wider text-white hover:underline cursor-pointer flex items-center gap-1"
-                >
-                  Dự án tiếp theo →
-                </button>
-              </div>
-            </div>
           </div>
-
         </div>
 
       </div>

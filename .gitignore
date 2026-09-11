@@ -25,6 +25,8 @@
 *.pem
 .playwright-mcp/
 clone-hero-top.png
+eurowindow-3d-baseline-hero.png
+third-party/
 NOTES.md
 docs/
 scripts/
