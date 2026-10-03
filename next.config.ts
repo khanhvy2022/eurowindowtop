@@ -1,6 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "storage.sudospaces.com",
+      },
+      {
+        protocol: "https",
+        hostname: "eurowindow.biz",
+      },
+      {
+        protocol: "https",
+        hostname: "www.eurowindow.top",
+      },
+    ],
+  },
   async redirects() {
     return [
       // Blogger Label URLs: /search/label/:label -> /tin-tuc?label=:label (301 Permanent)
