@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -90,7 +91,7 @@ export async function generateMetadata({
     };
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurowindow.biz";
+  const siteUrl = SITE_URL;
   const canonicalUrl = `/san-pham/${slug}`;
 
   return {
@@ -128,7 +129,7 @@ export default async function ProductDetailLayout({
 }: Props) {
   const { slug } = await params;
   const data = productMeta[slug];
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurowindow.biz";
+  const siteUrl = SITE_URL;
 
   const productSchema = data
     ? {

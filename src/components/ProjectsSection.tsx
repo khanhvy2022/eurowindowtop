@@ -2,19 +2,16 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check } from "./icons";
-
-interface ProjectItem {
-  id: string;
-  category: string;
-  title: string;
-  type: string;
-  investor: string;
-  volume: string;
-  year: string;
-  image: string;
-  specs: string[];
-}
+import { 
+  ArrowRight, 
+  Check, 
+  MapPin, 
+  Building2, 
+  Calendar, 
+  Layers,
+  X
+} from "./icons";
+import { projectsData, projectCategories, ProjectItem } from "@/data/projectsData";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -34,159 +31,15 @@ function useReveal() {
   return ref;
 }
 
-const projects: ProjectItem[] = [
-  {
-    id: "p-1",
-    category: "national",
-    title: "CẢNG HÀNG KHÔNG PHÚ BÀI HUẾ",
-    type: "National Infrastructure",
-    investor: "Tổng công ty Cảng hàng không Việt Nam (ACV)",
-    volume: "18.500 m²",
-    year: "2025",
-    image: "/images/official/project_phubai_hd.jpg",
-    specs: [
-      "Mặt dựng nhôm kính tiết kiệm năng lượng Low-E 24mm",
-      "Khung nhôm cầu cách nhiệt chịu áp lực gió cấp 15",
-      "Hệ thống lam chắn nắng điều khiển tự động",
-    ],
-  },
-  {
-    id: "p-2",
-    category: "national",
-    title: "TRỤ SỞ BỘ NGOẠI GIAO",
-    type: "National Headquarters",
-    investor: "Bộ Ngoại Giao Việt Nam",
-    volume: "45.000 m²",
-    year: "2024",
-    image: "/images/official/project_bongoaigiao_hd.jpg",
-    specs: [
-      "Cửa nhôm & vách kính Eurowindow cao cấp cách âm 45dB",
-      "Kính an toàn dán 2 lớp chống tia UV 99%",
-      "Phụ kiện kim khí đồng bộ tiêu chuẩn Đức",
-    ],
-  },
-  {
-    id: "p-3",
-    category: "national",
-    title: "NHÀ QUỐC HỘI VIỆT NAM",
-    type: "National Landmark",
-    investor: "Ban Quản lý Dự án Đầu tư Xây dựng Nhà Quốc hội",
-    volume: "38.000 m²",
-    year: "2024",
-    image: "/images/official/project_nhaquochoi_hd.jpg",
-    specs: [
-      "Vách nhôm kính đặc chủng chịu lực & cách âm tối ưu",
-      "Kính an toàn chống va đập tiêu chuẩn cấp Quốc gia",
-      "Sơn phủ PVDF chống ăn mòn thời tiết bền đẹp lâu năm",
-    ],
-  },
-  {
-    id: "p-4",
-    category: "commercial",
-    title: "BỆNH VIỆN UNG BƯỚU ĐÀ NẴNG",
-    type: "Commercial Healthcare",
-    investor: "Sở Y Tế Đà Nẵng",
-    volume: "32.000 m²",
-    year: "2023",
-    image: "/images/official/project_ungbuou_hd.jpg",
-    specs: [
-      "Vách vòm nhôm kính lấy sáng tự nhiên cách nhiệt",
-      "Cửa tự động cảm biến mắt thần nhập khẩu Nhật Bản",
-      "Hệ thống nhôm sơn phủ PVDF chịu ăn mòn biển",
-    ],
-  },
-  {
-    id: "p-5",
-    category: "commercial",
-    title: "BỆNH VIỆN VIỆT PHÁP HÀ NỘI",
-    type: "Commercial Healthcare",
-    investor: "Công ty TNHH Bệnh viện Việt Pháp",
-    volume: "22.000 m²",
-    year: "2023",
-    image: "/images/official/project_vietphap_hd.jpg",
-    specs: [
-      "Cửa nhựa uPVC & nhôm kính cách âm, cách nhiệt cao cấp",
-      "Hệ cửa tự động đóng mở đảm bảo vô trùng y tế",
-      "Kính an toàn dán nhiều lớp chống tia UV",
-    ],
-  },
-  {
-    id: "p-6",
-    category: "residential",
-    title: "VINHOMES GLOBAL GATE CỔ LOA",
-    type: "Urban Residential",
-    investor: "Tập đoàn Vingroup",
-    volume: "35.000 m²",
-    year: "2026",
-    image: "/images/official/project_vinhomes_hd.jpg",
-    specs: [
-      "Hệ cửa nhôm kính panorama toàn cảnh đón ánh sáng",
-      "Kính Low-E chống nhiệt, tiết kiệm điện điều hòa",
-      "Phụ kiện cao cấp nhập khẩu tiêu chuẩn Châu Âu",
-    ],
-  },
-  {
-    id: "p-7",
-    category: "hospitality",
-    title: "FLC LUXURY RESORT SẦM SƠN",
-    type: "Hospitality & Resort",
-    investor: "Tập đoàn FLC",
-    volume: "28.500 m²",
-    year: "2024",
-    image: "/images/official/project_flc_hd.jpg",
-    specs: [
-      "Cửa trượt nhôm kính panorama view biển tràn viền",
-      "Vách kính cường lực chịu mặn bãi biển",
-      "Sơn phủ công nghệ anodized chống ăn mòn hóa chất mặn",
-    ],
-  },
-  {
-    id: "p-8",
-    category: "commercial",
-    title: "FPT TELECOM TOWER",
-    type: "Commercial Office",
-    investor: "Công ty Cổ phần Viễn thông FPT (FPT Telecom)",
-    volume: "33.000 hạng mục",
-    year: "2026",
-    image: "/images/official/project_fpt_hd.jpg",
-    specs: [
-      "Hệ mặt dựng nhôm kính và cửa tự động chuẩn văn phòng hạng A",
-      "Mái kính kết hợp lan can kính cường lực an toàn",
-      "Cấu kiện kim loại phụ trợ gia công độ chính xác cao",
-    ],
-  },
-  {
-    id: "p-9",
-    category: "residential",
-    title: "SUNSHINE CRYSTAL RIVER",
-    type: "Luxury Residential",
-    investor: "Tập đoàn Sunshine Group",
-    volume: "30.000 m²",
-    year: "2025",
-    image: "/images/official/project_sunshine_hd.jpg",
-    specs: [
-      "Vách mặt dựng nhôm kính giấu đố sang trọng, tối giản",
-      "Kính dán an toàn tăng chịu lực, cách âm, cản tia UV",
-      "Lan can kính louver và mái kính hoàn thiện trọn gói",
-    ],
-  },
-];
-
-const categories = [
-  { id: "all", label: "Tất cả" },
-  { id: "national", label: "Cấp quốc gia" },
-  { id: "commercial", label: "Thương mại & Y tế" },
-  { id: "residential", label: "Khu đô thị" },
-  { id: "hospitality", label: "Nghỉ dưỡng & Resort" },
-];
-
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [lightbox, setLightbox] = useState<ProjectItem | null>(null);
+  const [activeImage, setActiveImage] = useState<string>("");
   const headerRef = useReveal();
 
   useEffect(() => {
     if (!lightbox) return;
+    setActiveImage(lightbox.image);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setLightbox(null);
     };
@@ -196,8 +49,8 @@ export default function ProjectsSection() {
 
   const filtered =
     activeCategory === "all"
-      ? projects
-      : projects.filter((p) => p.category === activeCategory);
+      ? projectsData
+      : projectsData.filter((p) => p.category === activeCategory);
 
   const handleCategory = (id: string) => {
     setActiveCategory(id);
@@ -233,7 +86,7 @@ export default function ProjectsSection() {
               className="inline-flex items-center gap-2 text-[#c5a968] text-[10px] font-bold uppercase tracking-[0.22em]"
             >
               <span className="h-px w-6 bg-[#c5a968]" />
-              Công Trình Tiêu Biểu
+              Công Trình Tiêu Biểu & Dấu Ấn Kiến Trúc
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
@@ -244,11 +97,20 @@ export default function ProjectsSection() {
             >
               Công trình kiến tạo dấu ấn.
             </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.12 }}
+              className="text-white/60 text-sm sm:text-base leading-relaxed"
+            >
+              Hơn hai thập kỷ đồng hành cùng các công trình biểu tượng quốc gia, trụ sở cơ quan bộ ngành, bệnh viện, khu nghỉ dưỡng và đại đô thị cao cấp khắp Việt Nam.
+            </motion.p>
           </div>
 
           {/* Filter */}
           <div className="flex items-center p-1.5 bg-white/[0.06] backdrop-blur-md rounded-2xl border border-white/15 gap-1 flex-wrap">
-            {categories.map((cat) => (
+            {projectCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => handleCategory(cat.id)}
@@ -281,26 +143,20 @@ export default function ProjectsSection() {
                 initial={{ opacity: 0, y: 24, scale: 0.98 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
-                transition={{ duration: 0.45, ease: EASE, delay: i * 0.05 }}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 hover:border-[#c5a968]/60 bg-[#0d2548] shadow-2xl shadow-black/30 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer"
+                transition={{ duration: 0.45, ease: EASE, delay: i * 0.04 }}
+                onClick={() => setLightbox(project)}
+                className="group relative overflow-hidden rounded-3xl border border-white/10 hover:border-[#c5a968]/60 bg-[#0d2548] shadow-2xl shadow-black/30 hover:-translate-y-1.5 transition-all duration-500 cursor-pointer flex flex-col justify-between"
               >
-                {/* Invisible full-card click target (keyboard accessible) */}
-                <button
-                  type="button"
-                  onClick={() => setLightbox(project)}
-                  aria-label={`Xem chi tiết dự án ${project.title}`}
-                  className="absolute inset-0 z-20 cursor-pointer focus:outline-none"
-                />
-
+                {/* Visual Image container */}
                 <div className="relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-[1.06]"
                     style={{ backgroundImage: `url(${project.image})` }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/25 to-black/10" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1f3c] via-[#0a1f3c]/40 to-black/20" />
 
                   {/* Type badge */}
-                  <div className="absolute top-4 left-4 z-10">
+                  <div className="absolute top-4 left-4 z-10 flex flex-wrap gap-2">
                     <span className="bg-white/15 backdrop-blur-md border border-white/25 text-white text-[9px] font-bold uppercase tracking-[0.15em] px-3 py-1.5 rounded-full">
                       {project.type}
                     </span>
@@ -308,26 +164,39 @@ export default function ProjectsSection() {
 
                   {/* Year badge */}
                   <div className="absolute top-4 right-4 z-10">
-                    <span className="bg-[#c5a968] text-[#0a1f3c] text-[10px] font-extrabold tracking-widest px-3 py-1.5 rounded-full">
+                    <span className="bg-[#c5a968] text-[#0a1f3c] text-[10px] font-extrabold tracking-widest px-3 py-1.5 rounded-full shadow-md">
                       {project.year}
                     </span>
                   </div>
 
-                  {/* Bottom content */}
-                  <div className="relative z-10 p-6 space-y-3">
+                  {/* Bottom content overlay on card */}
+                  <div className="absolute inset-x-0 bottom-0 z-10 p-6 space-y-2.5">
                     <div className="flex items-center gap-2.5">
                       <span className="h-px w-5 bg-[#c5a968]" />
-                      <span className="text-[9px] font-bold text-[#c5a968] uppercase tracking-widest">
+                      <span className="text-[10px] font-bold text-[#c5a968] uppercase tracking-wider">
                         {project.volume}
                       </span>
                     </div>
-                    <h3 className="font-display font-bold text-[18px] sm:text-[20px] text-white leading-snug drop-shadow-md">
+
+                    <h3 className="font-display font-bold text-[19px] sm:text-[21px] text-white leading-snug drop-shadow-md">
                       {project.title}
                     </h3>
-                    <span className="inline-flex items-center gap-2 text-[10px] font-bold text-white/70 uppercase tracking-widest opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                      Xem chi tiết
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
+
+                    {/* Address snippet */}
+                    <div className="flex items-center gap-1.5 text-white/80 text-[12px] font-sans">
+                      <MapPin className="h-3.5 w-3.5 text-[#c5a968] flex-shrink-0" />
+                      <span className="truncate">{project.address}</span>
+                    </div>
+
+                    <div className="pt-2 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#c5a968] group-hover:text-white uppercase tracking-wider transition-colors duration-300">
+                        Chi tiết dự án
+                        <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                      </span>
+                      <span className="text-[10px] text-white/50 bg-white/10 px-2.5 py-0.5 rounded-full">
+                        {project.location}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -341,19 +210,19 @@ export default function ProjectsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE, delay: 0.3 }}
-          className="mt-8 flex justify-center"
+          className="mt-12 flex items-center justify-center text-center"
         >
           <a
             href="/cong-trinh"
-            className="inline-flex items-center gap-2.5 text-[11px] font-bold text-white/50 uppercase tracking-[0.15em] hover:text-[#c5a968] border-b border-white/15 hover:border-[#c5a968] pb-1 transition-all duration-300 group"
+            className="inline-flex items-center gap-2.5 text-[12px] font-bold text-white hover:text-[#c5a968] bg-white/10 hover:bg-white/15 px-6 py-3 rounded-full border border-white/20 transition-all duration-300 group shadow-lg"
           >
-            Xem toàn bộ công trình
+            <span>Xem toàn bộ hồ sơ công trình tiêu biểu ({projectsData.length}+ dự án)</span>
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </a>
         </motion.div>
       </div>
 
-      {/* ── Lightbox ── */}
+      {/* ── Comprehensive Project Detail Modal ── */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
@@ -364,7 +233,7 @@ export default function ProjectsSection() {
             role="dialog"
             aria-modal="true"
             aria-label={lightbox.title}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-black/85 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 md:p-8 bg-black/85 backdrop-blur-md overflow-y-auto"
             onClick={() => setLightbox(null)}
           >
             <motion.div
@@ -372,66 +241,185 @@ export default function ProjectsSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.35, ease: EASE }}
-              className="relative w-full max-w-4xl bg-[#0d2548] border border-white/10 rounded-3xl overflow-hidden shadow-2xl grid grid-cols-1 md:grid-cols-12"
+              className="relative w-full max-w-5xl max-h-[92vh] bg-[#0d2548] border border-white/20 rounded-3xl shadow-2xl overflow-hidden flex flex-col my-auto"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Close button */}
               <button
                 onClick={() => setLightbox(null)}
                 aria-label="Đóng"
-                className="absolute top-5 right-5 z-20 h-9 w-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/70 hover:text-white transition-all cursor-pointer font-bold text-lg"
+                className="absolute top-4 right-4 z-30 h-10 w-10 rounded-full bg-black/60 hover:bg-white/20 flex items-center justify-center text-white/80 hover:text-white transition-all cursor-pointer backdrop-blur-md border border-white/20 shadow-lg"
               >
-                ✕
+                <X className="h-5 w-5" />
               </button>
 
-              <div className="md:col-span-7 relative min-h-[280px] md:min-h-[460px]">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${lightbox.image})` }}
-                />
-                <div className="absolute top-5 left-5">
-                  <span className="bg-[#c5a968] text-[#0a1f3c] text-[9px] font-bold uppercase tracking-[0.18em] px-4 py-1.5 rounded-full">
-                    {lightbox.year}
-                  </span>
-                </div>
-              </div>
+              <div className="overflow-y-auto max-h-[92vh] divide-y divide-white/10">
+                {/* ── Top Hero Image & Key Badges ── */}
+                <div className="grid grid-cols-1 lg:grid-cols-12 relative bg-[#0a1f3c]">
+                  {/* Main Large Image */}
+                  <div className="lg:col-span-7 relative min-h-[300px] sm:min-h-[380px] lg:min-h-[460px] bg-slate-900 overflow-hidden flex flex-col justify-between">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-all duration-500"
+                      style={{ backgroundImage: `url(${activeImage || lightbox.image})` }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d2548] via-transparent to-black/40" />
 
-              <div className="md:col-span-5 p-8 flex flex-col justify-between">
-                <div className="space-y-6">
-                  <div>
-                    <span className="text-[9px] font-bold text-[#c5a968] uppercase tracking-[0.2em] block mb-1">
-                      {lightbox.type}
-                    </span>
-                    <h3 className="font-display font-bold text-[20px] text-white leading-snug">
-                      {lightbox.title}
-                    </h3>
-                    <p className="text-[11px] text-white/35 mt-1.5 font-sans">
-                      Chủ đầu tư: {lightbox.investor}
-                    </p>
+                    {/* Top Badges */}
+                    <div className="relative z-10 p-5 flex items-center justify-between">
+                      <span className="bg-[#c5a968] text-[#0a1f3c] text-[10px] font-extrabold uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-lg">
+                        {lightbox.year}
+                      </span>
+                      <span className="bg-black/50 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full">
+                        {lightbox.location}
+                      </span>
+                    </div>
+
+                    {/* Gallery Thumbnails if available */}
+                    {lightbox.gallery && lightbox.gallery.length > 1 && (
+                      <div className="relative z-10 p-4 flex gap-2 overflow-x-auto bg-black/30 backdrop-blur-sm border-t border-white/10">
+                        {lightbox.gallery.map((img, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setActiveImage(img)}
+                            className={`h-14 w-20 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                              (activeImage || lightbox.image) === img
+                                ? "border-[#c5a968] scale-105 shadow-md"
+                                : "border-white/30 opacity-70 hover:opacity-100"
+                            }`}
+                          >
+                            <img src={img} alt={`${lightbox.title} ảnh ${idx + 1}`} className="h-full w-full object-cover" />
+                          </button>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="space-y-3.5 border-t border-white/10 pt-5">
-                    <h4 className="text-[9px] font-bold uppercase text-white/30 tracking-widest">
-                      Giải Pháp Kỹ Thuật
-                    </h4>
-                    <ul className="space-y-3">
-                      {lightbox.specs.map((spec, idx) => (
-                        <li key={idx} className="flex items-start gap-3 text-[12px] text-white/60 font-sans">
-                          <div className="flex-shrink-0 mt-0.5 h-5 w-5 rounded-full bg-[#c5a968]/15 border border-[#c5a968]/30 flex items-center justify-center">
-                            <Check className="h-2.5 w-2.5 text-[#c5a968]" />
+                  {/* Quick Overview Sidebar */}
+                  <div className="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#c5a968]" />
+                        <span className="text-[10px] font-extrabold text-[#c5a968] uppercase tracking-[0.2em]">
+                          {lightbox.type}
+                        </span>
+                      </div>
+
+                      <h2 className="font-display font-bold text-[22px] sm:text-[26px] text-white leading-tight">
+                        {lightbox.title}
+                      </h2>
+
+                      {/* Prominent Address Box */}
+                      <div className="p-3.5 rounded-2xl bg-white/[0.06] border border-[#c5a968]/40 space-y-1.5">
+                        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-[#c5a968]">
+                          <MapPin className="h-4 w-4 text-[#c5a968] flex-shrink-0" />
+                          <span>Địa Chỉ Dự Án:</span>
+                        </div>
+                        <p className="text-white text-sm font-medium leading-relaxed pl-6">
+                          {lightbox.address}
+                        </p>
+                      </div>
+
+                      {/* Key Attributes list */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 pt-2">
+                        <div className="flex items-start gap-2.5 text-xs text-white/80">
+                          <Building2 className="h-4 w-4 text-[#c5a968] flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-white/40 block text-[10px] uppercase font-bold">Chủ Đầu Tư</span>
+                            <span className="text-white font-medium">{lightbox.investor}</span>
                           </div>
-                          <span>{spec}</span>
-                        </li>
-                      ))}
-                    </ul>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 text-xs text-white/80">
+                          <Layers className="h-4 w-4 text-[#c5a968] flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-white/40 block text-[10px] uppercase font-bold">Quy Mô / Khối Lượng</span>
+                            <span className="text-white font-medium">{lightbox.volume}</span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 text-xs text-white/80">
+                          <Calendar className="h-4 w-4 text-[#c5a968] flex-shrink-0 mt-0.5" />
+                          <div>
+                            <span className="text-white/40 block text-[10px] uppercase font-bold">Năm Triển Khai</span>
+                            <span className="text-white font-medium">{lightbox.year}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <button
-                  onClick={() => setLightbox(null)}
-                  className="w-full mt-6 py-3.5 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-[10px] uppercase tracking-[0.18em] rounded-xl transition-all shadow-lg cursor-pointer"
-                >
-                  Đóng xem trước
-                </button>
+                {/* ── Deep Information & Technical Solutions ── */}
+                <div className="p-6 sm:p-8 space-y-8 bg-[#0d2548]">
+                  {/* Section 1: Detailed Project Information */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-[#c5a968] text-xs font-bold uppercase tracking-widest">
+                      <span className="h-2 w-2 rounded-full bg-[#c5a968]" />
+                      Thông Tin Chi Tiết Dự Án
+                    </div>
+                    <p className="text-white/80 text-sm sm:text-base leading-relaxed font-sans text-justify">
+                      {lightbox.description}
+                    </p>
+                    {lightbox.scale && (
+                      <div className="p-4 rounded-xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-white/90">
+                        <strong className="text-[#c5a968]">Quy mô & Thông số kiến trúc: </strong>
+                        {lightbox.scale}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Section 2: Eurowindow Solution */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-[#c5a968] text-xs font-bold uppercase tracking-widest">
+                      <span className="h-2 w-2 rounded-full bg-[#c5a968]" />
+                      Giải Pháp & Hạng Mục Eurowindow Thi Công
+                    </div>
+                    <p className="text-white/80 text-sm leading-relaxed font-sans text-justify">
+                      {lightbox.solution}
+                    </p>
+
+                    {/* Specs Bullet Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                      {lightbox.specs.map((spec, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-start gap-3 p-3.5 rounded-xl bg-white/[0.04] border border-white/10 hover:border-[#c5a968]/40 transition-colors"
+                        >
+                          <div className="flex-shrink-0 mt-0.5 h-5 w-5 rounded-full bg-[#c5a968]/20 border border-[#c5a968]/40 flex items-center justify-center">
+                            <Check className="h-3 w-3 text-[#c5a968]" />
+                          </div>
+                          <span className="text-xs text-white/90 leading-snug font-medium">
+                            {spec}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
+                    <div className="text-xs text-white/50 flex items-center gap-2">
+                      <MapPin className="h-3.5 w-3.5 text-[#c5a968]" />
+                      <span>{lightbox.address}</span>
+                    </div>
+
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                      <a
+                        href="#contact"
+                        onClick={() => setLightbox(null)}
+                        className="flex-1 sm:flex-none text-center px-6 py-3 bg-[#c5a968] hover:bg-[#b5964f] text-[#0a1f3c] font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg cursor-pointer"
+                      >
+                        Tư vấn giải pháp dự án
+                      </a>
+                      <button
+                        onClick={() => setLightbox(null)}
+                        className="px-5 py-3 bg-white/10 hover:bg-white/20 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all cursor-pointer"
+                      >
+                        Đóng
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </motion.div>

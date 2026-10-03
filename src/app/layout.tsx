@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Wix_Madefor_Display, Inter } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 const wixDisplay = Wix_Madefor_Display({
   subsets: ["latin", "vietnamese"],
@@ -13,7 +14,7 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurowindow.biz";
+const siteUrl = SITE_URL;
 
 export const viewport: Viewport = {
   themeColor: "#0a1f3c",
@@ -83,12 +84,6 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "vi-VN": siteUrl,
     },
   },
 };

@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
+import { blogPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurowindow.biz";
+  const baseUrl = SITE_URL;
   const now = new Date();
 
-  // Static routes
+  // Core static routes
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}`,
@@ -40,7 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/tin-tuc`,
       lastModified: now,
       changeFrequency: "daily",
-      priority: 0.8,
+      priority: 0.85,
     },
     {
       url: `${baseUrl}/gioi-thieu`,
@@ -68,5 +70,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  return [...staticRoutes, ...productRoutes];
+  // Preserved Blogger blog post routes (139 articles)
+  // Ensures Google immediately confirms 200 OK on all existing indexed URLs
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}${post.path}`,
+    lastModified: new Date(post.updated || post.published),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  return [...staticRoutes, ...productRoutes, ...blogRoutes];
 }

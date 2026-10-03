@@ -6,6 +6,7 @@ import {
   ChevronDown,
   ChevronLeft, 
   ChevronRight, 
+  ArrowLeft,
   ArrowRight,
   Download,
   Headphones,
@@ -16,7 +17,16 @@ import {
   Play,
   Check,
   BookOpen,
-  Palette
+  Palette,
+  MapPin,
+  Building2,
+  Calendar,
+  ExternalLink,
+  ShieldCheck,
+  Info,
+  Sparkles,
+  Tag,
+  Phone
 } from "lucide-react";
 
 // Re-export standard icons
@@ -27,6 +37,7 @@ export {
   ChevronDown,
   ChevronLeft, 
   ChevronRight, 
+  ArrowLeft,
   ArrowRight,
   Download,
   Headphones,
@@ -37,7 +48,16 @@ export {
   Play,
   Check,
   BookOpen,
-  Palette
+  Palette,
+  MapPin,
+  Building2,
+  Calendar,
+  ExternalLink,
+  ShieldCheck,
+  Info,
+  Sparkles,
+  Tag,
+  Phone
 };
 
 // Custom TikTok Icon

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import React from "react";
 import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Giới Thiệu Lịch Sử Phát Triển & Năng Lực Doanh Nghiệp",
@@ -37,7 +38,7 @@ export default function GioiThieuLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://eurowindow.biz";
+  const siteUrl = SITE_URL;
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",

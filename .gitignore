@@ -30,6 +30,7 @@ third-party/
 NOTES.md
 docs/
 scripts/
+!scripts/import-blogger.mjs
 
 # debug
 npm-debug.log*
